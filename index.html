@@ -198,7 +198,12 @@
             .staticrypt-body{
                 background-color: lightblue !important;
                 text-align: center;
-                overflow: hidden;
+                overflow-y: auto;
+                scrollbar-width: none;
+                -ms-overflow-style: none;
+            }
+            .staticrypt-body::-webkit-scrollbar {
+                display: none;
             }
         </style>
     </head>
