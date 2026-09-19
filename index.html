@@ -5,12 +5,25 @@
         <title>DEV insider</title>
         <meta name="viewport" content="width=device-width, initial-scale=1" />
 
-        <!-- do not cache this page -->
         <meta http-equiv="cache-control" content="max-age=0" />
         <meta http-equiv="cache-control" content="no-cache" />
         <meta http-equiv="expires" content="0" />
         <meta http-equiv="expires" content="Tue, 01 Jan 1980 1:00:00 GMT" />
         <meta http-equiv="pragma" content="no-cache" />
+        <meta name="robots" content="index, follow" />
+        <meta name="googlebot" content="index, follow" />
+        <meta name="description" content="DEV insider " />
+        <meta name="keywords" content="DEV insider, dev insider, sawr1, GitHub Pages, Private Developer System,king jun um,Kim Jong Un, DEV,dev" />
+        <meta name="author" content="sawr1" />
+        <meta property="og:type" content="website" />
+        <meta property="og:title" content="DEV insider | Private Developer Portal" />
+        <meta property="og:description" content="DEV insider" />
+        <meta property="og:site_name" content="DEV insider" />
+        <meta property="og:locale" content="en-US" />
+        <meta name="twitter:card" content="summary" />
+        <meta name="twitter:title" content="DEV insider | Private Developer Portal" />
+        <meta name="twitter:description" content="DEV insider" />
+
         
         <link id="dynamic-favicon" rel="icon" type="image/png" />
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/5.1.0/theme/black.min.css">
@@ -508,6 +521,11 @@
                 cursor: pointer !important;
                 box-shadow: 0 6px 18px -2px rgba(99, 102, 241, 0.5) !important;
                 transition: all 0.2s ease !important;
+                border: none !important;
+                outline: none !important;
+                box-shadow: 0 8px 24px -2px rgba(99, 102, 241, 0.5) !important;
+                transition: all 0.2s ease !important;
+                display: inline-block !important;
             }
 
             .swal-custom-confirm:hover {
@@ -1703,7 +1721,7 @@ exports.init = init;
                 }
             })();
             Swal.fire({
-                title: '<span style="font-family:\'Plus Jakarta Sans\',sans-serif;font-weight:700;letter-spacing:-0.02em;">System Notice</span>',
+                title: '<span style="font-family:\'Plus Jakarta Sans\',sans-serif;font-weight:700;letter-spacing:-0.02em;">Notice</span>',
                 html: '<span style="color:#94a3b8;font-size:0.92rem;line-height:1.6;">Please report any bug to me.<br>Thank you!</span>',
                 icon: 'info',
                 iconColor: '#6366f1',
