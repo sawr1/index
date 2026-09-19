@@ -19,6 +19,19 @@
         <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
         <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
         <style>
+            .staticrypt-password-container {
+                overflow: hidden !important;
+            }
+            .staticrypt-form input:-webkit-autofill,
+            .staticrypt-form input:-webkit-autofill:hover, 
+            .staticrypt-form input:-webkit-autofill:focus, 
+            .staticrypt-form input:-webkit-autofill:active {
+                -webkit-box-shadow: 0 0 0 1000px rgba(15, 23, 42, 0.95) inset !important;
+                -webkit-text-fill-color: #f8fafc !important;
+                caret-color: #f8fafc !important;
+                transition: background-color 5000s ease-in-out 0s !important;
+                border-radius: inherit !important;
+            }
             :root {
                 --primary: #6366f1;
                 --primary-hover: #4f46e5;
