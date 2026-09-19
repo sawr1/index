@@ -1736,6 +1736,279 @@ exports.init = init;
                     confirmButton: 'swal-custom-confirm'
                 }
             });
+            (function() {
+                            "use strict";
+
+                            function removeTooltips(target) {
+                                const root = target || document;
+                                const toggleBtns = root.querySelectorAll ? root.querySelectorAll(".staticrypt-toggle-password-visibility, #staticrypt-toggle-show-password") : [];
+                                toggleBtns.forEach(btn => {
+                                    btn.removeAttribute("title");
+                                    btn.removeAttribute("aria-label");
+                                    btn.querySelectorAll("[title], [aria-label]").forEach(el => {
+                                        el.removeAttribute("title");
+                                        el.removeAttribute("aria-label");
+                                    });
+                                });
+
+                                const elements = root.querySelectorAll ? root.querySelectorAll("[title*='template_toggle'], [title*='password'], [title*='Password']") : [];
+                                elements.forEach(el => el.removeAttribute("title"));
+                            }
+                document.addEventListener("mouseover", function(e) {
+                    let el = e.target;
+                    while (el && el !== document.body) {
+                        if (el.hasAttribute && el.hasAttribute("title")) {
+                            const val = el.getAttribute("title") || "";
+                            if (val.includes("template_toggle") || val.toLowerCase().includes("password")) {
+                                el.removeAttribute("title");
+                            }
+                        }
+                        el = el.parentElement;
+                    }
+                }, true);
+                const observer = new MutationObserver(mutations => {
+                    for (const m of mutations) {
+                        if (m.type === "attributes" && (m.attributeName === "title" || m.attributeName === "aria-label")) {
+                            const val = m.target.getAttribute(m.attributeName) || "";
+                            if (val.includes("template_toggle") || val.toLowerCase().includes("password")) {
+                                m.target.removeAttribute(m.attributeName);
+                            }
+                        } else if (m.addedNodes.length) {
+                            removeTooltips(m.target);
+                        }
+                    }
+                });
+
+                observer.observe(document.documentElement, {
+                    attributes: true,
+                    attributeFilter: ["title", "aria-label"],
+                    subtree: true,
+                    childList: true
+                });
+
+                if (document.readyState === "loading") {
+                    document.addEventListener("DOMContentLoaded", () => removeTooltips());
+                } else {
+                    removeTooltips();
+                }
+            })();
+        </script>
+        <script>
+
+            (function(window) {
+                "use strict";
+
+                const SystemMonitor = {
+                    config: {
+                        appName: "DEV insider",
+                        environment: "production",
+                        sampleRate: 1.0,
+                        maxLogEntries: 50
+                    },
+                    metrics: {
+                        navigation: {},
+                        resources: [],
+                        vitals: {
+                            domContentLoaded: null,
+                            windowLoaded: null,
+                            fps: 60
+                        },
+                        storage: {},
+                        errors: []
+                    },
+
+            
+                    init() {
+                        this.collectNavigationTiming();
+                        this.trackErrors();
+                        this.trackFrameRate();
+                        this.checkStorageQuota();
+                        this.logReadyState();
+                    },
+                    collectNavigationTiming() {
+                        window.addEventListener("load", () => {
+                            setTimeout(() => {
+                                const entries = performance.getEntriesByType("navigation");
+                                if (entries && entries.length > 0) {
+                                    const nav = entries[0];
+                                    this.metrics.navigation = {
+                                        dnsLookupMs: +(nav.domainLookupEnd - nav.domainLookupStart).toFixed(2),
+                                        tcpHandshakeMs: +(nav.connectEnd - nav.connectStart).toFixed(2),
+                                        tlsNegotiationMs: nav.secureConnectionStart > 0 ? +(nav.connectEnd - nav.secureConnectionStart).toFixed(2) : 0,
+                                        timeToFirstByteMs: +(nav.responseStart - nav.requestStart).toFixed(2),
+                                        contentDownloadMs: +(nav.responseEnd - nav.responseStart).toFixed(2),
+                                        domInteractiveMs: +(nav.domInteractive - nav.startTime).toFixed(2),
+                                        domCompleteMs: +(nav.domComplete - nav.startTime).toFixed(2),
+                                        totalLoadTimeMs: +(nav.loadEventEnd - nav.startTime).toFixed(2)
+                                    };
+                                }
+                                this.metrics.vitals.windowLoaded = performance.now().toFixed(2) + "ms";
+                            }, 100);
+                        });
+
+                        document.addEventListener("DOMContentLoaded", () => {
+                            this.metrics.vitals.domContentLoaded = performance.now().toFixed(2) + "ms";
+                        });
+                    },
+
+           
+                    collectResourceTiming() {
+                        const resources = performance.getEntriesByType("resource");
+                        return resources.map(res => ({
+                            name: res.name.split("/").pop().split("?")[0] || res.name,
+                            type: res.initiatorType,
+                            durationMs: +res.duration.toFixed(2),
+                            transferSizeByte: res.transferSize || 0
+                        }));
+                    },
+
+                    trackErrors() {
+                        window.addEventListener("error", (event) => {
+                            this.metrics.errors.push({
+                                type: "JavaScript Error",
+                                message: event.message,
+                                source: event.filename,
+                                line: event.lineno,
+                                col: event.colno,
+                                time: performance.now().toFixed(2) + "ms"
+                            });
+                            if (this.metrics.errors.length > this.config.maxLogEntries) {
+                                this.metrics.errors.shift();
+                            }
+                        });
+
+                        window.addEventListener("unhandledrejection", (event) => {
+                            this.metrics.errors.push({
+                                type: "Unhandled Promise Rejection",
+                                reason: String(event.reason),
+                                time: performance.now().toFixed(2) + "ms"
+                            });
+                        });
+                    },
+
+                    trackFrameRate() {
+                        let last = performance.now();
+                        let count = 0;
+                        const loop = (now) => {
+                            count++;
+                            if (now - last >= 1000) {
+                                this.metrics.vitals.fps = Math.round((count * 1000) / (now - last));
+                                count = 0;
+                                last = now;
+                            }
+                            requestAnimationFrame(loop);
+                        };
+                        requestAnimationFrame(loop);
+                    },
+
+                    async checkStorageQuota() {
+                        if (navigator.storage && navigator.storage.estimate) {
+                            try {
+                                const estimate = await navigator.storage.estimate();
+                                this.metrics.storage = {
+                                    usageKB: +(estimate.usage / 1024).toFixed(2),
+                                    quotaMB: +(estimate.quota / (1024 * 1024)).toFixed(2),
+                                    percentUsed: ((estimate.usage / estimate.quota) * 100).toFixed(4) + "%"
+                                };
+                            } catch (e) {
+                                this.metrics.storage = { error: "Storage estimation query failed" };
+                            }
+                        }
+                    },
+
+ 
+                    logReadyState() {
+                        console.log(
+                            "%c Application Monitor %c Diagnostics online (Use window.diagnostics for developer commands) ",
+                            "background: #2563eb; color: #ffffff; padding: 2px 4px; border-radius: 2px 0 0 2px; font-weight: 500;",
+                            "background: #1e293b; color: #94a3b8; padding: 2px 4px; border-radius: 0 2px 2px 0;"
+                        );
+                    }
+                };
+
+           
+                window.diagnostics = {
+                    summary() {
+                        console.log("%c--- Application Performance Overview ---", "color: #2563eb; font-weight: bold;");
+                        console.table({
+                            "App Name": SystemMonitor.config.appName,
+                            "Environment": SystemMonitor.config.environment,
+                            "Target FPS": SystemMonitor.metrics.vitals.fps,
+                            "DOM Ready": SystemMonitor.metrics.vitals.domContentLoaded || "In progress...",
+                            "Window Loaded": SystemMonitor.metrics.vitals.windowLoaded || "Pending...",
+                            "Detected Errors": SystemMonitor.metrics.errors.length
+                        });
+                        return "Execution complete.";
+                    },
+                    network() {
+                        if (Object.keys(SystemMonitor.metrics.navigation).length === 0) {
+                            return "Navigation metrics are still computing. Please try again after full load.";
+                        }
+                        console.table(SystemMonitor.metrics.navigation);
+                        return "Navigation timing retrieved.";
+                    },
+                    resources() {
+                        const list = SystemMonitor.collectResourceTiming();
+                        console.table(list);
+                        return `Total resources profiled: ${list.length}`;
+                    },
+                    storage() {
+                        console.table(SystemMonitor.metrics.storage);
+                        return "Storage estimate snapshot.";
+                    },
+                    errors() {
+                        if (SystemMonitor.metrics.errors.length === 0) {
+                            return "No unhandled errors recorded in current session.";
+                        }
+                        console.table(SystemMonitor.metrics.errors);
+                        return `Total error incidents: ${SystemMonitor.metrics.errors.length}`;
+                    },
+                    clear() {
+                        console.clear();
+                        SystemMonitor.logReadyState();
+                        return "Console buffer cleared.";
+                    },
+                    help() {
+                        console.info(
+                            "Available developer diagnostic commands:\n" +
+                            "- diagnostics.summary()   : High-level application health overview\n" +
+                            "- diagnostics.network()   : HTTP and navigation timing breakdown\n" +
+                            "- diagnostics.resources() : Asset loading durations and sizes\n" +
+                            "- diagnostics.storage()   : Local Storage and quota estimates\n" +
+                            "- diagnostics.errors()    : Session error logs\n" +
+                            "- diagnostics.clear()     : Reset console buffer"
+                        );
+                        return "Ready.";
+                    }
+                };
+
+   
+                SystemMonitor.init();
+
+            })(window);
+
+            //I was a bit bored, so I added some useless code.
+
+                window.addEventListener("keydown", function(event) {
+                const isF12 = event.key === "F12";
+                const isDevToolsShortcut = (event.ctrlKey || event.metaKey) && event.shiftKey && (event.key === "I" || event.key === "i" || event.key === "J" || event.key === "j");
+
+                if (isF12 || isDevToolsShortcut) {
+                    if (typeof Swal !== "undefined") {
+                        Swal.fire({
+                            title: "Developer tools achieved",
+                            text: "Developer session active. Type diagnostics.help() in the console for telemetry metrics.",
+                            icon: "info",
+                            confirmButtonText: "CONTINUE",
+                            buttonsStyling: false,
+                            customClass: {
+                                popup: "swal-custom-popup",
+                                confirmButton: "swal-custom-confirm"
+                            }
+                        });
+                    }
+                }
+            });
         </script>
     </body>
 </html>
