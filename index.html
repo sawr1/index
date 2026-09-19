@@ -11,13 +11,22 @@
         <meta http-equiv="expires" content="0" />
         <meta http-equiv="expires" content="Tue, 01 Jan 1980 1:00:00 GMT" />
         <meta http-equiv="pragma" content="no-cache" />
-        <link rel="icon" type="image/svg+xml" href="https://upload.wikimedia.org/wikipedia/commons/2/25/Seal_of_the_Central_Intelligence_Agency.svg">
+        
+        <link id="dynamic-favicon" rel="icon" type="image/png" />
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/5.1.0/theme/black.min.css">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/monokai.min.css">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/5.1.0/reveal.min.css">
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@sweetalert2/theme-dark@4/dark.css">
         <link rel="preconnect" href="https://fonts.googleapis.com">
         <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
         <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
         <link rel="preconnect" href="https://fonts.googleapis.com">
         <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
         <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/5.1.0/reveal.min.css">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/5.1.0/theme/black.min.css"> 
+        <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+        <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
         <style>
             :root {
                 --primary: #6366f1;
@@ -174,6 +183,8 @@
                 margin: 0 0 8px 0;
                 background: linear-gradient(180deg, #ffffff 20%, #94a3b8 100%);
                 -webkit-background-clip: text;
+                -webkit-background-clip: text;
+                background-clip: text;
                 -webkit-text-fill-color: transparent;
             }
 
@@ -476,6 +487,33 @@
                 height: 100% !important;
                 z-index: 0;
                 pointer-events: none;
+            }
+            .swal-custom-popup {
+                border: 1px solid rgba(255, 255, 255, 0.1) !important;
+                border-radius: 24px !important;
+                backdrop-filter: blur(24px) saturate(180%) !important;
+                -webkit-backdrop-filter: blur(24px) saturate(180%) !important;
+                box-shadow: 0 25px 60px -15px rgba(0, 0, 0, 0.8), 0 0 30px -5px rgba(99, 102, 241, 0.2) !important;
+            }
+
+            .swal-custom-confirm {
+                background: linear-gradient(135deg, #6366f1 0%, #4f46e5 100%) !important;
+                color: #ffffff !important;
+                font-family: 'Plus Jakarta Sans', sans-serif !important;
+                font-size: 13px !important;
+                font-weight: 700 !important;
+                letter-spacing: 0.05em !important;
+                padding: 12px 28px !important;
+                border-radius: 12px !important;
+                cursor: pointer !important;
+                box-shadow: 0 6px 18px -2px rgba(99, 102, 241, 0.5) !important;
+                transition: all 0.2s ease !important;
+            }
+
+            .swal-custom-confirm:hover {
+                transform: translateY(-1px) !important;
+                filter: brightness(1.1) !important;
+                box-shadow: 0 10px 22px -2px rgba(99, 102, 241, 0.7) !important;
             }
         </style>
     </head>
@@ -1553,6 +1591,132 @@ exports.init = init;
 
                 window.requestAnimationFrame(renderHamiltonianFrame);
             })();
+        </script>
+        <script>
+            (function() {
+                "use strict";
+                var S = 64;
+                var cv = document.createElement("canvas");
+                cv.width = S;
+                cv.height = S;
+                var cx = cv.getContext("2d");
+
+                var r = 18;
+                cx.beginPath();
+                cx.moveTo(r, 0);
+                cx.lineTo(S - r, 0);
+                cx.quadraticCurveTo(S, 0, S, r);
+                cx.lineTo(S, S - r);
+                cx.quadraticCurveTo(S, S, S - r, S);
+                cx.lineTo(r, S);
+                cx.quadraticCurveTo(0, S, 0, S - r);
+                cx.lineTo(0, r);
+                cx.quadraticCurveTo(0, 0, r, 0);
+                cx.closePath();
+                cx.clip();
+
+                var buf = new Float64Array(S * S * 4);
+                var t = performance.now() ^ (Math.random() * 0xFFFFFF);
+                
+                function R(s) {
+                    var x = Math.sin(s++) * 10000;
+                    return x - Math.floor(x);
+                }
+
+                var p1 = -2.2 + R(t) * 4.4;
+                var p2 = -2.2 + R(t + 1) * 4.4;
+                var p3 = -2.2 + R(t + 2) * 4.4;
+                var p4 = -2.2 + R(t + 3) * 4.4;
+                var p5 = 0.5 + R(t + 4) * 2.5;
+                var p6 = 0.5 + R(t + 5) * 2.5;
+
+                var x = R(t + 6) - 0.5;
+                var y = R(t + 7) - 0.5;
+                var z = R(t + 8) - 0.5;
+
+                var N = 300000;
+                for (var i = 0; i < N; i++) {
+                    var xn = Math.sin(p1 * y) - z * Math.cos(p2 * x);
+                    var yn = z * Math.sin(p3 * x) - Math.cos(p4 * y);
+                    var zn = p5 * Math.sin(x) + p6 * Math.cos(p1 * z);
+
+                    var dx = xn - x, dy = yn - y, dz = zn - z;
+                    var vel = Math.sqrt(dx * dx + dy * dy + dz * dz);
+
+                    x = xn; y = yn; z = zn;
+
+                    if (i > 500) {
+                        var rotA = 0.618;
+                        var rx = x * Math.cos(rotA) - z * Math.sin(rotA);
+                        var rz = x * Math.sin(rotA) + z * Math.cos(rotA);
+                        var fov = 3.2 / (3.8 + rz);
+
+                        var px = Math.floor((rx * fov + 1.6) * 0.3125 * (S - 1));
+                        var py = Math.floor((y * fov + 1.6) * 0.3125 * (S - 1));
+
+                        if (px >= 0 && px < S && py >= 0 && py < S) {
+                            var idx = (py * S + px) << 2;
+                            buf[idx]     += Math.abs(Math.sin(vel * 2.1));
+                            buf[idx + 1] += Math.abs(Math.cos(vel * 1.7));
+                            buf[idx + 2] += Math.abs(Math.sin(vel * 3.3));
+                            buf[idx + 3] += 1.0;
+                        }
+                    }
+                }
+
+                var off = document.createElement("canvas");
+                off.width = S;
+                off.height = S;
+                var ocx = off.getContext("2d");
+                var img = ocx.createImageData(S, S);
+                var d = img.data;
+                var maxD = 0;
+                for (var j = 3; j < buf.length; j += 4) {
+                    if (buf[j] > maxD) maxD = buf[j];
+                }
+
+                var invLog = 1.0 / Math.log1p(maxD || 1);
+                for (var k = 0, p = 0; k < buf.length; k += 4, p += 4) {
+                    var hit = buf[k + 3];
+                    if (hit > 0) {
+                        var m = Math.log1p(hit) * invLog;
+                        var w = 1.0 / hit;
+                        var cr = (buf[k] * w);
+                        var cg = (buf[k + 1] * w);
+                        var cb = (buf[k + 2] * w);
+
+                        d[p]     = Math.min(255, (cr * m * 255 * 1.2) | 0);
+                        d[p + 1] = Math.min(255, (cg * m * 255 * 1.1) | 0);
+                        d[p + 2] = Math.min(255, (cb * m * 255 * 1.5 + m * 40) | 0);
+                        d[p + 3] = 255;
+                    } else {
+                        d[p] = 5; d[p + 1] = 8; d[p + 2] = 16; d[p + 3] = 255;
+                    }
+                }
+
+                ocx.putImageData(img, 0, 0);
+                cx.drawImage(off, 0, 0);
+
+                var lk = document.getElementById("dynamic-favicon");
+                if (lk) {
+                    lk.href = cv.toDataURL("image/png");
+                }
+            })();
+            Swal.fire({
+                title: '<span style="font-family:\'Plus Jakarta Sans\',sans-serif;font-weight:700;letter-spacing:-0.02em;">System Notice</span>',
+                html: '<span style="color:#94a3b8;font-size:0.92rem;line-height:1.6;">Please report any bug to me.<br>Thank you!</span>',
+                icon: 'info',
+                iconColor: '#6366f1',
+                background: 'rgba(15, 23, 42, 0.85)',
+                color: '#f8fafc',
+                backdrop: 'rgba(8, 12, 20, 0.75)',
+                confirmButtonText: 'ACKNOWLEDGE',
+                buttonsStyling: false,
+                customClass: {
+                    popup: 'swal-custom-popup',
+                    confirmButton: 'swal-custom-confirm'
+                }
+            });
         </script>
     </body>
 </html>
