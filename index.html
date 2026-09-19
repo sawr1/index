@@ -19,19 +19,6 @@
         <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
         <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
         <style>
-            .staticrypt-password-container {
-                overflow: hidden !important;
-            }
-            .staticrypt-form input:-webkit-autofill,
-            .staticrypt-form input:-webkit-autofill:hover, 
-            .staticrypt-form input:-webkit-autofill:focus, 
-            .staticrypt-form input:-webkit-autofill:active {
-                -webkit-box-shadow: 0 0 0 1000px rgba(15, 23, 42, 0.95) inset !important;
-                -webkit-text-fill-color: #f8fafc !important;
-                caret-color: #f8fafc !important;
-                transition: background-color 5000s ease-in-out 0s !important;
-                border-radius: inherit !important;
-            }
             :root {
                 --primary: #6366f1;
                 --primary-hover: #4f46e5;
@@ -56,7 +43,6 @@
                 --input-hover: rgba(15, 23, 42, 0.85);
             }
 
-   
             html, body, .staticrypt-body {
                 scrollbar-width: thin !important;
                 scrollbar-color: rgba(99, 102, 241, 0.25) transparent !important;
@@ -94,7 +80,6 @@
                 height: 100%;
             }
 
-         
             .staticrypt-body {
                 min-height: 100%;
                 margin: 0;
@@ -205,15 +190,19 @@
                 background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.12), transparent);
             }
 
+            /* 外容器：雙重 WebKit 遮罩裁切 + overflow: hidden */
             .staticrypt-password-container {
                 position: relative;
                 width: 100%;
                 margin-bottom: 22px;
-                border-radius: 16px;
+                border-radius: 16px !important;
                 background: var(--input-bg);
                 border: 1px solid var(--card-border);
                 box-shadow: 0 3px 12px rgba(0, 0, 0, 0.25) inset, 0 1px 0 rgba(255, 255, 255, 0.03);
                 transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+                overflow: hidden !important;
+                -webkit-mask-image: -webkit-radial-gradient(white, black) !important;
+                mask-image: radial-gradient(white, black) !important;
             }
 
             .staticrypt-password-container:hover {
@@ -230,6 +219,7 @@
                 transform: translateY(-1px);
             }
 
+            /* 輸入框：強制設定圓角防止直角戳出邊框 */
             .staticrypt-form input:is([type="password"], [type="text"]) {
                 background: transparent;
                 border: none;
@@ -241,12 +231,26 @@
                 padding: 17px 48px 17px 18px;
                 width: 100%;
                 box-sizing: border-box;
+                border-radius: 16px !important;
             }
 
             .staticrypt-form input::placeholder {
                 color: var(--text-muted);
                 font-family: 'Plus Jakarta Sans', sans-serif;
                 letter-spacing: 0;
+            }
+
+            /* 自動填入樣式覆蓋 */
+            .staticrypt-form input:-webkit-autofill,
+            .staticrypt-form input:-webkit-autofill:hover, 
+            .staticrypt-form input:-webkit-autofill:focus, 
+            .staticrypt-form input:-webkit-autofill:active {
+                -webkit-box-shadow: 0 0 0 1000px rgba(8, 12, 22, 0.95) inset !important;
+                box-shadow: 0 0 0 1000px rgba(8, 12, 22, 0.95) inset !important;
+                -webkit-text-fill-color: #f8fafc !important;
+                caret-color: #f8fafc !important;
+                transition: background-color 50000s ease-in-out 0s !important;
+                border-radius: 16px !important;
             }
 
             .staticrypt-toggle-password-visibility {
@@ -324,7 +328,6 @@
                 border-bottom: 2px solid white;
                 transform: rotate(-45deg) translate(1px, -1px);
             }
-
 
             .staticrypt-form .staticrypt-decrypt-button {
                 position: relative;
@@ -462,7 +465,6 @@
                 background: rgba(255, 255, 255, 0.05);
             }
 
-
             .custom-toast {
                 position: fixed !important;
                 top: 36px !important;
@@ -527,6 +529,7 @@
                 15%, 45%, 75% { transform: translate3d(-6px, 0, 0); }
                 30%, 60%, 90% { transform: translate3d(6px, 0, 0); }
             }
+
             #cpu-matrix-canvas {
                 position: fixed;
                 top: 0;
