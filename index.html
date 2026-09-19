@@ -4,6 +4,7 @@
         <meta charset="utf-8" />
         <title>DEV insider</title>
         <meta name="viewport" content="width=device-width, initial-scale=1" />
+
         <!-- do not cache this page -->
         <meta http-equiv="cache-control" content="max-age=0" />
         <meta http-equiv="cache-control" content="no-cache" />
@@ -14,47 +15,102 @@
         <link rel="preconnect" href="https://fonts.googleapis.com">
         <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
         <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
-
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
         <style>
             :root {
                 --primary: #6366f1;
                 --primary-hover: #4f46e5;
-                --primary-glow: rgba(99, 102, 241, 0.35);
-                --bg-start: #090d16;
+                --primary-active: #4338ca;
+                --primary-glow: rgba(99, 102, 241, 0.45);
+                --primary-glow-strong: rgba(99, 102, 241, 0.7);
+                
+                --bg-start: #080c14;
+                --bg-mid: #0b1120;
                 --bg-end: #0f172a;
-                --card-bg: rgba(255, 255, 255, 0.04);
-                --card-border: rgba(255, 255, 255, 0.1);
-                --card-border-focus: rgba(99, 102, 241, 0.5);
+                
+                --card-bg: rgba(15, 23, 42, 0.55);
+                --card-bg-hover: rgba(30, 41, 59, 0.65);
+                --card-border: rgba(255, 255, 255, 0.08);
+                --card-border-focus: rgba(99, 102, 241, 0.65);
+                
                 --text-main: #f8fafc;
                 --text-sub: #94a3b8;
-                --input-bg: rgba(15, 23, 42, 0.6);
+                --text-muted: #64748b;
+                
+                --input-bg: rgba(8, 12, 22, 0.75);
+                --input-hover: rgba(15, 23, 42, 0.85);
             }
 
+   
             html, body, .staticrypt-body {
-                scrollbar-width: none !important;
-                -ms-overflow-style: none !important;
+                scrollbar-width: thin !important;
+                scrollbar-color: rgba(99, 102, 241, 0.25) transparent !important;
             }
 
             html::-webkit-scrollbar,
             body::-webkit-scrollbar,
             .staticrypt-body::-webkit-scrollbar {
-                display: none !important;
+                width: 6px !important;
+                height: 6px !important;
+                display: block !important;
+            }
+
+            html::-webkit-scrollbar-track,
+            body::-webkit-scrollbar-track,
+            .staticrypt-body::-webkit-scrollbar-track {
+                background: transparent !important;
+            }
+
+            html::-webkit-scrollbar-thumb,
+            body::-webkit-scrollbar-thumb,
+            .staticrypt-body::-webkit-scrollbar-thumb {
+                background: rgba(99, 102, 241, 0.25) !important;
+                border-radius: 9999px !important;
+                transition: background 0.2s ease !important;
+            }
+
+            html::-webkit-scrollbar-thumb:hover,
+            body::-webkit-scrollbar-thumb:hover,
+            .staticrypt-body::-webkit-scrollbar-thumb:hover {
+                background: rgba(99, 102, 241, 0.55) !important;
             }
 
             .staticrypt-html {
                 height: 100%;
             }
 
+         
             .staticrypt-body {
                 min-height: 100%;
                 margin: 0;
-                background: radial-gradient(circle at 50% 0%, #1e1b4b 0%, var(--bg-start) 50%, var(--bg-end) 100%) !important;
+                position: relative;
+                background-color: var(--bg-start) !important;
+                background-image: 
+                    radial-gradient(at 50% 0%, rgba(99, 102, 241, 0.22) 0px, transparent 65%),
+                    radial-gradient(at 100% 100%, rgba(56, 189, 248, 0.1) 0px, transparent 55%),
+                    radial-gradient(at 0% 100%, rgba(139, 92, 246, 0.12) 0px, transparent 55%),
+                    radial-gradient(circle at 50% 50%, var(--bg-mid) 0%, var(--bg-end) 100%) !important;
                 color: var(--text-main);
-                font-family: 'Plus Jakarta Sans', system-ui, sans-serif;
+                font-family: 'Plus Jakarta Sans', 'Inter', system-ui, -apple-system, sans-serif;
                 display: grid;
                 place-items: center;
                 overflow-y: auto;
                 -webkit-font-smoothing: antialiased;
+                -moz-osx-font-smoothing: grayscale;
+            }
+
+            .staticrypt-body::before {
+                content: "";
+                position: fixed;
+                inset: 0;
+                background-image: radial-gradient(rgba(255, 255, 255, 0.07) 1px, transparent 1px);
+                background-size: 28px 28px;
+                mask-image: radial-gradient(ellipse 70% 70% at 50% 50%, #000 30%, transparent 100%);
+                -webkit-mask-image: radial-gradient(ellipse 70% 70% at 50% 50%, #000 30%, transparent 100%);
+                pointer-events: none;
+                z-index: 0;
             }
 
             .staticrypt-content {
@@ -63,36 +119,62 @@
                 display: flex;
                 align-items: center;
                 justify-content: center;
+                position: relative;
+                z-index: 1;
             }
 
             .staticrypt-page {
-                width: min(420px, 92vw);
-                padding: 40px 0;
+                width: min(440px, 92vw);
+                padding: 48px 0;
                 margin: auto;
                 box-sizing: border-box;
+                perspective: 1200px;
             }
 
             .staticrypt-form {
                 position: relative;
                 background: var(--card-bg);
                 border: 1px solid var(--card-border);
-                border-radius: 24px;
-                padding: 40px 32px;
-                backdrop-filter: blur(20px);
-                -webkit-backdrop-filter: blur(20px);
+                border-radius: 28px;
+                padding: 44px 34px;
+                backdrop-filter: blur(28px) saturate(180%);
+                -webkit-backdrop-filter: blur(28px) saturate(180%);
                 box-shadow: 
-                    0 20px 50px rgba(0, 0, 0, 0.4),
-                    inset 0 1px 0 rgba(255, 255, 255, 0.1);
+                    0 25px 60px -15px rgba(0, 0, 0, 0.7),
+                    0 0 0 1px rgba(255, 255, 255, 0.05) inset,
+                    0 1px 2px 0 rgba(255, 255, 255, 0.12) inset;
+                transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+            }
+
+            .staticrypt-form:hover {
+                transform: translateY(-2px);
+                box-shadow: 
+                    0 30px 70px -12px rgba(0, 0, 0, 0.8),
+                    0 0 35px -5px rgba(99, 102, 241, 0.18),
+                    0 0 0 1px rgba(255, 255, 255, 0.08) inset,
+                    0 1px 2px 0 rgba(255, 255, 255, 0.18) inset;
+            }
+
+            .staticrypt-form::before {
+                content: "";
+                position: absolute;
+                top: 0;
+                left: 15%;
+                right: 15%;
+                height: 1px;
+                background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.35), var(--primary), rgba(255, 255, 255, 0.35), transparent);
+                border-radius: 9999px;
             }
 
             .staticrypt-title {
-                font-size: 1.6rem;
-                font-weight: 700;
-                letter-spacing: -0.02em;
-                margin: 0 0 8px 0;
-                background: linear-gradient(180deg, #ffffff 0%, #cbd5e1 100%);
+                font-size: 1.75rem;
+                font-weight: 800;
+                letter-spacing: -0.035em;
+                margin: 0 0 10px 0;
+                background: linear-gradient(180deg, #ffffff 15%, #94a3b8 100%);
                 -webkit-background-clip: text;
                 -webkit-text-fill-color: transparent;
+                text-shadow: 0 4px 18px rgba(255, 255, 255, 0.08);
             }
 
             .staticrypt-instructions {
@@ -100,29 +182,39 @@
                 color: var(--text-sub);
                 margin: 0 0 24px 0;
                 font-weight: 400;
-                line-height: 1.5;
+                line-height: 1.6;
             }
 
             .staticrypt-hr {
-                margin: 24px 0;
+                margin: 26px 0;
                 border: 0;
                 height: 1px;
-                background: linear-gradient(90deg, transparent, var(--card-border), transparent);
+                background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.12), transparent);
             }
 
             .staticrypt-password-container {
                 position: relative;
                 width: 100%;
-                margin-bottom: 20px;
-                border-radius: 14px;
+                margin-bottom: 22px;
+                border-radius: 16px;
                 background: var(--input-bg);
                 border: 1px solid var(--card-border);
-                transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+                box-shadow: 0 3px 12px rgba(0, 0, 0, 0.25) inset, 0 1px 0 rgba(255, 255, 255, 0.03);
+                transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+            }
+
+            .staticrypt-password-container:hover {
+                background: var(--input-hover);
+                border-color: rgba(255, 255, 255, 0.18);
             }
 
             .staticrypt-password-container:focus-within {
+                background: var(--input-hover);
                 border-color: var(--card-border-focus);
-                box-shadow: 0 0 0 4px var(--primary-glow);
+                box-shadow: 
+                    0 0 0 4px var(--primary-glow),
+                    0 4px 16px rgba(0, 0, 0, 0.35) inset;
+                transform: translateY(-1px);
             }
 
             .staticrypt-form input:is([type="password"], [type="text"]) {
@@ -131,62 +223,84 @@
                 outline: none;
                 color: var(--text-main);
                 font-size: 15px;
-                font-family: inherit;
-                padding: 16px 45px 16px 16px;
+                font-family: 'JetBrains Mono', 'Plus Jakarta Sans', monospace;
+                letter-spacing: 0.04em;
+                padding: 17px 48px 17px 18px;
                 width: 100%;
                 box-sizing: border-box;
             }
 
             .staticrypt-form input::placeholder {
-                color: #64748b;
+                color: var(--text-muted);
+                font-family: 'Plus Jakarta Sans', sans-serif;
+                letter-spacing: 0;
             }
 
             .staticrypt-toggle-password-visibility {
                 position: absolute;
                 inset-inline-end: 14px;
                 top: 50%;
-                transform: translateY(-50%);
-                width: 20px;
-                height: 20px;
+                transform: translateY(-50%) scale(1);
+                width: 22px;
+                height: 22px;
                 cursor: pointer;
-                opacity: 0.5;
+                opacity: 0.45;
                 filter: invert(1);
-                transition: opacity 0.2s ease;
+                padding: 2px;
+                border-radius: 6px;
+                transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
             }
 
             .staticrypt-toggle-password-visibility:hover {
-                opacity: 0.9;
+                opacity: 0.95;
+                transform: translateY(-50%) scale(1.12);
+            }
+
+            .staticrypt-toggle-password-visibility:active {
+                transform: translateY(-50%) scale(0.92);
             }
 
             label.staticrypt-remember {
                 display: flex;
                 align-items: center;
-                gap: 10px;
+                gap: 12px;
                 font-size: 0.88rem;
                 color: var(--text-sub);
-                margin-bottom: 24px;
+                margin-bottom: 26px;
                 cursor: pointer;
                 user-select: none;
+                transition: color 0.2s ease;
+            }
+
+            label.staticrypt-remember:hover {
+                color: var(--text-main);
             }
 
             .staticrypt-remember input[type="checkbox"] {
                 appearance: none;
                 -webkit-appearance: none;
-                width: 18px;
-                height: 18px;
+                width: 19px;
+                height: 19px;
                 border: 1px solid var(--card-border);
-                border-radius: 6px;
+                border-radius: 7px;
                 background: var(--input-bg);
                 margin: 0;
                 display: grid;
                 place-content: center;
                 cursor: pointer;
-                transition: all 0.2s ease;
+                box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.4);
+                transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+            }
+
+            .staticrypt-remember input[type="checkbox"]:hover {
+                border-color: rgba(255, 255, 255, 0.25);
+                transform: scale(1.05);
             }
 
             .staticrypt-remember input[type="checkbox"]:checked {
-                background: var(--primary);
+                background: linear-gradient(135deg, var(--primary) 0%, var(--primary-hover) 100%);
                 border-color: var(--primary);
+                box-shadow: 0 0 12px var(--primary-glow);
             }
 
             .staticrypt-remember input[type="checkbox"]:checked::before {
@@ -198,35 +312,53 @@
                 transform: rotate(-45deg) translate(1px, -1px);
             }
 
+
             .staticrypt-form .staticrypt-decrypt-button {
                 position: relative;
                 width: 100%;
-                padding: 16px;
+                padding: 16px 20px;
                 border: none;
-                border-radius: 14px;
-                background: linear-gradient(135deg, #6366f1 0%, #4f46e5 100%);
+                border-radius: 16px;
+                background: linear-gradient(135deg, #6366f1 0%, #4f46e5 50%, #4338ca 100%);
                 color: #ffffff;
                 font-size: 15px;
-                font-weight: 600;
+                font-weight: 700;
                 font-family: inherit;
-                letter-spacing: 0.02em;
+                letter-spacing: 0.04em;
                 cursor: pointer;
-                box-shadow: 0 10px 25px -5px var(--primary-glow);
-                transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+                box-shadow: 
+                    0 10px 24px -4px var(--primary-glow),
+                    0 0 0 1px rgba(255, 255, 255, 0.18) inset;
+                transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
                 outline: none;
+                overflow: hidden;
+            }
+
+            .staticrypt-form .staticrypt-decrypt-button::after {
+                content: "";
+                position: absolute;
+                inset: 0;
+                background: linear-gradient(180deg, rgba(255, 255, 255, 0.2) 0%, transparent 60%);
+                opacity: 0;
+                transition: opacity 0.2s ease;
             }
 
             @media (hover: hover) {
                 .staticrypt-form .staticrypt-decrypt-button:hover {
                     transform: translateY(-2px);
-                    box-shadow: 0 14px 30px -4px var(--primary-glow);
-                    filter: brightness(110%);
+                    box-shadow: 
+                        0 16px 32px -4px var(--primary-glow-strong),
+                        0 0 20px var(--primary-glow),
+                        0 0 0 1px rgba(255, 255, 255, 0.3) inset;
+                }
+                .staticrypt-form .staticrypt-decrypt-button:hover::after {
+                    opacity: 1;
                 }
             }
 
             .staticrypt-form .staticrypt-decrypt-button:active {
-                transform: scale(0.98);
-                filter: brightness(90%);
+                transform: translateY(1px) scale(0.98);
+                box-shadow: 0 6px 16px -2px var(--primary-glow);
             }
 
             .hidden {
@@ -240,12 +372,14 @@
             }
 
             .staticrypt-spinner {
-                width: 2.2rem;
-                height: 2.2rem;
-                border: 2px solid rgba(255, 255, 255, 0.1);
+                width: 2.6rem;
+                height: 2.6rem;
+                border: 2.5px solid rgba(255, 255, 255, 0.08);
                 border-top-color: var(--primary);
+                border-right-color: rgba(99, 102, 241, 0.4);
                 border-radius: 50%;
-                animation: spin 0.8s cubic-bezier(0.6, 0.2, 0.4, 0.8) infinite;
+                filter: drop-shadow(0 0 16px var(--primary-glow));
+                animation: spin 0.85s cubic-bezier(0.5, 0.1, 0.4, 0.9) infinite;
             }
 
             @keyframes spin {
@@ -253,163 +387,147 @@
                     transform: rotate(360deg);
                 }
             }
+
             .tmp {
                 margin-top: 32px;
-                padding-top: 20px;
-                border-top: 1px solid var(--card-border);
+                padding-top: 22px;
+                border-top: 1px solid rgba(255, 255, 255, 0.06);
                 display: flex;
                 flex-direction: column;
                 align-items: center;
-                gap: 10px;
+                gap: 8px;
                 text-align: center;
             }
+
             .tmp p#think,
             .tmp p#sell {
                 margin: 0;
-                font-size: 0.85rem;
-                color: var(--text-sub);
-                letter-spacing: 0.02em;
+                font-size: 0.82rem;
+                color: var(--text-muted);
+                letter-spacing: 0.03em;
+                font-weight: 500;
             }
+
             .tmp p#sell {
-                margin-top: 8px;
+                margin-top: 10px;
             }
+
             .tmp button#Moisson,
             .tmp button#Myaccount {
                 display: inline-flex;
                 align-items: center;
                 justify-content: center;
-                background: rgba(255, 255, 255, 0.06);
-                border: 1px solid var(--card-border);
-                color: var(--text-main);
-                padding: 8px 18px;
+                background: rgba(255, 255, 255, 0.04);
+                border: 1px solid rgba(255, 255, 255, 0.08);
+                color: var(--text-sub);
+                padding: 7px 18px;
                 border-radius: 9999px;
                 font-size: 0.8rem;
-                font-weight: 500;
+                font-weight: 600;
                 font-family: inherit;
                 cursor: pointer;
                 outline: none;
-                backdrop-filter: blur(8px);
-                -webkit-backdrop-filter: blur(8px);
-                transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+                backdrop-filter: blur(12px);
+                -webkit-backdrop-filter: blur(12px);
+                transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
             }
+
             @media (hover: hover) {
                 .tmp button#Moisson:hover,
                 .tmp button#Myaccount:hover {
-                    background: rgba(255, 255, 255, 0.12);
-                    border-color: rgba(255, 255, 255, 0.25);
-                    transform: translateY(-1px);
+                    background: rgba(255, 255, 255, 0.09);
+                    border-color: rgba(255, 255, 255, 0.22);
+                    color: var(--text-main);
+                    transform: translateY(-1.5px);
+                    box-shadow: 0 4px 14px rgba(0, 0, 0, 0.3);
                 }
             }
+
             .tmp button#Moisson:active,
             .tmp button#Myaccount:active {
-                transform: scale(0.96);
-                background: rgba(255, 255, 255, 0.04);
-            }
-            .custom-toast {
-                position: fixed;
-                top: 28px;
-                left: 50%;
-                transform: translate(-50%, -20px) scale(0.95);
-                background: rgba(239, 68, 68, 0.15);
-                border: 1px solid rgba(239, 68, 68, 0.4);
-                backdrop-filter: blur(20px);
-                -webkit-backdrop-filter: blur(20px);
-                color: #fca5a5;
-                padding: 12px 24px;
-                border-radius: 9999px;
-                font-size: 0.9rem;
-                font-weight: 600;
-                letter-spacing: 0.02em;
-                box-shadow: 0 10px 30px rgba(239, 68, 68, 0.25);
-                opacity: 0;
-                pointer-events: none;
-                transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
-                z-index: 99999;
-                display: flex;
-                align-items: center;
-                gap: 8px;
+                transform: scale(0.95);
+                background: rgba(255, 255, 255, 0.05);
             }
 
-            .custom-toast.show {
-                opacity: 1;
-                transform: translate(-50%, 0) scale(1);
-            }
 
-            .shake {
-            animation: card-shake 0.45s cubic-bezier(0.36, 0.07, 0.19, 0.97) both;
-            }
-
-            @keyframes card-shake {
-                10%, 90% { transform: translate3d(-2px, 0, 0); }
-                20%, 80% { transform: translate3d(4px, 0, 0); }
-                30%, 50%, 70% { transform: translate3d(-6px, 0, 0); }
-                40%, 60% { transform: translate3d(6px, 0, 0); }
-            }
             .custom-toast {
                 position: fixed !important;
                 top: 36px !important;
                 left: 50% !important;
-                transform: translate(-50%, -20px) scale(0.95) !important;
-                backdrop-filter: blur(20px);
-                -webkit-backdrop-filter: blur(20px);
-                padding: 10px 20px;
-                border-radius: 9999px;
-                font-size: 0.9rem;
-                font-weight: 600;
-                letter-spacing: 0.02em;
-                opacity: 0;
-                pointer-events: none;
-                transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
-                z-index: 999999;
-                display: inline-flex;
-                align-items: center;
-                justify-content: center;
-                gap: 8px;
-                white-space: nowrap;
-                box-sizing: border-box;
+                transform: translate(-50%, -24px) scale(0.92) !important;
+                backdrop-filter: blur(28px) saturate(190%) !important;
+                -webkit-backdrop-filter: blur(28px) saturate(190%) !important;
+                padding: 11px 24px !important;
+                border-radius: 9999px !important;
+                font-size: 0.88rem !important;
+                font-weight: 600 !important;
+                letter-spacing: 0.02em !important;
+                opacity: 0 !important;
+                pointer-events: none !important;
+                transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1) !important;
+                z-index: 999999 !important;
+                display: inline-flex !important;
+                align-items: center !important;
+                justify-content: center !important;
+                gap: 10px !important;
+                white-space: nowrap !important;
+                box-sizing: border-box !important;
             }
 
             .custom-toast.show {
-                opacity: 1;
+                opacity: 1 !important;
                 transform: translate(-50%, 0) scale(1) !important;
             }
 
             .custom-toast svg {
-                width: 16px;
-                height: 16px;
-                min-width: 16px;
-                flex-shrink: 0;
-                display: block;
+                width: 17px !important;
+                height: 17px !important;
+                min-width: 17px !important;
+                flex-shrink: 0 !important;
+                display: block !important;
             }
 
             .custom-toast.info {
-                background: rgba(99, 102, 241, 0.2);
-                border: 1px solid rgba(99, 102, 241, 0.45);
-                color: #c7d2fe;
-                box-shadow: 0 10px 30px rgba(0, 0, 0, 0.4), 0 0 20px rgba(99, 102, 241, 0.25);
+                background: rgba(30, 27, 75, 0.75) !important;
+                border: 1px solid rgba(129, 140, 248, 0.45) !important;
+                color: #e0e7ff !important;
+                box-shadow: 
+                    0 12px 36px rgba(0, 0, 0, 0.5), 
+                    0 0 25px rgba(99, 102, 241, 0.35) !important;
             }
 
             .custom-toast.error {
-                background: rgba(239, 68, 68, 0.2);
-                border: 1px solid rgba(239, 68, 68, 0.45);
-                color: #fca5a5;
-                box-shadow: 0 10px 30px rgba(0, 0, 0, 0.4), 0 0 20px rgba(239, 68, 68, 0.25);
+                background: rgba(69, 10, 10, 0.75) !important;
+                border: 1px solid rgba(248, 113, 113, 0.45) !important;
+                color: #fee2e2 !important;
+                box-shadow: 
+                    0 12px 36px rgba(0, 0, 0, 0.5), 
+                    0 0 25px rgba(239, 68, 68, 0.35) !important;
             }
 
             .shake {
-                animation: card-shake 0.45s cubic-bezier(0.36, 0.07, 0.19, 0.97) both;
+                animation: card-shake 0.5s cubic-bezier(0.36, 0.07, 0.19, 0.97) both !important;
             }
 
             @keyframes card-shake {
-                10%, 90% { transform: translate3d(-2px, 0, 0); }
-                20%, 80% { transform: translate3d(4px, 0, 0); }
-                30%, 50%, 70% { transform: translate3d(-6px, 0, 0); }
-                40%, 60% { transform: translate3d(6px, 0, 0); }
+                0%, 100% { transform: translate3d(0, 0, 0); }
+                15%, 45%, 75% { transform: translate3d(-6px, 0, 0); }
+                30%, 60%, 90% { transform: translate3d(6px, 0, 0); }
+            }
+            #cpu-matrix-canvas {
+                position: fixed;
+                top: 0;
+                left: 0;
+                width: 100vw;
+                height: 100vh;
+                z-index: 0;
+                pointer-events: none;
             }
         </style>
     </head>
 
     <body class="staticrypt-body">
+        <canvas id="cpu-matrix-canvas"></canvas>
         <div id="staticrypt_loading" class="staticrypt-spinner-container">
             <div class="staticrypt-spinner"></div>
         </div>
@@ -458,6 +576,7 @@
                 </div>
             </div>
         </div>
+
         <script>
             const button1 = document.getElementById("Moisson");
             const button2= document.getElementById("Myaccount");
@@ -468,6 +587,7 @@
                 window.open("https://github.com/sawr1/index", "_blank");
             })
         </script>
+
         <script>
             // these variables will be filled when generating the file - the template format is 'variable_name'
             const staticryptInitiator = 
@@ -1067,12 +1187,13 @@ exports.init = init;
 
   return exports;
 })());
-;   function toast(m,y="info"){let t=document.getElementById("custom-toast")||Object.assign(document.createElement("div"),{id:"custom-toast"}),e=y==="error";document.body.appendChild(t);t.className=`custom-toast ${e?"error":"info"}`;t.innerHTML=`<span>${m}</span>`;t.classList.add("show");if(e){let f=document.querySelector(".staticrypt-form");if(f){f.classList.remove("shake");void f.offsetWidth;f.classList.add("shake");}}clearTimeout(window.toastTimer);window.toastTimer=setTimeout(()=>t.classList.remove("show"),2500);}window.alert=m=>toast(m,"error");
-    const templateError = "Password Error",
-        templateToggleAltShow = "template_toggle_show",
-        templateToggleAltHide = "template_toggle_hide",
-        isRememberEnabled = true,
-        staticryptConfig = {"staticryptEncryptedMsgUniqueVariableName":"00df2fb4a319b54fc4427a9df6cb1ef35d07cc259a8ed6644199b2d18d8af558fc7d0a715eb6d2e06264ca6bcdbcaeb93fa007af1343efb831dd508c8c7b502f9e8c5e6d9f781be300e06715e990350e6b91cf705d20f7adfb76a37966d25c0f1efab52177dad3a78b08024c49d9fc3f0e1d8974ca4426498e35dfdfef6ed414b6f244b583858b84eb6ce2fa9f938d72fce527f3457cd6e7ea1f6698cd3ae5d72b016d4997304ea7a8469b0d441aa5615c3e695ba1762651652ef352e4af8d782908117346bfd7320120170e05e5b4fde0429f15053e3ba823d9ee0589461645d2c21d05a02cf921bf154586a4e89719d90c5134e75dbb04e9e35e4bdddf8e1c21d1bf7914492562d99dbd280fff6f307cb8ed5952492ab911bf2973301b334dae295b29ca056fa228c2661fcbbd436cbb5b6b2c0f8b76751543042957ea052b31c7ba54b676ccd61a92f6bb24337e623beff9194446620733da0459eb0a6adb203c3f7a2eadd81c1a10687560db7eb39a660dba8c79830310577874eae90516d139b8e2190e242f64282a09d61be024c52bd2f8947a09c616c26854589310b1da5e8cb746c6448a37142cd64399316739b2ef23c5d29faedacadb88c4ac5cb4b17ac515c48f0769daea75fb281e84bcf402bf634da1b3a068a39e01d5211f06f9d37c2579f4309b70a76d86194c556d235c1833450074f4b80493a4f41a395600c0853eb5d3ab17374a8b456973e4dee2800da999492116465d34f1871e1d0dedcedbcb546f85ba70488af354b3f48c6cc780d780ed7673bc59bf5a859f73d11dd2080fe7398c920e5af0ddd1743474eaca67453e734f9670e30cacca5c8e70d22e9c99348f57e44497971beff005d3e1202654c2de22bcb6311bd7c78bafc38abda544d5d1700992a5b32a5203b9c792d0db2f252332ce82939756ebf162bc31af1c14e90b2f461fc8ed97d3bb92ef91c233fa3d35ee2bd6c6a9ab0195cc57f70a594264c57d73bfcf93b752b5fa4940c5696036801584f2d176474a051ee0328c4ea5f3a26c9748f2b9ce1f3f14e6f4893ab1171c22a97a4b641c4f06fe293ef3f385cafa14812bc8e82eebab93f6a576cbda01b5a6d5dca17707f9f0c9e2444a408c07adc81f921c8305dcd8e2d5e600be95dda4a3a47537ec3db15e80198fe742c7df7a8073434f28e4bc26e806a24e00032e5a7d4dd21824dd4be6097291ddd45a79506e3f877ee723fe762c1dda34147c08d99c68b6e4c0aeeef6b9bdae53a114a8199a74f010f9bf0a6719a47c1d02fa4ec9a21f4ac3c9abab4955a7e31d90ff34ea65925c1d324e9cf3cc71014242ec8d73d8e8fda0498e6222f27a0191cdc20bc4a0c046d014f401c98d811cfb46f89cccc38e1fcf58852807f1645aedaa270af12d67d9b60c3e1d33e6e356232a38aa013bde784711b4c3dec19ac99ecc01b7dbfd18e3f47bf5f46923e9ab6d8fdbf2b6de78a707d5f64b7967b8c4dc8b06bde3ae80d530681d66dcba868101792089912bef4d00dc9156b4c7785c4fe27a057652c2d28087f4624b66755f49b9ae70fa1a2784bda206cb4a2b07b2b35bee2e37c8b16911af0444a44cb2ea71956ac6e7fd7631400d23c5702fabae809cd813d5b57bee0471535836527e14e0e1796c93f255c6188123f9d5230fe80c174fcc2b11f3619fb9fc2259641d9f7b4e54875b5c519aed83bb4f9c7b3cd44b4ae7e15a3f106a64c0782d7b485be0b55fcc4a4c6135f186ff89e4c59327d80a6bb3b61dde8d1b58e742950aa93ae1c014d18414f44831b9a0886872c2fe29e8635f73798ba375f2dd4adfca8b2fc63cf35a42ff64e01212fe9dda073b25bf2fe18860608d832b8d71393933cf86e01dc9633efaeb6ff7113822a520efb609484333d88d03acbe98d9b7e9b9675adec275a36cb2e0d968be1881e06a72f0c81077e7887a99e0c9bfac813c106ce525c6ca9397478c17186d92c3be63ab0cf4ad2a38e367ebbfb0b82dc6cfdcfc2e4b1a9fdae16faf3a51487600337749fc00898084e6196bdb71f9bae3a9bf426323565545da911ebec889ba2909025e0d432c2a4fc71d9e69154850924a10e88b605f4939400d2f876faac3975010dab3728636fa22f928df346a71d2e67043b9d372307ed059706c9027103a81ff802b0190f997ce402afd3697d67b40fee79d287abb03b7fca2d0f03202451780420783c9b57e63861c1154d9523d7e1115cb0545e09feeec2ab45c2474ef3e0a9fd97e85924b0bd54108ac6f46bf00a35e46dd0dca107fc6fab91616c6f3b256741bcff72ac768fb6dc3cf4668dbc520cc518c961e803f4c9c6ca16b2a9ec4412ba2a0f7868524a1b99c8f7107182908fd1c61d8a6c301d899051a3d2eb1fb9817c85c0306365a608894f51b3bd059eb39a62bba0988b5e1c23b67d3073c95e754c01c0b20628b2fe665fc78cd975180b07d2239d4e6c52e2416274551d0f0295cec97ef9cb5cad93edc3e9250ba290140bae6359b79545e697f93f387e30d02c31d795c201e161a13202c8edc0714e5f25424211bcc61c059a50d214f72602935a5f9212ce9d22ca43ef66189a5de9b7d46af5db7518d179b9a188dd881bb9d9f316f89b7235cfec589ef2d14dadfce6cedbb5652fb2dcff3bbf2955d4a6ea8370d8bb785eb4a790f5e01e75fbf7e163025f638794e4aa80eed9eea5eaed44a92aa85f5baf52334af16c89a3ce438a5445bc7d11eedaf36862df41c05150b8fbd136806500d30c8f306664f68e02e9f4732b7b9f3607b45f93f57711778c96ecdcea9140635ae43dd7fa9bf15324ea753edd366a6e57a7b3a02f2fc9efa973e0621a9f58be5af6f4de60ef96f28a4bc4aa062ea39978b810805fa291345dc026dd9ba3210145618b539437757fa6463b64dc1c142be183ba9f0e3d2d5003919b15e90549e59aaa7329a2a21ddc1e11d5290c9e18b3c6c5e5553dccaa0a5677bb4d70ed0437a8857a96880449cb1594296aef749ec7e6a4e5b54bd53b392f840c26bc44f799f423853ec1814e0ed1dad22f7c734b330fde1080927bf6bfd57aec785df750ede464168da741d27322ccf5dcc267331ddb56bafe50325b922f673169791086bc188493c0404ea872aab3a155f87cdfe7d0faef668db483322fb43cc65e3d3b461bc7e14cd55e14e86ca5527c44b0905b0b677fbf2c5c6dd0b0f0064c42fb489251c0b6a575ce2e309a861e36098054092534fb5ff30c65fa0414061a49aa1c94729fc5f328a9f1e8af801c5722aafb25c069f43f0395998d160150a47ebd7598b55c7c841bf15890c4264311aeeee47d6747553f5d176023259f9ea87b9fe936a8913ba9d22bf05bbd47456830a751d8b477e36eec21de78b8613ec8064ad59e517ee9f2c50cdc4671284298e47ab5a7f30c25e41c919b7ce0bd1308e0ba7509d0e5198bb31ebee5e63ce99c508a487a5c8954d7f0ecc7f82a8ff86e162613d766f52beaa4505ea36276f411926ac35604fb2f897e9f6996f453607b904fec59a1d06b3f16a75c3d2fb1716a07de068083e592bf5199b626a2c41c98ab9edb0d0bdcf35b55c3239ad3d8165bf9f74368c83d90732c6dbb9741cc54f7e1e0caaf02a5d37234e981824c30ff899ccda1edefcc033cfced3e0febdfa855e711b8a0ebcba64c204812afd8f0ad95660844be189f445ea96b92fdd22ef735f6623f5b81673cfc32033e36d50688f944aa1eef77838f27f388e1a8e98fdd785b494ba817ee21e1124a1e9e8e2be3c3ef2bee166a29bb713dff35d34fa1f78e4e0135e21055c862c6e6fcc652d4dbe4c37d4634389074803954fb906e17e5284599bb4140062171a743655b6b8b98094bb02381ab682fb0d35bef8611a8e3ba8d73d5732024d24ea2f47bcee3ff37c11c196ea3976491b88adf56fef575fae8c2c4bac91e7022c844ebafeb8c783dccfae7eafbd62a761f4c5c98b2094f69a6fb5ef96de4b94c48998db075af3c8e3e8058986f0a245f3f692557884b782b5690db7781b8764e0f8c44400674d8fb73caeba72a466f31c7f37373afdf0a0f8f27d94a3d95b1706c1f7fe2e94a610b269d5854cbfc428f371167f3bf80d851b6cd44c3516b8c999193b07949c9f2215a8ccca57b6ce6c3b3c3a0d150ebc59ef56e97e5ed4dbf43e727b5524b91e867a3963ab41c0db310d6630c1d69c36b308ccc6efabb0c4ac90326b093447ba6e03ac18ff59085d2abc1bb263e2307e128818d59871d38abef9ef1c24603660930cc6ac9ecaef3ee132351089b2ae1aeebf30e2b5d953ca5086b1e3fcc6fb0d0702ead127fc28929f027c6ae28c1740ca144b5c0c81c0c5676307f01413e39dcc2d1d04797515f35fe10ed09520ac27fa0df9a51c0d4882ef94f99e85dcc49932d52f2ae2c4b93ae9cc42eb018990e76306c477e637e0750c7d6fd7c1e7cba0202da51a7f05ef9a6cf243e5c4695a8ad252dcf225ecd2c1e7262de934283fc7cfcb633b67d0ebcca1613a86d27c32ac55228cce3bc85fdeed5061fa2fc76483277c013828684a6faaf2abf46390d5bdfb5f8ad494c09d9057264c0ae560ba072e3be0345f9e6da3b3bdb51ff723b1ec7d4512401813a6cc67a5921b3d2aedfc5bbf4b2f8a384f6e0591ab0e75945e466ac2a934dd82773d99368f0a16a733beb01184786ed02043c916d834a7cc423bd70de051e4847235ba1367612c1ff4b726d9371700976d866d5a48d3fca68a2428f54e34ff07c93ac7a96671738ff420783b0d47c8a171e2b647b1fbc531fcbded69da4831f739f3f9a20a775d7f5b6a5cbaffe8b09d1be404a702fe3f7281ba9a12b27558dcf71a6d2057618d232e4c6b0ae4a1ac6a4146218d2d26a57ff3a5aedbb0d95e01c965835f65c77ac4088db9beefdcc55f890283468b91a83d2acc8be93f93c0b72f8fc8308c1d94ac32e1d8a453dce3f681ebf1d784c69fc4bf5a877790fc25c88c03757db407c2f43e775165547b5a4dd154093b549319cb3e7072b06e41e5dc1345277d56714118950b3ed35ffb6f070965d342a65f561f5dc292c7c0dac1a28ce1d2973018716987f18e10d12b4d849c5e6ba58bb4e7cca88ccfda05bed1153f8076d81a8b39acfec33c247dfd975c32241fa57b9faae1becccee90e8c8604e09f49ee662b57c128caf77801dc4927d04a58a86fc7753c25d7e92ef7e25ddb44cd3105535d4bfcb373d41b14430283cca991abf7a8dafd8b18144942aa1d01122edeecb7a075cdf0f182a5b5011570e9db37b10e845d72d7215e1182092dc8dc801ac2b399ec76ffb1c797fad1729c265948c589464b8d1f95c729250390bd5aaefac82403565315ffc593827aa80826e1f2a5d6814bf3d1b4776573abe233b5ea4e3d63b20aee375e212a7f5eaa18ae44c2e3994effb079cc3dbeb32e33ffd967ac7bc51b5394bdd866a52079fb66de1ea00924ab5f12f1f8a500e734206f1af6e36f671601e324655c5e3715589a87065f036a65bbd766e2c7954195d79c49665d5b694f567523cfd9b1ff29514f2ec961970284e78eddd948960e696beb1728199b33c8abee12403af4b0db1062795320551b56b1ce51c04e5fe8d5afd4dc09cd5ed5eed17bd2e2fa07f927915db72b904aadd8f66a92a6312a7add0f141a654dba1e439a5a5559b0aaca0b71d1dfe573fa1ea94021eb9410f8c5704a3be55a14d6843b9afba9e42368c1394871363dfb9c6d43a57e856a230c1b2d37e5aec89c7d769f1cab91fa1ee1d46d381a04bd470fbbde346366ff98c7f9648d2ba4c43e2ca8cd1b6c237a9c3f8867d8d4e5fe5ddcb328a6379163eac7da6a2475955004b711346323fddc0148a6615492a6a029a937d6be396089799cdb8daf92ce7242d7c82c932824fd81a6814115aa7babc78486d89f13f4e120b50f86dd967d74f07df46a2816001e728ea8c7a0d81f5aa87a54884bd61dd9522f49f79f7dfddd668a2b1c5e53873d0946015eeabf5c74ed73c0103a15c8d69a52432228b931d8ca62457d8384e64f3548b488590b10af1f43b023921d03ef0affcafd6fb420136afeca4a2be483f4282394592e872d9dd056e8857dd7c12d20f5d996e25651f80ed7900be08e2063e0e2b2b217b1dae2925d7ecccde4ce68fbb9831cd42d4e12a07f1dbeccef7267c280a0c43728aa2b016eab32e8aaa8edec79a0d0a1bdd888ea68cd167cf500b23da620517dbb70452c13d745859e3213e765f8bbf9086e6177abc8c905233740166babf829f5b48fffbee9f84717c3d5088f3d1a13cf0a7973ffd9d8da2cc45c4b6b7ab5dc254738aba294d8805560780b49ebf7df7622f743402694f7703c90e6de07343354a00b4c4fb42606d6fafee1a436127b7ea56961b623acfebe9c2ad77831bcd76ba4400a3ebb9c757089a1efd27b7ebb1708a7d7fbc79f4b69d0ada2f6b056b48767bec53605e2cc2e562bfa741b391b6dd22c85d094736050352fd49213c5b3192983e13adf6ea2221d29c92d5378b8f379c2731ac0eecc962d7fc51da328c9a78bcc26611353584f56a93605c1a2c0234c15213f74211fde05e3b9ba3a452df3c94a22af41d836f12a68387423bb2fda3afea560349509d26958bb1d5034c95655be70c072bfd4c68865aea050d9de23934f67a79408af35ff4ed5c02ae7246bc2e95953e91f799f1d9da6dc54bb557932f3ec492a4d19ec70e0ac62627c267a07cb74d06603e5f1dbb86a0270597e8e5590171e81d7cbc08c9222869c90dbda58847c0ce91260d33e76950b5bc8dfb6ae01779e4e94e0aad0e8bfd1c90fd7dea24108505cbdf1ef76369c693828961bacb89432505e805043a9887a5cd97d93ec81e2bb4b0605b5babfa6dad5d226a2f3ff4f14af1d48cad4e3afcea50b21c4286d10cba10f6ad26c9f46e0bbe6ef660ce5c6e9ee5e945cb91c38e10fbaa94cb0c576bda09839933a242719515b4c1a1bf15ef626ec153d87d7c3644913e3f6ca70e932e4ac5450bcf32b8310c5d044c8bb06cca9a7f3e6d2b4d05ab0ed3a040b389bf10b60a1d79559f757ab28161fd8cc8a2b5a07ed87cdeccb9a0c278d5202607ec9c24ee9a8fb522bb933c7589e3c110515e5f4285d91742cc53338dd7b65e3f95cb98a75201b550d6a43f5fdc7de6642eb71ba3169ff48f7af78cef878153b7c0838e5147bd1e148ae7e8ad5afd6dba9cc7beddff10917ad4c1e40a700e9beaeb2db8641ea43fab6057c1f5e45207b527d74ccc441f4cea981ec92e5a3c0b50d7a0b944dbdb4021348e977711c88ada98bef9350d2b98e26376797735200bd8e9129f83e82b94dedaf9d0f8820ede25a7a1550f45213d690f85cd0108f74f5efb245cee75d8e1bde267564b4c576d78ab722ee10301c3a59953e8c9a4ab0ea3df9490b5560472f5960ef3f593880816847a3dfa97f512bd915573788fa8aef861395756d201d27ffe6c95ddbc17e145074dd85f30eef71bc7ab431da6af6fedafa18e6cdc8c8791f85e5614e82b3caaf23d25f9a096c721420bc34fcb341aa5e4d7b32ab7e3462f88ddfc8229a0f5de4719d138d40bfd42e55d4138431e88404a0ed6c04e5403fa52017027db6f942957caa4313cd21e3140cca3253fdb1bd95a0fbd6c3091990a5d109c8d1791fa4f7c4cc73b81578d8568e51b0235fbced487dd685a261cc5982787a246d0f6595a667eb8467ea923e985ba45dc7dfbe72ced4a3b0acf0faf0a38a4a1433a1b7a5ac4de446d60d4b638ec16cc9f1244384694accd2e638709010c491009187786497679a39731a9d5a471079524c9d20fd1ef2fd5e63e9156d21e207588f3ddaed22cc97f7eb8f89eed19a059f89e7aef0aaef8beefb174e417880ae6bfca62d00fdc24a3a3e89148a3626481d305f857c7ca5f13b57110bf6be313de925670d242c86904c9a1bfd128470a1f29967007bfb729c810db0e546e29bc9aa6d8f58a63f16ebf315defff3a0e108bf56d445b730fba351ec2d94d4e9485bd947661e63581ea66a5f3b1eda6635bf0d45495cfd7489230fec96f9d797562bff855d5e9aa8759cd7fa9077110c1a8d0df26e31bc4332d18360807df9f6163768f790c7245103b51f5b0e5727237671717b6e37d20db6df69033641c52e15ee237b2f41dfb176e28a9e59ac2997fd0a93229a187a0f436e17c45656266257f0ceed971656ab8d914012720c067db2aa406707cc887a28ef036a7bf9a55bab6107610927fde37a67fda8af2ad3595057fb03d5f3957256069469d58867f3e43018d691f9d3f7ad2b456d10c1e372b45013e53784429ee574647e2cd58edc8e391bc7dc2098c16379961efc532c43b912b5d131969082d020f82c531c5b8f9ec7861b81a9b83be05147782c178dd578c6ac2c5d27eca30985a1d7885af366b790c0fb9ad0870e34a0b96e5c4a64a2310f6a87968b43b3a2cf684ff697fb1c97867e95488bf66166dfe48f5131994f7e68283c410d74e91f38ccbdd22b8b28f4a07b153396aada4ebe9622cc83b4b578556bfa60e28cc0027b66072d25623a683ac79486d79508d8cdcb9e98295d6714fcdf6254439d13365e487815c28446d1abad394b76b12b367dad93848d41de2f2bf908b3f71f853d70ee340d246fe50bae362ccd8f6b28ebb22d2d75dbea74de0acb41c5ec056595c42d2046a0f090511a7631841d88d03daefb3b8ccbf7378bf95ac15c91c22e6ccc081e02419aadfbf07041f0359e4b080a9fe91abfa202621f8c294027feae82730b12f23181656e225a3377fd45fa8abd52d1ac7ebe2532d4d258c6ee1a40d3a2fe43480c1c0f3b5301a588d054e794cbed212f0e7aa92bbbb28a7222dbf35276705c204ca1db25e1b9f0a6a53178f4de0977f38939c1b1aa71881ffa3de09aa5e2a8a9be8620b29457c087a5d512bbe7ad2970432da7e0c7b544a20c64b7a4d275a9561756084b37a443a364758246a26cadaed4c6ba603a14289fa3fe4ef3137955597b0d8c4647293940c67a4ee6fdbe567f248dc6387259a6999da2ca716907a1d2e662d811e59b2c8458227126b9478b3cce34eaccac12a203195acb607ec3d4b466758dbedf26560365d53b9cf826172bc233802cc82e577e41875b65ee4330c3218ce0e0d0304a9b7bbb7e04a86408b9cc51af1c03f2118a6f52f97030d78663b6ea09ef0f4db81346bd57e74cd57fed31bd16107258d8c0647fd674101c3464571fb34a86eca10b6310a20c75c6640d2937853ecfaaebb60f32230e0e8dfff93b0a78d6766ad6c870955500483de13c4abf85b68947e6eee68a7549001ecf4518c729fe5ee14d01ad9102b70e9601ab3d39398fd69c81645fcb10ca0adeafdfbf206b422d60f4b93abef983ff9b4155dcfe983f81763052e69b2de90c75cfffe55146260104627f1f8b7353710e7a4d088156599f836a384b51f3d8ac3fb7bdbd162def5d7b7b3b3649014db18795c348c8dd488a384531c04f64a70d80b2650e93077bda7b1903f3acb607fcc1eb32fda65556ce6a3f4959b66404650f5324a5ce1ac77a68905d8db2676a85b474501ca4b2ccc4a17e7b43c3ead805b8b94e491e4744ced2a03627a7ee5cc10ce425cfd76b0b4a2fab778d421fb6596d0d0374159fae0ad7f040d2497fac45424a02ffb3f1832a8ac999dce849419d5770d925296f8eb2","isRememberEnabled":true,"rememberDurationInDays":0,"staticryptSaltUniqueVariableName":"4dd630bf2d5e295d113a1994f5b37543"};
+        ;   function toast(m,y="info"){let t=document.getElementById("custom-toast")||Object.assign(document.createElement("div"),{id:"custom-toast"}),e=y==="error";document.body.appendChild(t);t.className=`custom-toast ${e?"error":"info"}`;t.innerHTML=`<span>${m}</span>`;t.classList.add("show");if(e){let f=document.querySelector(".staticrypt-form");if(f){f.classList.remove("shake");void f.offsetWidth;f.classList.add("shake");}}clearTimeout(window.toastTimer);window.toastTimer=setTimeout(()=>t.classList.remove("show"),2500);}window.alert=m=>toast(m,"error");
+            const templateError = "Password Error",
+                templateToggleAltShow = "template_toggle_show",
+                templateToggleAltHide = "template_toggle_hide",
+                isRememberEnabled = true,
+                staticryptConfig = {"staticryptEncryptedMsgUniqueVariableName":"045a952c8a1b3ba69a5c54ed266eb3081f22afc6cf6dab4efd58356930f9a2cea06e64cc721a687bce2d29d9fcd93722f2fdbc4f5477e63636ea82dec978148c284c93e0155e41d7453234879e83f84988900a738a3e54f8295d0ca956f0c37d1781c8706203e6121ff7b041ce5f2c76ef8e909729a58e78a2947ae75c41c1090c1ad3fbe830104c602c8214a1143958a77791c060595634b37fd23942fc4ad97494550f72356dfed6cbc5145cb1e39360b2e14e92431d56a16bcc9f2314fc4b3a623d4f0914a29c246312d36499865b18b8c4fba41d510f96b1e96cb64a6a8a8c3fa2fe7a8412f7e844462cd1d3dde31babc129d90572c5d3a378de2b85d04c3c47da4712e79ebf2b0f8e5e468623addef419bf2a790474ea75c8adf3f4df6281e6fb1dd2f2fe1122b944917253273f69b24eb8f6228e95a7d086a35d6ce38780bdb247adcf2042e6c023f23af127d57e6bc4ddf992329b9f4462000345c916ca021b0749664250a5479c131124cf644ddb14e0b7e2208a82bb1a276079902ec503f50c36fb406a42158fa69824e8085e0d3b447c97d7db33b8027566dd3a6f46da8844e0f5403b8b18142d9d60d70fb55aba26518a1c1223c8f34743f57a7f38b37f7cdbd446a2ea90f9f31acbbb23d956bec2213c1cdffd2fbd2e69bf48afffc64870f3ed5718f44a0302bdd5f5a4e5e5bc6f8cc740844354d74fdc54dcafe0c2f1b30cf44e038dec47c0c5229b6290a1a76b8812c5d52ed1460f234919b6c1a390f0cd0e41749c4329e0aea866444bac72e8c0994d2b919168d0fae74db63bf421e7b4f9453a481c63b8e7e77035201ae9353454561b5bc5f42035fa9e1238b8c45860192e8410839f944e3cf3bcea408e858427a1e918540637286664059b922731cc33b625e8c0fbae97a78041c6e228501a8bc187da85f49811246e8e203abb0fab2d5172381b71873530f9e8afb1b17a356c1719077a6987921dee74b0b76bea0e14a774dc3fce82437db6dbc213ef9e5e6941731f4081dcf2535f67c357485343bc9ae454c670b72915fac203067ef82f112bca20dfa2e0a86fd81b112be9dc48bb877a974cd79188197b8fba5982a91bba497af06ff0e5eae443e3a49f841039604f357c8299f4e680fd01bbbf973031fafbc3550ded57b10fe1675ae5dfc910cb04d3e9014da833620ce86e911dda457b63ed25be4727e893a4450e6c2dc07c50554f2b8472c15b933801fbb85fc3976910ea2ac35b99b8c4dfe601cacd91693b16efae9e09c1d4b7ec81e7edd31b8cded376e12c9395df48df79238e1c29469dc0d935545db6a732e53ad32ce8edfc51429cbfc1b086d67d07a44d3e419f8e774bf96fc9caa4262f0cebd65c0d5b2c52adb0b12123288fb001c6a6803f0747efd7252ff1dc059df0656c534f5158acd44984f18573b31769d4f88becd03bbf7ba58369779d6237d3003e7582084c7f574bf49beb6301c90bebc9af444dc31074e5860a68d60f3d93111adb6a6dd5d353d7d0e8a3d24bb6a422ee85d04650bd2669f6de069398862fc0a5edebfc579cd067146b377cfb7c917615a8e6181ae2e73c23c42a0b1daf7e441ed9e95b13a861e4baca685a2f9e9c5931b84c5d4e9c03b727f99a67ae7530c077aff717a49500f79a68e92eb3e894bdd026b4a985343d2080bad4b10b176bc6b48504cdc019ed6322a5e276f312a448820761648d899d4e53d741c774409529146f16d6dfbfc284a4ee365d055fe125c6bb298f7a7b71a032f06e78ec8b2c8bf4e32f4d3de9291118d66451703d8dbca196daaf7db9467673e81c2df439c02d0e00299eaab90f6536c2dd5fe6f32d8af7920c23931d7d4b7333e6c92adb5ad9f4e4e86edf6574ad82911b326b84c7454f1c576698dc2e1b7ffd993a36222fc11b2127107de761fa6e0e1aeed30b013efdac2748010dae5ea62d3d5c6ecc8db2370f06b297e668de8c9797ac324094501fd761073316874c20e54ffc1675f0f92774b525e5277c7e8837bd786c16172c1d0525c805aef394a44c33a33423ed4142a10cd88ec00ac72467f310fd56102d255f1b943cc0695cce0a4c9fb80b1e20289d5a1dcfdc1885c16e364d53f818ba83090a4ff9ed4a1df749ad44c0e1710b69d9826929d393614a7cbb90aedc4c1ae7571c938f84f53947c026f117d34e31709695abade34c7fcba5f1bef5d709c4d06bc044d4304e5f8a4ec51dc01b7d54996ecaaf7d192df1c373c93e4abec987930d7fb3b031e597b52631b0f4476fb60028de60f5a6e97aaaacead7c48c260f92ea3a7caa6ae5f43c8c764733ae26e337f53a1f4f015bdd461b2e3e9eaa0a78da161cdaf3500586fccef1a4a1e8c85e4b0c8c2cd74496ab98789c07221fd8c454cbf81c02c9e0bd5b62f9e26e73a54fdd0f7e9b522ecefc3e90ec57f17cd05a5c5f53f535ccfc1b5dc45ebdd5a740df64cd731671eeda8157c05262716e020d566465d742fb19611688fbc09870a34fadbe1f93b59e6fcc6bb22170fd2e780ec729713ab070d0029b72d545bba8b842d77d9cf4ac7e908aa7ea0540effce57cc2e1af6f2934e6606aaf8f9ab704dd1c7f1fde834b12f89a686ba97054c55bf9c8be98bb42402ad52ef2bb006acfa5e53eb7ea836c0bd4bead93da60a31fa591dc00a068006c6862d36c561fb177888610a0de51e9ccccfc4dee665155e60677372b9fbc824019eb1222f67dc36364de729fe71300f4f45f35ca828713a8114ab1a055e6b3dbc9d9b37e726beb05fd61934b56ce48fade0e3b2f3a5ed053cf4f48a56bbbe37c0ef03acc1c161bb8e0af426fb06a20a15282e907a4fe23f16a762fea6075f51acc45eae8df2cd65dee99a29b561e1670756413b3d81d7d36ec7e008b6dca3513bf9c1567fa249a3958c47dd17a625b5e8a453d4de753ecec588c26090b54f87fe157aca4ad6a7b70bc7ae27c5f40665137f7924b6f4efdae9298bdb896b5275729c35c953e7af9c26531bedb170cf98983d5df8317645a0a8d5253db12b730982169c4237373c8e2c8ead110acb4dfa0ab190e1f060df8743640a75b894187e7007576c794b97ab5d6743eca2176621ba9d60b92693ab29449a5e840ac764e820cd5038b91617f1ceb6a230aa408933d6456f8df5992e432eb910efb5cd8a34aee75912522ca79bd43c2a46816445696f6cf3f8514115c728aebcd43bb807ebd468bd3f636e45c98e5747d18c1ce6de8c8d0454652ddde1b64955a304a725920ad9de8bac62cc0f6c3287c1d50b0b0342f154e6f69434c099843d762d5aa78d99a3cadd39a5b83d6f88f1e4230837307fb1453c580b62c6101d58a030770acf259820647f7b7d381f26c8f4f4d0c3a9322ecee8eaef80a9dd22489d4ed5b53e3008bd70bce0341d49ef2697c9c3a3b8b8f752b82bec259f0a099b7296a674565414cb6d15e6a5b96adf21e3d3327776a08b71c144a23048c7fcb17d7f03bd5b8bde0a004b14eb4b93df59c1ce809439e62adf85173c856af2ad07712c2470320ca2e3c418620407cec7422264b71459b06e7e34de10e087754197dbeb5773d5dcfeeb90dda2e0f8bdaacf0bcd97614f07bdf2f3cd1d1a8fc4d3811d856932641d494eb66d1c211588b4a8f6fc4601d033d6382dd3e1681934987a40cec29197bdb1b88a40873ce26d9d1bdbe50d28184e41652395f7ba1199d02ddbd8674119ed6687cf87931e88651355b6d0e38385178f6ca61a958ad38ca660dabc31ae3b7a4bb0b6eacfff7ff28cb9724f8748254d515908830316b92aefc27968c2279db4319d1407600626324ff5b4cac5599d2d9faffc6f0ac4d1131ef6d858fa605ad20781a265a8bf6528c3e9af7f2594669c346eee550f77ea81b106187b43d1aa2160fd05f6f15f8f6ed96f0a3eec1fb3af0cfc4efa42096db43141064821518b3de123c137263f31ab6abb31a1846d0731d47786141815e20bcc0d62bc1482f91b2aa496305ca4053e5404b3b015f073dd115474d0930c348a0a8a4890bbaccec77f9662d297044c5cd4589fa941f0e62a7ecb4b446a4a3f90b9871ab3d3a11630746756fedcd599981ea0f86ce0135c29dceed9d2942d4dd7f2ff0f4be3c04be861c4a5a86ff6be5c9c51a3aced8393c2ae996526b3ef5bf6ecd250167f87b348b68bbbc0a4dbb2c789d850fbd28be5300dad09068fd99ea24468498405e910ccc980ed725ad02ee26a9305b45aaba9bec05c3b654f82a14dc73dfbcf005e596fc47a42a9f6ecfc69ba5195042d0978db0109566aed5d8c4f925923830bfc946655e01c811a86909b7fd43dccc931e7021b7fc269e3db8126b112ee981ed2f62ad72868312d929dfafbd937e2d20d3ba4af043d1a97d6fce440bfbd85f577f9a63658072f553d7479c9dd61008a642c0eecc0e91a4762a8d09ba134038c7d81a151bc406902d59ce1b89374f33f638552fbe34486fcc372d90b88af6f0353722d26d25e03f45f5906d25e728d4f7e1f543132b9fc424bd7c0d2cb2ac8f0c8663c4c29d89b9bdaa381f226dcc284512527e187b7e1863e5dfc41eaa05e6ecb766b309a12c3efc133703d59caf9e0ad128cfaee4009e9743a9b968298a1fb60b6a693fd628f47cb8e118b3805e116a61aa465c03161c61a11e675718c820419f8b38db4cf6748e9f8f26755613cee6a57cda355ab0ba3d6d482b2e1f96f0e8a757edf0654b45b5584ae7eb3ec834b83cd52644e6bac683d1d8b56a2f5a85e1fdb71dbafcc0b438c3828e85232ce6bcc7f656a7198008d10043315ffce12f2a2d2d28bd885d8294cd2efb365da516d7e6935978201148189b3f0f92f97e3603c805cdb243520871711cec623e3e50cd96d48a92aa0c5a7b0f20403bfdf85fd6ccb5c53eebbbee33a9548c56e183c8bd64c10f177797b5b41bd5eb5410c242d7d2553012c119b50126f58f56c6f858e61f55fd254ea619e170c02d437e175cbd4d03c6c671443e87e5dfe842370e03a5a9688fe49a5bac846035f5c01c39f4449aeb11cb8099390e4ba2e5a29ccdd82152558cbff4611b26a60535603d9940eaccb6d5c0c406720e912587afe766b3f9d893b6ba6fae39e6dd943e91672366ac8fdc9fd029b900cf2837636d04d9226c180a95d94424a444792567c273e1d6516874b26b30be9e7e9014b57826d64f0e056c9467a3cedbd3aaa03363d1407da2e42707bb17e5af2076ab4da1b1dfef41b3e64a1d01dea00e8b4081072c8d8da2b74ef0590ad8bcb19af7956ab90cc5862ba720afd6c52deadbc25d2a8ce468af804ea3bdd2a779584094f69958ade418b545afc1b1ff8bc71188a57a74902b9de5597ce8b0b94131662ef5995b9957eb2156f6870e4d03c83dff5d1a9349b0be9629704faa95c2742c6bf4a9c81dc4c0bc6dddb18ee8d672c5cb95982ab5fecbc98e234d7d41eaa57f6c4cb09820ba65dbc9003395c00dde84eec1bed094109f321259b79376ddd038e02a18d36d4c98659491cbdc32bf5da78fc86bc90e2c132bafe0979e94a208c9690e46cfa7c3299fd6060b462efe15bd15fd30038f1ce5bab0b111d53e712918c645d4457810f1cdcc5573d5731da6a6afee7725eb798e9afb9495f7b373598d01f4e82a928bf76c803acfc6fc3090330e85753cc826e38b74fff89ee828460fd5d38942eb02727fbb8b51b3ab1af4a0c2451e9046cf3c23218f39c4cbaf42956224abc8e7e50de04787521a93f5487caff8c4471c8730bb219848a8275238c0fb5e918f799ff11cd4bba3de8ccc8dc1a57544a6821ba3f59e482468f7c0429fdf1ef7c9d13b36be84a2965b032d145fc07437038082e9c2dde1cc2f86f9dacb93e246cada2a9c65e85618cb4ff00c312cf9cd1254e30c61319614a64293a2605095cc7a97e389d0465e1d2d0666716d106e4cfba6ab7f8ed243f49a6d09d1e15229dc3c7f657ea5a5a3e149dca029fac0d6e4d3ad1d62d67b5478e5aa6b76a834122773827087cd17b8509ca65a6fb9281bd7d560159f4f1151f8ac6b9581a32b705010b396dc6f870f1e3d1c9cb79baa4f9420e73ea087d7e147a7412b6028a03112dfda97665b8817f7e14f41b370694d49384a3448e7961f802e0904d774b89caeb58b052554de80d39abaa2beb642eb60deb7e12655759f76b573c8d99899047cd5d53404973655c97a02dd61209ba78d76cbfbf58551632eb0fc7cbd8a143300278e8c99c63741bd1cee306c9968b1e7237ffb40d2b3e2068edd27ca25fa1e8e30c5bf761ed2d4afb1aa3dfbdd8e5dc66df1ecc88e3b8f788e9715b45cf5c4bde3881008ed2b5698721709bf6a56bc0f7cec00c346b87b95cb087e906dcced97454c83423eacfa297b68bbf4e1c9edadd9abfff862ecb19b77f00a6d24cf50c4a78b4449f8906e7ec15f069d16232537cafd23d8f6519f1b5cf6c8c58c70fee01578a029fbd2b215a23fda7ad51c4f7c15c429d2f55e93fc54b9107e762750a747902635e31ddd6b985400577f86e0163dbe3efb959753a623a8bb1a75cb0726f04ae236ef834e46ff62a6a9ac0492daa9cc04e80674cd7084177aa0b66a04557a9bcabaa0d1b912c622cb98f5f20b52315c555a2f8a512ce66582024f8c9251da60c3ad61800344a1c326b292657f5378f7c478c8221184a589b4c7dd0b0aed5ad11ad6f9cfab7b32b4261a1494bed099a3cb602fd40a08afbbc3b39a13c3fbcfce184969f411817bc6907a8ae62e6134af3df3630153aad8c4a41b9fcbad47b5309b95689755bd0c4738d8d2b98cb58a50f554321ab2be7554bea8e441a632372b3aba43e73dc71b1c0efe2522140e6076053a3b4e9a5506821e6ae678ae7c71e5f1b6ef888c2c9b64c1ebdc7bc7ae26cc1d0656b594b43434ea4d014822a560dc64f7fdeca713099d46774ad68dd627e110578d5391fa98b2cfd3bc848801d098c9a08eb46d8e2a81ad1948ad8a94970e56557eca4215ea1082b71d21f208c236954abac899d87eb0b4928991509a8090fd401ea0d5c3664856fd006711484ec02b9b424a752ded210a66e2033955d379cbad7d38bdc46a4897b5a95fde8a650afe528a67b9ed23305225454dcfb74b67af5daa286bfcc5eaaa0e4d2ea999e526f451e842e807033cb31af5c900ce07c225d3b8512cd620c5aa0a7caca0c384eba12b342888028d719e3d44a8bba5dd962626c932f530f53b12a413b1fdd50c6bee5568c624f3a255f42fe541f31a133d00bcc3dc591947626e55d822a10e07916e57cf43f1bf70c4ef365c80f7fdca87b98a2a96a1d8a6c41039bb34a298dec71852d9bfaf3fc47f49ffe1ed84694d57463e67e813c4c565c0938e63fbf197e43a8499341593dac5ef73606168ededca3d16393455570c1443bf5a329fb4b0d4998f6d1131ee6157c96d6f1d037dada287fa9d4e02d7e93b41d33c5bec4fc1de8bbe84350bd11ab99d0ab24227083063faa98f873034c09ebae8cfdb5c7ced0feeac5c44d20fe16cc66c5968d79b5d4049791dc387e21e1564bdb2d61c860b2d9d394f13a1c0d2fd15736157a75629cf11dc2d96b1a444dd7f813d85dbd336b5249e090b5f75f354d358e5c3820f7c3afa68e39ef9f7a78c2eadfb88deb343c87d604bead00cbb3c0d87bc8f30e00049e9c3034bbc4fbd92aee525359b93e326498ecf41fd5c36edd7ad14c7f2c22c16b87defcd3e258d7d2947e29426e881f098eb06edb425826fc1b0101ab07313250b3b5ccb0cfbe62240e8bb1a248815c4fc84e1e0490ac15b3df0f15443448d1cc5ac34e7a71691cef916250a683f41520e2841435dede10d9fb91c05c7726a3b4e7293c41834c9c6306c118d5e4a00abd61fb361619d9ec2aa560989d6e31df2b2db32c9e635223f86d3d8753ae3bcc889b524555a759aad14a11ca9cb0752776888ffac6f68421747a06e49cf31d97aff64757a74d6f35d1c330ec2bca24bc8cb314ebeb4492275526dbd08ee21fd96b5c59c4f31e6c0ca3fc97e09d5959feb58de1ed45b4ec38ba4ddd96002c9bce47c01696722d85e3f16a4625a35f24222ab55b6d4ea1c9d96e520da8c51dbd66f862f975676fef557c735ac051fb21cdcbdd72c53aeefed793253eb99f161ecd73bd232af0fadb1e07fcd268c5a86997f397834fbcc53b2f9167fa2d34dabd247b5d8477a1c3fee394c94f06d52a029be8274e6827785f6b82f3dfe2dfb7a5b5bc5d87db519053a63a8696edb8e3eec146a9dfd7a3d4bc869694e337933896f02eca21b2175efd2563d8e8f20a40f8c2e929765cc817fb7431e6d05fe56932e7659241018a9a1f11a88a427af7b0b7651e02b803a509d00b612ad4df8f8b59cf9c493909aa21e7afdef2eabd68e6c847d64ac9887dc4dda63f3207827fbe459f82dc8ec6e6c1f4ae1770585460d7b13733448fecdf0f7b8c590ef723404552609806ccb5526db3002555b3b07f9698d3ad0cedf3bcf40d7e94a8c940d2afd66","isRememberEnabled":true,"rememberDurationInDays":0,"staticryptSaltUniqueVariableName":"e12fe7179a329961a3409acfb7d37aeb"};
+
             // you can edit these values to customize some of the behavior of StatiCrypt
             const templateConfig = {
                 rememberExpirationKey: "staticrypt_expiration",
@@ -1141,6 +1262,343 @@ exports.init = init;
         </script>
         <script>
             toast("Hello, Please enter your password first.")
+        </script>
+        <script>
+            (function () {
+                "use strict";
+
+                var P_TABLE = new Uint8Array(1024);
+                var GRAD4 = [
+                    [0,1,1,1],[0,1,1,-1],[0,1,-1,1],[0,1,-1,-1],
+                    [0,-1,1,1],[0,-1,1,-1],[0,-1,-1,1],[0,-1,-1,-1],
+                    [1,0,1,1],[1,0,1,-1],[1,0,-1,1],[1,0,-1,-1],
+                    [-1,0,1,1],[-1,0,1,-1],[-1,0,-1,1],[-1,0,-1,-1],
+                    [1,1,0,1],[1,1,0,-1],[1,-1,0,1],[1,-1,0,-1],
+                    [-1,1,0,1],[-1,1,0,-1],[-1,-1,0,1],[-1,-1,0,-1],
+                    [1,1,1,0],[1,1,-1,0],[1,-1,1,0],[1,-1,-1,0],
+                    [-1,1,1,0],[-1,1,-1,0],[-1,-1,1,0],[-1,-1,-1,0]
+                ];
+
+                function murmurHash3(key, seed) {
+                    var k = key | 0;
+                    var h = (seed ^ k) | 0;
+                    h = Math.imul(h ^ (h >>> 16), 0x85ebca6b);
+                    h = Math.imul(h ^ (h >>> 13), 0xc2b2ae35);
+                    return (h ^ (h >>> 16)) >>> 0;
+                }
+
+                function initPermutationMatrix(seed) {
+                    var base = new Uint8Array(256);
+                    var i = 0;
+                    for (i = 0; i < 256; i++) {
+                        base[i] = i;
+                    }
+                    for (i = 255; i > 0; i--) {
+                        var j = murmurHash3(i, seed) % (i + 1);
+                        var temp = base[i];
+                        base[i] = base[j];
+                        base[j] = temp;
+                    }
+                    for (i = 0; i < 1024; i++) {
+                        P_TABLE[i] = base[i & 255];
+                    }
+                }
+                initPermutationMatrix(0x7f4a7c15);
+
+
+                function quinticHermite(t) {
+                    return t * t * t * (t * (t * 6.0 - 15.0) + 10.0);
+                }
+
+                function linearMix(a, b, t) {
+                    return a + t * (b - a);
+                }
+
+                function dotGrad3(hash, x, y, z) {
+                    var h = hash & 15;
+                    var u = h < 8 ? x : y;
+                    var v = h < 4 ? y : (h === 12 || h === 14 ? x : z);
+                    return ((h & 1) === 0 ? u : -u) + ((h & 2) === 0 ? v : -v);
+                }
+
+                function analyticalNoise3D(x, y, z) {
+                    var X = Math.floor(x) & 255;
+                    var Y = Math.floor(y) & 255;
+                    var Z = Math.floor(z) & 255;
+
+                    var dx = x - Math.floor(x);
+                    var dy = y - Math.floor(y);
+                    var dz = z - Math.floor(z);
+
+                    var u = quinticHermite(dx);
+                    var v = quinticHermite(dy);
+                    var w = quinticHermite(dz);
+
+                    var A  = P_TABLE[X] + Y;
+                    var AA = P_TABLE[A] + Z;
+                    var AB = P_TABLE[A + 1] + Z;
+                    var B  = P_TABLE[X + 1] + Y;
+                    var BA = P_TABLE[B] + Z;
+                    var BB = P_TABLE[B + 1] + Z;
+
+                    var g000 = dotGrad3(P_TABLE[AA], dx, dy, dz);
+                    var g100 = dotGrad3(P_TABLE[BA], dx - 1.0, dy, dz);
+                    var g010 = dotGrad3(P_TABLE[AB], dx, dy - 1.0, dz);
+                    var g110 = dotGrad3(P_TABLE[BB], dx - 1.0, dy - 1.0, dz);
+
+                    var g001 = dotGrad3(P_TABLE[AA + 1], dx, dy, dz - 1.0);
+                    var g101 = dotGrad3(P_TABLE[BA + 1], dx - 1.0, dy, dz - 1.0);
+                    var g011 = dotGrad3(P_TABLE[AB + 1], dx, dy - 1.0, dz - 1.0);
+                    var g111 = dotGrad3(P_TABLE[BB + 1], dx - 1.0, dy - 1.0, dz - 1.0);
+
+                    return linearMix(
+                        linearMix(linearMix(g000, g100, u), linearMix(g010, g110, u), v),
+                        linearMix(linearMix(g001, g101, u), linearMix(g011, g111, u), v),
+                        w
+                    );
+                }
+
+                // Complex multi-frequency fractional Brownian motion synthesis
+                function synthesizeFBM(x, y, z, octaves, pers, lacun) {
+                    var acc = 0.0;
+                    var amp = 1.0;
+                    var freq = 1.0;
+                    var maxAmp = 0.0;
+                    for (var o = 0; o < octaves; o++) {
+                        acc += analyticalNoise3D(x * freq, y * freq, z * freq) * amp;
+                        maxAmp += amp;
+                        amp *= pers;
+                        freq *= lacun;
+                    }
+                    return acc / maxAmp;
+                }
+
+
+                var rkState = { x: 0.1, y: 0.0, z: 0.0, w: 0.0 };
+                var rkParams = { a: 10.0, b: 28.0, c: 8.0 / 3.0, d: 1.2 };
+
+                function lorenzDerivatives(st) {
+                    return {
+                        dx: rkParams.a * (st.y - st.x) + rkParams.d * Math.sin(st.w),
+                        dy: st.x * (rkParams.b - st.z) - st.y,
+                        dz: st.x * st.y - rkParams.c * st.z,
+                        dw: 0.015
+                    };
+                }
+
+                function stepRK4Integrator(dt) {
+                    var k1 = lorenzDerivatives(rkState);
+
+                    var s2 = {
+                        x: rkState.x + k1.dx * dt * 0.5,
+                        y: rkState.y + k1.dy * dt * 0.5,
+                        z: rkState.z + k1.dz * dt * 0.5,
+                        w: rkState.w + k1.dw * dt * 0.5
+                    };
+                    var k2 = lorenzDerivatives(s2);
+
+                    var s3 = {
+                        x: rkState.x + k2.dx * dt * 0.5,
+                        y: rkState.y + k2.dy * dt * 0.5,
+                        z: rkState.z + k2.dz * dt * 0.5,
+                        w: rkState.w + k2.dw * dt * 0.5
+                    };
+                    var k3 = lorenzDerivatives(s3);
+
+                    var s4 = {
+                        x: rkState.x + k3.dx * dt,
+                        y: rkState.y + k3.dy * dt,
+                        z: rkState.z + k3.dz * dt,
+                        w: rkState.w + k3.dw * dt
+                    };
+                    var k4 = lorenzDerivatives(s4);
+
+                    rkState.x += (dt / 6.0) * (k1.dx + 2.0 * k2.dx + 2.0 * k3.dx + k4.dx);
+                    rkState.y += (dt / 6.0) * (k1.dy + 2.0 * k2.dy + 2.0 * k3.dy + k4.dy);
+                    rkState.z += (dt / 6.0) * (k1.dz + 2.0 * k2.dz + 2.0 * k3.dz + k4.dz);
+                    rkState.w += (dt / 6.0) * (k1.dw + 2.0 * k2.dw + 2.0 * k3.dw + k4.dw);
+                }
+
+
+                var canvas = document.getElementById("cpu-matrix-canvas");
+                if (!canvas) {
+                    canvas = document.createElement("canvas");
+                    canvas.id = "cpu-matrix-canvas";
+                    canvas.style.position = "fixed";
+                    canvas.style.top = "0";
+                    canvas.style.left = "0";
+                    canvas.style.width = "100vw";
+                    canvas.style.height = "100vh";
+                    canvas.style.zIndex = "0";
+                    canvas.style.pointerEvents = "none";
+                    document.body.insertBefore(canvas, document.body.firstChild);
+                }
+
+                var ctx = canvas.getContext("2d", { willReadFrequently: true });
+                var scaleRatio = 0.22;
+                var viewW = 0;
+                var viewH = 0;
+
+                var tracker = {
+                    currentX: -999999.0,
+                    currentY: -999999.0,
+                    targetX: -999999.0,
+                    targetY: -999999.0,
+                    interactionRadius: 75.0,
+                    hoverWeight: 1.0,
+                    targetHoverWeight: 1.0
+                };
+
+                function refreshViewportResolution() {
+                    viewW = Math.floor(window.innerWidth * scaleRatio);
+                    viewH = Math.floor(window.innerHeight * scaleRatio);
+                    if (viewW < 48) { viewW = 48; }
+                    if (viewH < 48) { viewH = 48; }
+                    canvas.width = viewW;
+                    canvas.height = viewH;
+                }
+                window.addEventListener("resize", refreshViewportResolution, { passive: true });
+                refreshViewportResolution();
+
+                // Smooth dampening transition when touching the login container
+                var formContainer = document.querySelector(".staticrypt-form");
+                if (formContainer) {
+                    formContainer.addEventListener("mouseenter", function () {
+                        tracker.targetHoverWeight = 0.0;
+                    }, { passive: true });
+
+                    formContainer.addEventListener("mouseleave", function () {
+                        tracker.targetHoverWeight = 1.0;
+                    }, { passive: true });
+                }
+
+                window.addEventListener("mousemove", function (e) {
+                    var rect = canvas.getBoundingClientRect();
+                    tracker.targetX = (e.clientX - rect.left) * (viewW / rect.width);
+                    tracker.targetY = (e.clientY - rect.top) * (viewH / rect.height);
+                }, { passive: true });
+
+
+                var MAX_CAPACITY = 1920 * 1080;
+                var deformationBufferX = new Float64Array(MAX_CAPACITY);
+                var deformationBufferY = new Float64Array(MAX_CAPACITY);
+                var dynamicTensorGrid  = new Float64Array(MAX_CAPACITY);
+
+                var globalEvolutionTick = 0.0;
+                var spatialPhaseOffset  = 0.0;
+
+                function renderHamiltonianFrame() {
+                    stepRK4Integrator(0.008);
+
+                    // Soft lerp of hover weight prevents stuttering or sudden stops
+                    tracker.hoverWeight += (tracker.targetHoverWeight - tracker.hoverWeight) * 0.055;
+
+                    globalEvolutionTick += 0.0075;
+                    spatialPhaseOffset  += 0.0045;
+
+                    var attractorOffsetX = rkState.x * 0.022;
+                    var attractorOffsetY = rkState.y * 0.022;
+
+                    tracker.currentX += (tracker.targetX - tracker.currentX) * 0.065;
+                    tracker.currentY += (tracker.targetY - tracker.currentY) * 0.065;
+
+                    var frameBuffer = ctx.createImageData(viewW, viewH);
+                    var pixelData = frameBuffer.data;
+
+                    var spatialFreq   = 0.028;
+                    var harmonicScale = 0.048;
+                    var invRadius     = 1.0 / tracker.interactionRadius;
+                    var radiusSq      = tracker.interactionRadius * tracker.interactionRadius;
+
+                    var px = 0, py = 0, bufferOffset = 0, byteIndex = 0;
+                    var deltaX = 0.0, deltaY = 0.0, distSq = 0.0, dist = 0.0, perturbation = 0.0;
+                    var harmonic1 = 0.0, harmonic2 = 0.0, harmonic3 = 0.0, tensorNorm = 0.0;
+                    var fbmNoise = 0.0, integratedPotential = 0.0, chromaticLuminance = 0.0;
+                    var red = 0.0, green = 0.0, blue = 0.0;
+
+                    for (py = 0; py < viewH; py++) {
+                        var scanlineBase = py * viewW;
+                        var pyShifted = py + attractorOffsetY;
+
+                        for (px = 0; px < viewW; px++) {
+                            bufferOffset = scanlineBase + px;
+                            byteIndex    = bufferOffset << 2;
+
+                            var pxShifted = px + attractorOffsetX;
+
+                            deltaX = px - tracker.currentX;
+                            deltaY = py - tracker.currentY;
+                            distSq = deltaX * deltaX + deltaY * deltaY;
+
+                            perturbation = 0.0;
+                            if (distSq < radiusSq) {
+                                dist = Math.sqrt(distSq);
+                                var unitDistance = dist * invRadius;
+                                var smoothFalloff = 1.0 - (unitDistance * unitDistance * (3.0 - 2.0 * unitDistance));
+                                perturbation = smoothFalloff * tracker.hoverWeight;
+                            }
+
+                            // Dynamic Tensor vector integration
+                            var angularMomentum = Math.atan2(deltaY, deltaX) + (perturbation * Math.PI * 0.75);
+                            var displacementU = Math.cos(angularMomentum) * (perturbation * 8.5);
+                            var displacementV = Math.sin(angularMomentum) * (perturbation * 8.5);
+
+                            deformationBufferX[bufferOffset] = displacementU;
+                            deformationBufferY[bufferOffset] = displacementV;
+
+                            var evaluatedCoordX = pxShifted + displacementU;
+                            var evaluatedCoordY = pyShifted + displacementV;
+
+                            // Harmonic field potentials
+                            harmonic1 = Math.sin(evaluatedCoordX * harmonicScale + globalEvolutionTick * 1.25);
+                            harmonic2 = Math.cos(evaluatedCoordY * harmonicScale - globalEvolutionTick * 0.95);
+                            harmonic3 = Math.sin((evaluatedCoordX + evaluatedCoordY) * 0.024 + globalEvolutionTick * 0.72);
+
+                            // 4-Octave Fractal Brownian Noise Evaluation (Heavy CPU Arithmetic)
+                            fbmNoise = synthesizeFBM(
+                                evaluatedCoordX * spatialFreq,
+                                evaluatedCoordY * spatialFreq,
+                                spatialPhaseOffset,
+                                3,
+                                0.52,
+                                2.15
+                            );
+
+                            tensorNorm = Math.sqrt(
+                                (displacementU * displacementU + displacementV * displacementV) * 0.08 +
+                                (harmonic1 * harmonic1 + harmonic2 * harmonic2) * 0.5
+                            );
+
+                            dynamicTensorGrid[bufferOffset] = tensorNorm;
+
+                            integratedPotential = (harmonic1 * 0.28) + (harmonic2 * 0.28) + (harmonic3 * 0.18) + (fbmNoise * 0.26);
+
+                            // Normalize potential range
+                            var normalizedScalar = (integratedPotential + 1.0) * 0.5;
+                            var dynamicCurvature = Math.abs(displacementU - displacementV) * 0.04;
+
+                            chromaticLuminance = normalizedScalar * 0.88 + dynamicCurvature * 0.12;
+
+                            // Deep Midnight Indigo & Obsidian Cyan Palette
+                            // Very subtle contrast: won't distract from the login UI
+                            red   = (7.0  + (chromaticLuminance * 18.0) + (perturbation * 22.0)) * 0.94;
+                            green = (10.0 + (chromaticLuminance * 24.0) + (perturbation * 20.0)) * 0.96;
+                            blue  = (22.0 + (chromaticLuminance * 45.0) + (perturbation * 35.0)) * 1.04;
+
+                            // Fast Bitwise Clamping into Uint8ClampedArray
+                            pixelData[byteIndex]     = red > 255.0 ? 255 : (red < 0.0 ? 0 : red | 0);
+                            pixelData[byteIndex + 1] = green > 255.0 ? 255 : (green < 0.0 ? 0 : green | 0);
+                            pixelData[byteIndex + 2] = blue > 255.0 ? 255 : (blue < 0.0 ? 0 : blue | 0);
+                            pixelData[byteIndex + 3] = 150; // Retains subtle dark atmospheric glow
+                        }
+                    }
+
+                    ctx.putImageData(frameBuffer, 0, 0);
+                    window.requestAnimationFrame(renderHamiltonianFrame);
+                }
+
+                window.requestAnimationFrame(renderHamiltonianFrame);
+            })();
         </script>
     </body>
 </html>
