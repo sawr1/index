@@ -1,2 +1,2 @@
 # index
-non-public
+This is my website!
