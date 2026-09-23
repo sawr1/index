@@ -547,7 +547,7 @@
             <div class="staticrypt-page">
                 <div class="staticrypt-form">
                     <div class="staticrypt-instructions">
-                        <p class="staticrypt-title">Website (abandoned)</p>
+                        <p class="staticrypt-title">DEV's Website</p>
                         <p>This is a private, non-public website. Unauthorized users are advised to close this site immediately.</p>
                     </div>
 
@@ -580,9 +580,8 @@
                     </form>
                         <div class="tmp">
                             <p id="think">Special thanks: Robin Moisson</p>
-                            <button id="Moisson" href="">GitHub Link</button>
-                            <p id="sell">My GitHub Account</p>
-                            <button id="Myaccount" href="">GitHub Link</button>
+                            <button id="Moisson" href="">GitHub</button>
+
                         </div>  
                 </div>
             </div>
@@ -1989,21 +1988,21 @@ exports.init = init;
 
             //I was a bit bored, so I added some useless code.
 
-                window.addEventListener("keydown", function(event) {
-                const isF12 = event.key === "F12";
-                const isDevToolsShortcut = (event.ctrlKey || event.metaKey) && event.shiftKey && (event.key === "I" || event.key === "i" || event.key === "J" || event.key === "j");
+                // window.addEventListener("keydown", function(event) {
+                // const isF12 = event.key === "F12";
+                // const isDevToolsShortcut = (event.ctrlKey || event.metaKey) && event.shiftKey && (event.key === "I" || event.key === "i" || event.key === "J" || event.key === "j");
 
-                if (isF12 || isDevToolsShortcut) {
-                    if (typeof Swal !== "undefined") {
-                        Swal.fire({
-                            title: "Developer tools achieved",
-                            text: "Developer session active. Type diagnostics.help() in the console for telemetry metrics.",
-                            icon: "info",
-                            confirmButtonText: "CONTINUE",
-                            buttonsStyling: false,
-                            customClass: {
-                                popup: "swal-custom-popup",
-                                confirmButton: "swal-custom-confirm"
+                // if (isF12 || isDevToolsShortcut) {
+                //     if (typeof Swal !== "undefined") {
+                //         Swal.fire({
+                //             title: "Developer tools achieved",
+                //             text: "Developer session active. Type diagnostics.help() in the console for telemetry metrics.",
+                //             icon: "info",
+                //             confirmButtonText: "CONTINUE",
+                //             buttonsStyling: false,
+                //             customClass: {
+                //                 popup: "swal-custom-popup",
+                //                 confirmButton: "swal-custom-confirm"
                             }
                         });
                     }
