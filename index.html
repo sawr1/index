@@ -41,500 +41,291 @@
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/5.1.0/theme/black.min.css"> 
         <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
         <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-        <style>
-            :root {
-                --primary: #6366f1;
-                --primary-hover: #4f46e5;
-                --primary-active: #4338ca;
-                --primary-glow: rgba(99, 102, 241, 0.45);
-                --primary-glow-strong: rgba(99, 102, 241, 0.7);
-                
-                --bg-start: #080c14;
-                --bg-mid: #0b1120;
-                --bg-end: #0f172a;
-                
-                --card-bg: rgba(15, 23, 42, 0.65);
-                --card-border: rgba(255, 255, 255, 0.08);
-                --card-border-focus: rgba(99, 102, 241, 0.65);
-                
-                --text-main: #f8fafc;
-                --text-sub: #94a3b8;
-                --text-muted: #64748b;
-                
-                --input-bg: rgba(8, 12, 22, 0.85);
-                --input-hover: rgba(15, 23, 42, 0.95);
-            }
+    <style>
+        :root {
+            --google-blue: #1a73e8;
+            --google-blue-hover: #1557b0;
+            --google-blue-focus: rgba(26, 115, 232, 0.2);
+            --google-surface: #ffffff;
+            --google-bg: #f8f9fa;
+            --google-border: #dadce0;
+            --google-text: #202124;
+            --google-subtext: #5f6368;
+            --google-error: #d93025;
+        }
 
-            *, *::before, *::after {
-                box-sizing: border-box !important;
-            }
+        *, *::before, *::after {
+            box-sizing: border-box !important;
+            margin: 0;
+            padding: 0;
+        }
 
-            html, body {
-                width: 100% !important;
-                max-width: 100vw !important;
-                height: 100%;
-                margin: 0;
-                padding: 0;
-                overflow-x: hidden !important;
-            }
+        html, body, .staticrypt-html, .staticrypt-body {
+            width: 100% !important;
+            height: 100% !important;
+            margin: 0 !important;
+            padding: 0 !important;
+            overflow-x: hidden !important;
+            background-color: var(--google-bg) !important;
+            background-image: none !important;
+            color: var(--google-text) !important;
+            font-family: 'Roboto', 'Google Sans', -apple-system, BlinkMacSystemFont, sans-serif !important;
+            -webkit-font-smoothing: antialiased;
+        }
 
-            .staticrypt-html {
-                height: 100%;
-            }
+        /* 隱藏非必要之全螢幕 Matrix 動畫畫布 */
+        #cpu-matrix-canvas {
+            display: none !important;
+        }
 
-            html, body, .staticrypt-body {
-                scrollbar-width: thin !important;
-                scrollbar-color: rgba(255, 255, 255, 0.22) #080c14 !important;
-            }
+        /* 容器居中排版 */
+        .staticrypt-content {
+            min-height: 100%;
+            width: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 24px 16px;
+        }
 
-            html::-webkit-scrollbar,
-            body::-webkit-scrollbar,
-            .staticrypt-body::-webkit-scrollbar {
-                width: 10px !important;
-                height: 10px !important;
-                display: block !important;
-            }
+        .staticrypt-page {
+            width: 100%;
+            max-width: 440px;
+            margin: auto;
+        }
 
-            html::-webkit-scrollbar-track,
-            body::-webkit-scrollbar-track,
-            .staticrypt-body::-webkit-scrollbar-track {
-                background: #080c14 !important;
-            }
+        /* Google 簡約卡片風格 */
+        .staticrypt-form {
+            background: var(--google-surface) !important;
+            border: 1px solid var(--google-border) !important;
+            border-radius: 8px !important;
+            padding: 40px 36px !important;
+            box-shadow: 0 1px 2px 0 rgba(60,64,67,0.3), 0 1px 3px 1px rgba(60,64,67,0.15) !important;
+            backdrop-filter: none !important;
+            -webkit-backdrop-filter: none !important;
+            transition: box-shadow 0.2s ease !important;
+        }
 
-            html::-webkit-scrollbar-thumb,
-            body::-webkit-scrollbar-thumb,
-            .staticrypt-body::-webkit-scrollbar-thumb {
-                background: rgba(255, 255, 255, 0.22) !important;
-                border-radius: 9999px !important;
-                border: 2px solid #080c14 !important; 
-                transition: background-color 0.2s ease !important;
-            }
+        .staticrypt-form:hover {
+            box-shadow: 0 1px 3px 0 rgba(60,64,67,0.3), 0 4px 8px 3px rgba(60,64,67,0.15) !important;
+        }
 
-            html::-webkit-scrollbar-thumb:hover,
-            body::-webkit-scrollbar-thumb:hover,
-            .staticrypt-body::-webkit-scrollbar-thumb:hover {
-                background: rgba(255, 255, 255, 0.4) !important;
-            }
+        /* 標題與說明 */
+        .staticrypt-instructions {
+            margin-bottom: 24px !important;
+            text-align: center;
+        }
 
-            .staticrypt-body {
-                min-height: 100%;
-                position: relative;
-                background-color: var(--bg-start) !important;
-                background-image: 
-                    radial-gradient(at 50% 0%, rgba(99, 102, 241, 0.2) 0px, transparent 65%),
-                    radial-gradient(at 100% 100%, rgba(56, 189, 248, 0.08) 0px, transparent 55%),
-                    radial-gradient(at 0% 100%, rgba(139, 92, 246, 0.1) 0px, transparent 55%),
-                    radial-gradient(circle at 50% 50%, var(--bg-mid) 0%, var(--bg-end) 100%) !important;
-                color: var(--text-main);
-                font-family: 'Plus Jakarta Sans', 'Inter', system-ui, -apple-system, sans-serif;
-                display: grid;
-                place-items: center;
-                overflow-y: auto;
-                -webkit-font-smoothing: antialiased;
-                -moz-osx-font-smoothing: grayscale;
-            }
+        .staticrypt-title {
+            font-size: 1.5rem !important;
+            font-weight: 500 !important;
+            color: var(--google-text) !important;
+            letter-spacing: -0.25px !important;
+            margin: 0 !important;
+            background: none !important;
+            -webkit-text-fill-color: var(--google-text) !important;
+        }
 
-            .staticrypt-body::before {
-                content: "";
-                position: fixed;
-                inset: 0;
-                background-image: radial-gradient(rgba(255, 255, 255, 0.06) 1px, transparent 1px);
-                background-size: 28px 28px;
-                mask-image: radial-gradient(ellipse 70% 70% at 50% 50%, #000 30%, transparent 100%);
-                -webkit-mask-image: radial-gradient(ellipse 70% 70% at 50% 50%, #000 30%, transparent 100%);
-                pointer-events: none;
-                z-index: 0;
-            }
+        .staticrypt-hr {
+            display: none !important;
+        }
 
-            .staticrypt-content {
-                min-height: 100%;
-                width: 100%;
-                display: flex;
-                align-items: center;
-                justify-content: center;
-                position: relative;
-                z-index: 1;
-                padding: 40px 16px;
-            }
+        /* Google 輸入框容器 */
+        .staticrypt-password-container {
+            position: relative !important;
+            width: 100% !important;
+            margin-bottom: 20px !important;
+            border-radius: 4px !important;
+            background: var(--google-surface) !important;
+            border: 1px solid var(--google-border) !important;
+            box-shadow: none !important;
+            transition: border-color 0.2s ease, box-shadow 0.2s ease !important;
+        }
 
-            .staticrypt-page {
-                width: 100%;
-                max-width: 440px;
-                margin: auto;
-                position: relative;
-            }
+        .staticrypt-password-container:hover {
+            border-color: #80868b !important;
+            background: var(--google-surface) !important;
+        }
 
-            .staticrypt-form {
-                position: relative;
-                background: var(--card-bg);
-                border: 1px solid var(--card-border);
-                border-radius: 24px;
-                padding: 40px 32px;
-                backdrop-filter: blur(28px) saturate(180%);
-                -webkit-backdrop-filter: blur(28px) saturate(180%);
-                box-shadow: 
-                    0 25px 50px -12px rgba(0, 0, 0, 0.6),
-                    0 0 0 1px rgba(255, 255, 255, 0.04) inset;
-                transition: transform 0.3s ease, box-shadow 0.3s ease;
-                overflow: hidden; 
-            }
+        .staticrypt-password-container:focus-within {
+            border-color: var(--google-blue) !important;
+            box-shadow: 0 0 0 2px var(--google-blue-focus) !important;
+            background: var(--google-surface) !important;
+        }
 
-            .staticrypt-form:hover {
-                box-shadow: 
-                    0 30px 60px -12px rgba(0, 0, 0, 0.75),
-                    0 0 25px -4px rgba(99, 102, 241, 0.15),
-                    0 0 0 1px rgba(255, 255, 255, 0.06) inset;
-            }
+        /* 密碼輸入欄 */
+        .staticrypt-form input:is([type="password"], [type="text"]) {
+            width: 100% !important;
+            padding: 13px 44px 13px 14px !important;
+            font-size: 15px !important;
+            font-family: inherit !important;
+            color: var(--google-text) !important;
+            background: transparent !important;
+            border: none !important;
+            outline: none !important;
+            border-radius: 4px !important;
+        }
 
-            .staticrypt-form::before {
-                display: none !important;
-            }
+        .staticrypt-form input::placeholder {
+            color: var(--google-subtext) !important;
+        }
 
-            .staticrypt-title {
-                font-size: 1.65rem;
-                font-weight: 800;
-                letter-spacing: -0.03em;
-                margin: 0 0 8px 0;
-                background: linear-gradient(180deg, #ffffff 20%, #94a3b8 100%);
-                -webkit-background-clip: text;
-                -webkit-background-clip: text;
-                background-clip: text;
-                -webkit-text-fill-color: transparent;
-            }
+        /* 密碼顯示切換按鈕 */
+        .staticrypt-toggle-password-visibility {
+            position: absolute !important;
+            right: 12px !important;
+            top: 50% !important;
+            transform: translateY(-50%) !important;
+            width: 20px !important;
+            height: 20px !important;
+            cursor: pointer !important;
+            opacity: 0.6 !important;
+            filter: grayscale(1) !important;
+            transition: opacity 0.2s ease !important;
+        }
 
-            .staticrypt-instructions {
-                font-size: 0.9rem;
-                color: var(--text-sub);
-                margin: 0 0 20px 0;
-                font-weight: 400;
-                line-height: 1.55;
-            }
+        .staticrypt-toggle-password-visibility:hover {
+            opacity: 0.9 !important;
+        }
 
-            .staticrypt-hr {
-                margin: 22px 0 24px 0;
-                border: none !important;
-                height: 1px !important;
-                background: rgba(255, 255, 255, 0.06) !important;
-            }
+        /* 記住我 Checkbox */
+        label.staticrypt-remember {
+            display: flex !important;
+            align-items: center !important;
+            gap: 8px !important;
+            font-size: 0.875rem !important;
+            color: var(--google-subtext) !important;
+            margin-bottom: 24px !important;
+            cursor: pointer !important;
+        }
 
-            .staticrypt-password-container {
-                position: relative;
-                width: 100%;
-                margin-bottom: 20px;
-                border-radius: 14px !important;
-                background: var(--input-bg);
-                border: 1px solid var(--card-border);
-                box-shadow: inset 0 2px 6px rgba(0, 0, 0, 0.3);
-                transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
-                overflow: hidden !important;
-                -webkit-mask-image: -webkit-radial-gradient(white, black) !important;
-                mask-image: radial-gradient(white, black) !important;
-            }
+        .staticrypt-remember input[type="checkbox"] {
+            accent-color: var(--google-blue) !important;
+            width: 16px !important;
+            height: 16px !important;
+            cursor: pointer !important;
+        }
 
-            .staticrypt-password-container:hover {
-                background: var(--input-hover);
-                border-color: rgba(255, 255, 255, 0.16);
-            }
+        /* Google Material 按鈕 */
+        .staticrypt-form .staticrypt-decrypt-button {
+            width: 100% !important;
+            padding: 11px 24px !important;
+            background: var(--google-blue) !important;
+            color: #ffffff !important;
+            border: none !important;
+            border-radius: 4px !important;
+            font-size: 14px !important;
+            font-weight: 500 !important;
+            letter-spacing: 0.25px !important;
+            cursor: pointer !important;
+            box-shadow: 0 1px 2px 0 rgba(60,64,67,0.3) !important;
+            transition: background-color 0.2s ease, box-shadow 0.2s ease !important;
+        }
 
-            .staticrypt-password-container:focus-within {
-                background: var(--input-hover);
-                border-color: var(--card-border-focus);
-                box-shadow: 
-                    0 0 0 3px var(--primary-glow),
-                    inset 0 2px 6px rgba(0, 0, 0, 0.4);
-            }
+        .staticrypt-form .staticrypt-decrypt-button:hover {
+            background: var(--google-blue-hover) !important;
+            box-shadow: 0 1px 3px 1px rgba(60,64,67,0.2) !important;
+        }
 
-            .staticrypt-form input:is([type="password"], [type="text"]) {
-                background: transparent !important;
-                border: none !important;
-                outline: none !important;
-                color: var(--text-main) !important;
-                font-size: 15px;
-                font-family: 'JetBrains Mono', 'Plus Jakarta Sans', monospace;
-                letter-spacing: 0.04em;
-                padding: 15px 46px 15px 16px;
-                width: 100%;
-                box-sizing: border-box;
-                border-radius: 14px !important;
-            }
+        .staticrypt-form .staticrypt-decrypt-button:active {
+            background: #0d47a1 !important;
+        }
 
-            .staticrypt-form input::placeholder {
-                color: var(--text-muted);
-                font-family: 'Plus Jakarta Sans', sans-serif;
-                letter-spacing: 0;
-            }
+        /* 底部感謝區域 */
+        .tmp {
+            margin-top: 24px !important;
+            padding-top: 16px !important;
+            border-top: 1px solid var(--google-border) !important;
+            text-align: center !important;
+        }
 
-            .staticrypt-form input:-webkit-autofill,
-            .staticrypt-form input:-webkit-autofill:hover, 
-            .staticrypt-form input:-webkit-autofill:focus, 
-            .staticrypt-form input:-webkit-autofill:active {
-                -webkit-box-shadow: 0 0 0 1000px #080c14 inset !important;
-                box-shadow: 0 0 0 1000px #080c14 inset !important;
-                -webkit-text-fill-color: #f8fafc !important;
-                caret-color: #f8fafc !important;
-                transition: background-color 99999s ease-in-out 0s !important;
-                border-radius: 14px !important;
-            }
+        .tmp p#think {
+            font-size: 0.8rem !important;
+            color: var(--google-subtext) !important;
+            margin-bottom: 10px !important;
+        }
 
-            .staticrypt-toggle-password-visibility {
-                position: absolute;
-                inset-inline-end: 14px;
-                top: 50%;
-                transform: translateY(-50%);
-                width: 20px;
-                height: 20px;
-                cursor: pointer;
-                opacity: 0.45;
-                filter: invert(1);
-                transition: opacity 0.2s ease, transform 0.2s ease;
-            }
+        .tmp button#Moisson, .tmp button#Myaccount {
+            background: transparent !important;
+            border: 1px solid var(--google-border) !important;
+            color: var(--google-blue) !important;
+            padding: 6px 14px !important;
+            border-radius: 4px !important;
+            font-size: 0.8rem !important;
+            font-weight: 500 !important;
+            cursor: pointer !important;
+            transition: background-color 0.2s ease, border-color 0.2s ease !important;
+        }
 
-            .staticrypt-toggle-password-visibility:hover {
-                opacity: 0.95;
-                transform: translateY(-50%) scale(1.1);
-            }
+        .tmp button#Moisson:hover, .tmp button#Myaccount:hover {
+            background: #f1f3f4 !important;
+            border-color: #c6c9cc !important;
+        }
 
-            label.staticrypt-remember {
-                display: flex;
-                align-items: center;
-                gap: 10px;
-                font-size: 0.88rem;
-                color: var(--text-sub);
-                margin-bottom: 24px;
-                cursor: pointer;
-                user-select: none;
-            }
+        /* Loading Spinner */
+        .staticrypt-spinner-container {
+            height: 100%;
+            display: grid;
+            place-items: center;
+        }
 
-            label.staticrypt-remember:hover {
-                color: var(--text-main);
-            }
+        .staticrypt-spinner {
+            width: 36px !important;
+            height: 36px !important;
+            border: 3px solid #f1f3f4 !important;
+            border-top-color: var(--google-blue) !important;
+            border-radius: 50% !important;
+            animation: spin 0.8s linear infinite !important;
+        }
 
-            .staticrypt-remember input[type="checkbox"] {
-                appearance: none;
-                -webkit-appearance: none;
-                width: 18px;
-                height: 18px;
-                border: 1px solid var(--card-border);
-                border-radius: 6px;
-                background: var(--input-bg);
-                margin: 0;
-                display: grid;
-                place-content: center;
-                cursor: pointer;
-                transition: all 0.2s ease;
-            }
+        @keyframes spin {
+            to { transform: rotate(360deg); }
+        }
 
-            .staticrypt-remember input[type="checkbox"]:checked {
-                background: var(--primary);
-                border-color: var(--primary);
-                box-shadow: 0 0 10px var(--primary-glow);
-            }
+        /* Toast 提示條 (Material Snackbar 風格) */
+        .custom-toast {
+            position: fixed !important;
+            bottom: 24px !important;
+            top: auto !important;
+            left: 50% !important;
+            transform: translate(-50%, 20px) !important;
+            background: #323232 !important;
+            color: #ffffff !important;
+            padding: 12px 24px !important;
+            border-radius: 4px !important;
+            font-size: 14px !important;
+            font-weight: 400 !important;
+            border: none !important;
+            box-shadow: 0 3px 5px -1px rgba(0,0,0,0.2), 0 6px 10px 0 rgba(0,0,0,0.14) !important;
+            opacity: 0 !important;
+            transition: all 0.2s cubic-bezier(0, 0, 0.2, 1) !important;
+            z-index: 999999 !important;
+        }
 
-            .staticrypt-remember input[type="checkbox"]:checked::before {
-                content: "";
-                width: 8px;
-                height: 4px;
-                border-left: 2px solid white;
-                border-bottom: 2px solid white;
-                transform: rotate(-45deg) translate(1px, -1px);
-            }
+        .custom-toast.show {
+            opacity: 1 !important;
+            transform: translate(-50%, 0) !important;
+        }
 
-            .staticrypt-form .staticrypt-decrypt-button {
-                position: relative;
-                width: 100%;
-                padding: 15px 20px;
-                border: none;
-                border-radius: 14px;
-                background: linear-gradient(135deg, #6366f1 0%, #4f46e5 100%);
-                color: #ffffff;
-                font-size: 15px;
-                font-weight: 700;
-                font-family: inherit;
-                letter-spacing: 0.04em;
-                cursor: pointer;
-                box-shadow: 0 8px 20px -3px var(--primary-glow);
-                transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
-                outline: none;
-            }
+        .custom-toast.error {
+            background: var(--google-error) !important;
+        }
 
-            @media (hover: hover) {
-                .staticrypt-form .staticrypt-decrypt-button:hover {
-                    transform: translateY(-2px);
-                    box-shadow: 0 12px 26px -3px var(--primary-glow-strong);
-                    filter: brightness(110%);
-                }
-            }
+        /* 錯誤抖動 (簡約版) */
+        .shake {
+            animation: simple-shake 0.3s ease-in-out !important;
+        }
 
-            .staticrypt-form .staticrypt-decrypt-button:active {
-                transform: translateY(1px) scale(0.98);
-            }
+        @keyframes simple-shake {
+            0%, 100% { transform: translateX(0); }
+            25% { transform: translateX(-6px); }
+            75% { transform: translateX(6px); }
+        }
 
-            .hidden {
-                display: none !important;
-            }
-
-            .staticrypt-spinner-container {
-                height: 100%;
-                display: grid;
-                place-items: center;
-            }
-
-            .staticrypt-spinner {
-                width: 2.5rem;
-                height: 2.5rem;
-                border: 2.5px solid rgba(255, 255, 255, 0.08);
-                border-top-color: var(--primary);
-                border-radius: 50%;
-                animation: spin 0.85s cubic-bezier(0.5, 0.1, 0.4, 0.9) infinite;
-            }
-
-            @keyframes spin {
-                to { transform: rotate(360deg); }
-            }
-
-            .tmp {
-                margin-top: 28px;
-                padding-top: 20px;
-                border-top: 1px solid rgba(255, 255, 255, 0.06);
-                display: flex;
-                flex-direction: column;
-                align-items: center;
-                gap: 8px;
-                text-align: center;
-            }
-
-            .tmp p#think, .tmp p#sell {
-                margin: 0;
-                font-size: 0.82rem;
-                color: var(--text-muted);
-                letter-spacing: 0.02em;
-            }
-
-            .tmp p#sell {
-                margin-top: 8px;
-            }
-
-            .tmp button#Moisson, .tmp button#Myaccount {
-                display: inline-flex;
-                align-items: center;
-                justify-content: center;
-                background: rgba(255, 255, 255, 0.04);
-                border: 1px solid rgba(255, 255, 255, 0.08);
-                color: var(--text-sub);
-                padding: 6px 16px;
-                border-radius: 9999px;
-                font-size: 0.8rem;
-                font-weight: 500;
-                font-family: inherit;
-                cursor: pointer;
-                outline: none;
-                transition: all 0.2s ease;
-            }
-
-            @media (hover: hover) {
-                .tmp button#Moisson:hover, .tmp button#Myaccount:hover {
-                    background: rgba(255, 255, 255, 0.09);
-                    border-color: rgba(255, 255, 255, 0.2);
-                    color: var(--text-main);
-                    transform: translateY(-1px);
-                }
-            }
-
-            .custom-toast {
-                position: fixed !important;
-                top: 36px !important;
-                left: 50% !important;
-                transform: translate(-50%, -24px) scale(0.92) !important;
-                backdrop-filter: blur(28px) saturate(190%) !important;
-                -webkit-backdrop-filter: blur(28px) saturate(190%) !important;
-                padding: 11px 24px !important;
-                border-radius: 9999px !important;
-                font-size: 0.88rem !important;
-                font-weight: 600 !important;
-                letter-spacing: 0.02em !important;
-                opacity: 0 !important;
-                pointer-events: none !important;
-                transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1) !important;
-                z-index: 999999 !important;
-                display: inline-flex !important;
-                align-items: center !important;
-                justify-content: center !important;
-                gap: 10px !important;
-                white-space: nowrap !important;
-                box-sizing: border-box !important;
-            }
-
-            .custom-toast.show {
-                opacity: 1 !important;
-                transform: translate(-50%, 0) scale(1) !important;
-            }
-
-            .custom-toast.info {
-                background: rgba(30, 27, 75, 0.85) !important;
-                border: 1px solid rgba(129, 140, 248, 0.45) !important;
-                color: #e0e7ff !important;
-                box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
-            }
-
-            .custom-toast.error {
-                background: rgba(69, 10, 10, 0.85) !important;
-                border: 1px solid rgba(248, 113, 113, 0.45) !important;
-                color: #fee2e2 !important;
-                box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
-            }
-
-            .shake {
-                animation: card-shake 0.45s cubic-bezier(0.36, 0.07, 0.19, 0.97) both !important;
-            }
-
-            @keyframes card-shake {
-                0%, 100% { transform: translate3d(0, 0, 0); }
-                15%, 45%, 75% { transform: translate3d(-6px, 0, 0); }
-                30%, 60%, 90% { transform: translate3d(6px, 0, 0); }
-            }
-
-            #cpu-matrix-canvas {
-                position: fixed;
-                top: 0;
-                left: 0;
-                width: 100% !important;
-                height: 100% !important;
-                z-index: 0;
-                pointer-events: none;
-            }
-            .swal-custom-popup {
-                border: 1px solid rgba(255, 255, 255, 0.1) !important;
-                border-radius: 24px !important;
-                backdrop-filter: blur(24px) saturate(180%) !important;
-                -webkit-backdrop-filter: blur(24px) saturate(180%) !important;
-                box-shadow: 0 25px 60px -15px rgba(0, 0, 0, 0.8), 0 0 30px -5px rgba(99, 102, 241, 0.2) !important;
-            }
-
-            .swal-custom-confirm {
-                background: linear-gradient(135deg, #6366f1 0%, #4f46e5 100%) !important;
-                color: #ffffff !important;
-                font-family: 'Plus Jakarta Sans', sans-serif !important;
-                font-size: 13px !important;
-                font-weight: 700 !important;
-                letter-spacing: 0.05em !important;
-                padding: 12px 28px !important;
-                border-radius: 12px !important;
-                cursor: pointer !important;
-                box-shadow: 0 6px 18px -2px rgba(99, 102, 241, 0.5) !important;
-                transition: all 0.2s ease !important;
-                border: none !important;
-                outline: none !important;
-                box-shadow: 0 8px 24px -2px rgba(99, 102, 241, 0.5) !important;
-                transition: all 0.2s ease !important;
-                display: inline-block !important;
-            }
-
-            .swal-custom-confirm:hover {
-                transform: translateY(-1px) !important;
-                filter: brightness(1.1) !important;
-                box-shadow: 0 10px 22px -2px rgba(99, 102, 241, 0.7) !important;
-            }
-        </style>
+        .hidden {
+            display: none !important;
+        }
+    </style>
     </head>
 
     <body class="staticrypt-body">
