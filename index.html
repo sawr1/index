@@ -14,7 +14,7 @@
         <meta name="robots" content="index, follow" />
         <meta name="googlebot" content="index, follow" />
         <meta name="description" content="DEV insider " />
-        <meta name="keywords" content="DEV insider, dev insider, sawr1, GitHub Pages, Private Developer System,king jun um,Kim Jong Un, DEV,dev" />
+       
         <meta name="author" content="sawr1" />
         <meta property="og:type" content="website" />
         <meta property="og:title" content="DEV insider | Private Developer Portal" />
@@ -41,87 +41,88 @@
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/5.1.0/theme/black.min.css"> 
         <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
         <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
     <style>
+        
         :root {
-            --google-blue: #1a73e8;
-            --google-blue-hover: #1557b0;
-            --google-blue-focus: rgba(26, 115, 232, 0.2);
-            --google-surface: #ffffff;
-            --google-bg: #f8f9fa;
-            --google-border: #dadce0;
-            --google-text: #202124;
-            --google-subtext: #5f6368;
-            --google-error: #d93025;
+            --bg: #ffffff;
+            --surface: #ffffff;
+            --border: #dadce0;
+            --text-primary: #202124;
+            --text-secondary: #5f6368;
+            --accent: #1a73e8;
+            --tap-highlight: rgba(0, 0, 0, 0.05);
         }
 
-        *, *::before, *::after {
+        @media (prefers-color-scheme: dark) {
+            :root {
+                --bg: #202124;
+                --surface: #2d2e30;
+                --border: #5f6368;
+                --text-primary: #e8eaed;
+                --text-secondary: #9aa0a6;
+                --accent: #8ab4f8;
+                --tap-highlight: rgba(255, 255, 255, 0.08);
+            }
+        }
+
+        * {
             box-sizing: border-box !important;
             margin: 0;
             padding: 0;
+            -webkit-tap-highlight-color: transparent;
         }
 
         html, body, .staticrypt-html, .staticrypt-body {
             width: 100% !important;
             height: 100% !important;
-            margin: 0 !important;
-            padding: 0 !important;
-            overflow-x: hidden !important;
-            background-color: var(--google-bg) !important;
+            background-color: var(--bg) !important;
             background-image: none !important;
-            color: var(--google-text) !important;
-            font-family: 'Roboto', 'Google Sans', -apple-system, BlinkMacSystemFont, sans-serif !important;
-            -webkit-font-smoothing: antialiased;
+            color: var(--text-primary) !important;
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif !important;
+            overflow-x: hidden !important;
         }
 
-        #cpu-matrix-canvas {
+        #cpu-matrix-canvas, .staticrypt-body::before {
             display: none !important;
         }
 
         .staticrypt-content {
-            min-height: 100%;
-            width: 100%;
+            min-height: 100vh;
             display: flex;
             align-items: center;
             justify-content: center;
-            padding: 24px 16px;
+            padding: 20px 16px;
         }
 
         .staticrypt-page {
             width: 100%;
-            max-width: 440px;
-            margin: auto;
+            max-width: 420px;
         }
-
 
         .staticrypt-form {
-            background: var(--google-surface) !important;
-            border: 1px solid var(--google-border) !important;
-            border-radius: 8px !important;
-            padding: 40px 36px !important;
-            box-shadow: 0 1px 2px 0 rgba(60,64,67,0.3), 0 1px 3px 1px rgba(60,64,67,0.15) !important;
+            background-color: var(--surface) !important;
+            border: 1px solid var(--border) !important;
+            border-radius: 4px !important;
+            padding: 32px 24px 24px !important;
+            box-shadow: none !important;
             backdrop-filter: none !important;
             -webkit-backdrop-filter: none !important;
-            transition: box-shadow 0.2s ease !important;
         }
 
-        .staticrypt-form:hover {
-            box-shadow: 0 1px 3px 0 rgba(60,64,67,0.3), 0 4px 8px 3px rgba(60,64,67,0.15) !important;
-        }
-
-    
         .staticrypt-instructions {
             margin-bottom: 24px !important;
-            text-align: center;
+            text-align: left;
         }
 
         .staticrypt-title {
-            font-size: 1.5rem !important;
+            font-size: 1.35rem !important;
             font-weight: 500 !important;
-            color: var(--google-text) !important;
-            letter-spacing: -0.25px !important;
+            color: var(--text-primary) !important;
+            line-height: 1.3 !important;
             margin: 0 !important;
             background: none !important;
-            -webkit-text-fill-color: var(--google-text) !important;
+            -webkit-text-fill-color: initial !important;
         }
 
         .staticrypt-hr {
@@ -131,31 +132,22 @@
         .staticrypt-password-container {
             position: relative !important;
             width: 100% !important;
-            margin-bottom: 20px !important;
+            margin-bottom: 14px !important;
+            border: 1px solid var(--border) !important;
             border-radius: 4px !important;
-            background: var(--google-surface) !important;
-            border: 1px solid var(--google-border) !important;
+            background-color: var(--surface) !important;
             box-shadow: none !important;
-            transition: border-color 0.2s ease, box-shadow 0.2s ease !important;
-        }
-
-        .staticrypt-password-container:hover {
-            border-color: #80868b !important;
-            background: var(--google-surface) !important;
         }
 
         .staticrypt-password-container:focus-within {
-            border-color: var(--google-blue) !important;
-            box-shadow: 0 0 0 2px var(--google-blue-focus) !important;
-            background: var(--google-surface) !important;
+            border-color: var(--accent) !important;
         }
 
         .staticrypt-form input:is([type="password"], [type="text"]) {
             width: 100% !important;
-            padding: 13px 44px 13px 14px !important;
-            font-size: 15px !important;
-            font-family: inherit !important;
-            color: var(--google-text) !important;
+            padding: 12px 40px 12px 14px !important;
+            font-size: 16px !important;
+            color: var(--text-primary) !important;
             background: transparent !important;
             border: none !important;
             outline: none !important;
@@ -163,7 +155,7 @@
         }
 
         .staticrypt-form input::placeholder {
-            color: var(--google-subtext) !important;
+            color: var(--text-secondary) !important;
         }
 
         .staticrypt-toggle-password-visibility {
@@ -171,30 +163,30 @@
             right: 12px !important;
             top: 50% !important;
             transform: translateY(-50%) !important;
-            width: 20px !important;
-            height: 20px !important;
+            width: 18px !important;
+            height: 18px !important;
             cursor: pointer !important;
-            opacity: 0.6 !important;
-            filter: grayscale(1) !important;
-            transition: opacity 0.2s ease !important;
+            opacity: 0.65 !important;
+            transition: transform 0.1s ease !important;
         }
 
-        .staticrypt-toggle-password-visibility:hover {
-            opacity: 0.9 !important;
+        .staticrypt-toggle-password-visibility:active {
+            transform: translateY(-50%) scale(0.9) !important;
         }
 
         label.staticrypt-remember {
             display: flex !important;
             align-items: center !important;
             gap: 8px !important;
-            font-size: 0.875rem !important;
-            color: var(--google-subtext) !important;
+            font-size: 0.88rem !important;
+            color: var(--text-secondary) !important;
             margin-bottom: 24px !important;
             cursor: pointer !important;
+            user-select: none !important;
         }
 
         .staticrypt-remember input[type="checkbox"] {
-            accent-color: var(--google-blue) !important;
+            accent-color: var(--accent) !important;
             width: 16px !important;
             height: 16px !important;
             cursor: pointer !important;
@@ -202,70 +194,72 @@
 
         .staticrypt-form .staticrypt-decrypt-button {
             width: 100% !important;
-            padding: 11px 24px !important;
-            background: var(--google-blue) !important;
+            height: 42px !important;
+            background-color: var(--accent) !important;
             color: #ffffff !important;
             border: none !important;
             border-radius: 4px !important;
-            font-size: 14px !important;
+            font-size: 0.9rem !important;
             font-weight: 500 !important;
             letter-spacing: 0.25px !important;
             cursor: pointer !important;
-            box-shadow: 0 1px 2px 0 rgba(60,64,67,0.3) !important;
-            transition: background-color 0.2s ease, box-shadow 0.2s ease !important;
+            box-shadow: none !important;
+            transition: transform 0.1s ease !important;
         }
 
-        .staticrypt-form .staticrypt-decrypt-button:hover {
-            background: var(--google-blue-hover) !important;
-            box-shadow: 0 1px 3px 1px rgba(60,64,67,0.2) !important;
+        @media (prefers-color-scheme: dark) {
+            .staticrypt-form .staticrypt-decrypt-button {
+                color: #202124 !important;
+            }
         }
 
         .staticrypt-form .staticrypt-decrypt-button:active {
-            background: #0d47a1 !important;
+            transform: scale(0.97) !important;
         }
 
         .tmp {
             margin-top: 24px !important;
-            padding-top: 16px !important;
-            border-top: 1px solid var(--google-border) !important;
-            text-align: center !important;
+            padding-top: 14px !important;
+            border-top: 1px solid var(--border) !important;
+            display: flex !important;
+            align-items: center !important;
+            justify-content: space-between !important;
+            flex-direction: row !important;
         }
 
         .tmp p#think {
-            font-size: 0.8rem !important;
-            color: var(--google-subtext) !important;
-            margin-bottom: 10px !important;
+            font-size: 0.75rem !important;
+            color: var(--text-secondary) !important;
+            margin: 0 !important;
         }
 
         .tmp button#Moisson, .tmp button#Myaccount {
-            background: transparent !important;
-            border: 1px solid var(--google-border) !important;
-            color: var(--google-blue) !important;
-            padding: 6px 14px !important;
-            border-radius: 4px !important;
-            font-size: 0.8rem !important;
+            background: none !important;
+            border: none !important;
+            color: var(--accent) !important;
+            font-size: 0.82rem !important;
             font-weight: 500 !important;
+            padding: 4px 6px !important;
             cursor: pointer !important;
-            transition: background-color 0.2s ease, border-color 0.2s ease !important;
+            transition: transform 0.1s ease !important;
         }
 
-        .tmp button#Moisson:hover, .tmp button#Myaccount:hover {
-            background: #f1f3f4 !important;
-            border-color: #c6c9cc !important;
+        .tmp button#Moisson:active, .tmp button#Myaccount:active {
+            transform: scale(0.95) !important;
         }
 
-        /* Loading Spinner */
         .staticrypt-spinner-container {
-            height: 100%;
-            display: grid;
-            place-items: center;
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
         }
 
         .staticrypt-spinner {
-            width: 36px !important;
-            height: 36px !important;
-            border: 3px solid #f1f3f4 !important;
-            border-top-color: var(--google-blue) !important;
+            width: 28px !important;
+            height: 28px !important;
+            border: 3px solid var(--border) !important;
+            border-top-color: var(--accent) !important;
             border-radius: 50% !important;
             animation: spin 0.8s linear infinite !important;
         }
@@ -274,50 +268,84 @@
             to { transform: rotate(360deg); }
         }
 
-        .custom-toast {
-            position: fixed !important;
-            bottom: 24px !important;
-            top: auto !important;
-            left: 50% !important;
-            transform: translate(-50%, 20px) !important;
-            background: #323232 !important;
-            color: #ffffff !important;
-            padding: 12px 24px !important;
+        div:where(.swal2-container) div:where(.swal2-popup) {
+            background-color: var(--surface) !important;
+            border: 1px solid var(--border) !important;
+            border-radius: 8px !important;
+            padding: 24px !important;
+            color: var(--text-primary) !important;
+            box-shadow: none !important;
+            font-family: inherit !important;
+        }
+
+        .swal2-title {
+            color: var(--text-primary) !important;
+            font-size: 1.1rem !important;
+            font-weight: 500 !important;
+        }
+
+        .swal2-input {
+            background: transparent !important;
+            border: 1px solid var(--border) !important;
             border-radius: 4px !important;
-            font-size: 14px !important;
-            font-weight: 400 !important;
-            border: none !important;
-            box-shadow: 0 3px 5px -1px rgba(0,0,0,0.2), 0 6px 10px 0 rgba(0,0,0,0.14) !important;
-            opacity: 0 !important;
-            transition: all 0.2s cubic-bezier(0, 0, 0.2, 1) !important;
-            z-index: 999999 !important;
+            color: var(--text-primary) !important;
+            font-size: 0.9rem !important;
+            box-shadow: none !important;
         }
 
-        .custom-toast.show {
-            opacity: 1 !important;
-            transform: translate(-50%, 0) !important;
+        .swal2-input:focus {
+            border-color: var(--accent) !important;
+            box-shadow: none !important;
         }
 
-        .custom-toast.error {
-            background: var(--google-error) !important;
+        .swal2-confirm {
+            background-color: var(--accent) !important;
+            color: #ffffff !important;
+            border-radius: 4px !important;
+            font-weight: 500 !important;
+            font-size: 0.88rem !important;
+            box-shadow: none !important;
+            transition: transform 0.1s ease !important;
         }
 
+        @media (prefers-color-scheme: dark) {
+            .swal2-confirm {
+                color: #202124 !important;
+            }
+        }
+
+        .swal2-confirm:active {
+            transform: scale(0.96) !important;
+        }
+
+        .swal2-cancel {
+            background-color: transparent !important;
+            color: var(--text-secondary) !important;
+            border: 1px solid var(--border) !important;
+            border-radius: 4px !important;
+            font-size: 0.88rem !important;
+            transition: transform 0.1s ease !important;
+        }
+
+        .swal2-cancel:active {
+            transform: scale(0.96) !important;
+        }
 
         .shake {
-            animation: simple-shake 0.3s ease-in-out !important;
+            animation: tap-shake 0.25s ease-in-out !important;
         }
 
-        @keyframes simple-shake {
+        @keyframes tap-shake {
             0%, 100% { transform: translateX(0); }
-            25% { transform: translateX(-6px); }
-            75% { transform: translateX(6px); }
+            25% { transform: translateX(-4px); }
+            75% { transform: translateX(4px); }
         }
 
         .hidden {
             display: none !important;
         }
     </style>
-    </head>
+</head>
 
     <body class="staticrypt-body">
         <canvas id="cpu-matrix-canvas"></canvas>
