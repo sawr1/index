@@ -1,1 +1,1772 @@
-暫時
+<!DOCTYPE html>
+<html class="staticrypt-html">
+    <head>
+        <meta charset="utf-8" />
+        <title>DEV insider</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+        <meta http-equiv="cache-control" content="max-age=0" />
+        <meta name="google-site-verification" content="saLN4gOoK8g3E8KpDBKURIkjtq7JSiJTj7xZh3e55pg" />
+        <meta http-equiv="cache-control" content="no-cache" />
+        <meta http-equiv="expires" content="0" />
+        <meta http-equiv="expires" content="Tue, 01 Jan 1980 1:00:00 GMT" />
+        <meta http-equiv="pragma" content="no-cache" />
+        <meta name="robots" content="index, follow" />
+        <meta name="googlebot" content="index, follow" />
+        <meta name="description" content="DEV insider " />
+        <meta name="keywords" content="DEV insider, dev insider, sawr1, GitHub Pages, Private Developer System,king jun um,Kim Jong Un, DEV,dev" />
+        <meta name="author" content="sawr1" />
+        <meta property="og:type" content="website" />
+        <meta property="og:title" content="DEV insider | Private Developer Portal" />
+        <meta property="og:description" content="DEV insider" />
+        <meta property="og:site_name" content="DEV insider" />
+        <meta property="og:locale" content="en-US" />
+        <meta name="twitter:card" content="summary" />
+        <meta name="twitter:title" content="DEV insider | Private Developer Portal" />
+        <meta name="twitter:description" content="DEV insider" />
+
+        
+        <link id="dynamic-favicon" rel="icon" type="image/png" />
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/5.1.0/theme/black.min.css">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/monokai.min.css">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/5.1.0/reveal.min.css">
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@sweetalert2/theme-dark@4/dark.css">
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/5.1.0/reveal.min.css">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/5.1.0/theme/black.min.css"> 
+        <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+        <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <style>
+        :root {
+            --google-blue: #1a73e8;
+            --google-blue-hover: #1557b0;
+            --google-blue-focus: rgba(26, 115, 232, 0.2);
+            --google-surface: #ffffff;
+            --google-bg: #f8f9fa;
+            --google-border: #dadce0;
+            --google-text: #202124;
+            --google-subtext: #5f6368;
+            --google-error: #d93025;
+        }
+
+        *, *::before, *::after {
+            box-sizing: border-box !important;
+            margin: 0;
+            padding: 0;
+        }
+
+        html, body, .staticrypt-html, .staticrypt-body {
+            width: 100% !important;
+            height: 100% !important;
+            margin: 0 !important;
+            padding: 0 !important;
+            overflow-x: hidden !important;
+            background-color: var(--google-bg) !important;
+            background-image: none !important;
+            color: var(--google-text) !important;
+            font-family: 'Roboto', 'Google Sans', -apple-system, BlinkMacSystemFont, sans-serif !important;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        #cpu-matrix-canvas {
+            display: none !important;
+        }
+
+        .staticrypt-content {
+            min-height: 100%;
+            width: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 24px 16px;
+        }
+
+        .staticrypt-page {
+            width: 100%;
+            max-width: 440px;
+            margin: auto;
+        }
+
+
+        .staticrypt-form {
+            background: var(--google-surface) !important;
+            border: 1px solid var(--google-border) !important;
+            border-radius: 8px !important;
+            padding: 40px 36px !important;
+            box-shadow: 0 1px 2px 0 rgba(60,64,67,0.3), 0 1px 3px 1px rgba(60,64,67,0.15) !important;
+            backdrop-filter: none !important;
+            -webkit-backdrop-filter: none !important;
+            transition: box-shadow 0.2s ease !important;
+        }
+
+        .staticrypt-form:hover {
+            box-shadow: 0 1px 3px 0 rgba(60,64,67,0.3), 0 4px 8px 3px rgba(60,64,67,0.15) !important;
+        }
+
+    
+        .staticrypt-instructions {
+            margin-bottom: 24px !important;
+            text-align: center;
+        }
+
+        .staticrypt-title {
+            font-size: 1.5rem !important;
+            font-weight: 500 !important;
+            color: var(--google-text) !important;
+            letter-spacing: -0.25px !important;
+            margin: 0 !important;
+            background: none !important;
+            -webkit-text-fill-color: var(--google-text) !important;
+        }
+
+        .staticrypt-hr {
+            display: none !important;
+        }
+
+        .staticrypt-password-container {
+            position: relative !important;
+            width: 100% !important;
+            margin-bottom: 20px !important;
+            border-radius: 4px !important;
+            background: var(--google-surface) !important;
+            border: 1px solid var(--google-border) !important;
+            box-shadow: none !important;
+            transition: border-color 0.2s ease, box-shadow 0.2s ease !important;
+        }
+
+        .staticrypt-password-container:hover {
+            border-color: #80868b !important;
+            background: var(--google-surface) !important;
+        }
+
+        .staticrypt-password-container:focus-within {
+            border-color: var(--google-blue) !important;
+            box-shadow: 0 0 0 2px var(--google-blue-focus) !important;
+            background: var(--google-surface) !important;
+        }
+
+        .staticrypt-form input:is([type="password"], [type="text"]) {
+            width: 100% !important;
+            padding: 13px 44px 13px 14px !important;
+            font-size: 15px !important;
+            font-family: inherit !important;
+            color: var(--google-text) !important;
+            background: transparent !important;
+            border: none !important;
+            outline: none !important;
+            border-radius: 4px !important;
+        }
+
+        .staticrypt-form input::placeholder {
+            color: var(--google-subtext) !important;
+        }
+
+        .staticrypt-toggle-password-visibility {
+            position: absolute !important;
+            right: 12px !important;
+            top: 50% !important;
+            transform: translateY(-50%) !important;
+            width: 20px !important;
+            height: 20px !important;
+            cursor: pointer !important;
+            opacity: 0.6 !important;
+            filter: grayscale(1) !important;
+            transition: opacity 0.2s ease !important;
+        }
+
+        .staticrypt-toggle-password-visibility:hover {
+            opacity: 0.9 !important;
+        }
+
+        label.staticrypt-remember {
+            display: flex !important;
+            align-items: center !important;
+            gap: 8px !important;
+            font-size: 0.875rem !important;
+            color: var(--google-subtext) !important;
+            margin-bottom: 24px !important;
+            cursor: pointer !important;
+        }
+
+        .staticrypt-remember input[type="checkbox"] {
+            accent-color: var(--google-blue) !important;
+            width: 16px !important;
+            height: 16px !important;
+            cursor: pointer !important;
+        }
+
+        .staticrypt-form .staticrypt-decrypt-button {
+            width: 100% !important;
+            padding: 11px 24px !important;
+            background: var(--google-blue) !important;
+            color: #ffffff !important;
+            border: none !important;
+            border-radius: 4px !important;
+            font-size: 14px !important;
+            font-weight: 500 !important;
+            letter-spacing: 0.25px !important;
+            cursor: pointer !important;
+            box-shadow: 0 1px 2px 0 rgba(60,64,67,0.3) !important;
+            transition: background-color 0.2s ease, box-shadow 0.2s ease !important;
+        }
+
+        .staticrypt-form .staticrypt-decrypt-button:hover {
+            background: var(--google-blue-hover) !important;
+            box-shadow: 0 1px 3px 1px rgba(60,64,67,0.2) !important;
+        }
+
+        .staticrypt-form .staticrypt-decrypt-button:active {
+            background: #0d47a1 !important;
+        }
+
+        .tmp {
+            margin-top: 24px !important;
+            padding-top: 16px !important;
+            border-top: 1px solid var(--google-border) !important;
+            text-align: center !important;
+        }
+
+        .tmp p#think {
+            font-size: 0.8rem !important;
+            color: var(--google-subtext) !important;
+            margin-bottom: 10px !important;
+        }
+
+        .tmp button#Moisson, .tmp button#Myaccount {
+            background: transparent !important;
+            border: 1px solid var(--google-border) !important;
+            color: var(--google-blue) !important;
+            padding: 6px 14px !important;
+            border-radius: 4px !important;
+            font-size: 0.8rem !important;
+            font-weight: 500 !important;
+            cursor: pointer !important;
+            transition: background-color 0.2s ease, border-color 0.2s ease !important;
+        }
+
+        .tmp button#Moisson:hover, .tmp button#Myaccount:hover {
+            background: #f1f3f4 !important;
+            border-color: #c6c9cc !important;
+        }
+
+        /* Loading Spinner */
+        .staticrypt-spinner-container {
+            height: 100%;
+            display: grid;
+            place-items: center;
+        }
+
+        .staticrypt-spinner {
+            width: 36px !important;
+            height: 36px !important;
+            border: 3px solid #f1f3f4 !important;
+            border-top-color: var(--google-blue) !important;
+            border-radius: 50% !important;
+            animation: spin 0.8s linear infinite !important;
+        }
+
+        @keyframes spin {
+            to { transform: rotate(360deg); }
+        }
+
+        .custom-toast {
+            position: fixed !important;
+            bottom: 24px !important;
+            top: auto !important;
+            left: 50% !important;
+            transform: translate(-50%, 20px) !important;
+            background: #323232 !important;
+            color: #ffffff !important;
+            padding: 12px 24px !important;
+            border-radius: 4px !important;
+            font-size: 14px !important;
+            font-weight: 400 !important;
+            border: none !important;
+            box-shadow: 0 3px 5px -1px rgba(0,0,0,0.2), 0 6px 10px 0 rgba(0,0,0,0.14) !important;
+            opacity: 0 !important;
+            transition: all 0.2s cubic-bezier(0, 0, 0.2, 1) !important;
+            z-index: 999999 !important;
+        }
+
+        .custom-toast.show {
+            opacity: 1 !important;
+            transform: translate(-50%, 0) !important;
+        }
+
+        .custom-toast.error {
+            background: var(--google-error) !important;
+        }
+
+
+        .shake {
+            animation: simple-shake 0.3s ease-in-out !important;
+        }
+
+        @keyframes simple-shake {
+            0%, 100% { transform: translateX(0); }
+            25% { transform: translateX(-6px); }
+            75% { transform: translateX(6px); }
+        }
+
+        .hidden {
+            display: none !important;
+        }
+    </style>
+    </head>
+
+    <body class="staticrypt-body">
+        <canvas id="cpu-matrix-canvas"></canvas>
+        <div id="staticrypt_loading" class="staticrypt-spinner-container">
+            <div class="staticrypt-spinner"></div>
+        </div>
+
+        <div id="staticrypt_content" class="staticrypt-content hidden">
+            <div class="staticrypt-page">
+                <div class="staticrypt-form">
+                    <div class="staticrypt-instructions">
+                        <p class="staticrypt-title">Website (abandoned)</p>
+                       
+                    </div>
+
+                    <hr class="staticrypt-hr" />
+
+                    <form id="staticrypt-form" action="#" method="post">
+                        <div class="staticrypt-password-container">
+                            <input
+                                id="staticrypt-password"
+                                type="password"
+                                name="password"
+                                placeholder="Password"
+                                autofocus
+                            />
+
+                            <img
+                                class="staticrypt-toggle-password-visibility"
+                                alt="template_toggle_show"
+                                title="template_toggle_show"
+                                src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCA2NDAgNTEyIj48IS0tIUZvbnQgQXdlc29tZSBGcmVlIDYuNS4yIGJ5IEBmb250YXdlc29tZSAtIGh0dHBzOi8vZm9udGF3ZXNvbWUuY29tIExpY2Vuc2UgLSBodHRwczovL2ZvbnRhd2Vzb21lLmNvbS9saWNlbnNlL2ZyZWUgQ29weXJpZ2h0IDIwMjQgRm9udGljb25zLCBJbmMuLS0+PHBhdGggZD0iTTM4LjggNS4xQzI4LjQtMy4xIDEzLjMtMS4yIDUuMSA5LjJTLTEuMiAzNC43IDkuMiA0Mi45bDU5MiA0NjRjMTAuNCA4LjIgMjUuNSA2LjMgMzMuNy00LjFzNi4zLTI1LjUtNC4xLTMzLjdMNTI1LjYgMzg2LjdjMzkuNi00MC42IDY2LjQtODYuMSA3OS45LTExOC40YzMuMy03LjkgMy4zLTE2LjcgMC0yNC42Yy0xNC45LTM1LjctNDYuMi04Ny43LTkzLTEzMS4xQzQ2NS41IDY4LjggNDAwLjggMzIgMzIwIDMyYy02OC4yIDAtMTI1IDI2LjMtMTY5LjMgNjAuOEwzOC44IDUuMXpNMjIzLjEgMTQ5LjVDMjQ4LjYgMTI2LjIgMjgyLjcgMTEyIDMyMCAxMTJjNzkuNSAwIDE0NCA2NC41IDE0NCAxNDRjMCAyNC45LTYuMyA0OC4zLTE3LjQgNjguN0w0MDggMjk0LjVjOC40LTE5LjMgMTAuNi00MS40IDQuOC02My4zYy0xMS4xLTQxLjUtNDcuOC02OS40LTg4LjYtNzEuMWMtNS44LS4yLTkuMiA2LjEtNy40IDExLjdjMi4xIDYuNCAzLjMgMTMuMiAzLjMgMjAuM2MwIDEwLjItMi40IDE5LjgtNi42IDI4LjNsLTkwLjMtNzAuOHpNMzczIDM4OS45Yy0xNi40IDYuNS0zNC4zIDEwLjEtNTMgMTAuMWMtNzkuNSAwLTE0NC02NC41LTE0NC0xNDRjMC02LjkgLjUtMTMuNiAxLjQtMjAuMkw4My4xIDE2MS41QzYwLjMgMTkxLjIgNDQgMjIwLjggMzQuNSAyNDMuN2MtMy4zIDcuOS0zLjMgMTYuNyAwIDI0LjZjMTQuOSAzNS43IDQ2LjIgODcuNyA5MyAxMzEuMUMxNzQuNSA0NDMuMiAyMzkuMiA0ODAgMzIwIDQ4MGM0Ny44IDAgODkuOS0xMi45IDEyNi4yLTMyLjVMMzczIDM4OS45eiIvPjwvc3ZnPg=="
+                            />
+                        </div>
+
+                        <label id="staticrypt-remember-label" class="staticrypt-remember hidden">
+                            <input id="staticrypt-remember" type="checkbox" name="remember" />
+                            Remember me
+                        </label>
+
+                        <input type="submit" class="staticrypt-decrypt-button" value="SUBMIT" />
+                    </form>
+                        <div class="tmp">
+                            <p id="think">Special thanks: Robin Moisson</p>
+                            <button id="Moisson" href="">GitHub</button>
+
+                        </div>  
+                </div>
+            </div>
+        </div>
+
+        <script>
+            const button1 = document.getElementById("Moisson");
+            const button2= document.getElementById("Myaccount");
+            button1.addEventListener("click", ()=>{
+                window.open("https://github.com/robinmoisson/staticrypt", "_blank");
+            })
+            button2.addEventListener("click", ()=>{
+                window.open("https://github.com/sawr1/index", "_blank");
+            })
+        </script>
+
+        <script>
+            // these variables will be filled when generating the file - the template format is 'variable_name'
+            const staticryptInitiator = 
+            ((function(){
+  const exports = {};
+  const cryptoEngine = ((function(){
+  const exports = {};
+  const { subtle } = crypto;
+
+const IV_BITS = 16 * 8;
+const HEX_BITS = 4;
+const ENCRYPTION_ALGO = "AES-CBC";
+
+/**
+ * Translates between utf8 encoded hexadecimal strings
+ * and Uint8Array bytes.
+ */
+const HexEncoder = {
+    /**
+     * hex string -> bytes
+     * @param {string} hexString
+     * @returns {Uint8Array}
+     */
+    parse: function (hexString) {
+        if (hexString.length % 2 !== 0) throw "Invalid hexString";
+        const arrayBuffer = new Uint8Array(hexString.length / 2);
+
+        for (let i = 0; i < hexString.length; i += 2) {
+            const byteValue = parseInt(hexString.substring(i, i + 2), 16);
+            if (isNaN(byteValue)) {
+                throw "Invalid hexString";
+            }
+            arrayBuffer[i / 2] = byteValue;
+        }
+        return arrayBuffer;
+    },
+
+    /**
+     * bytes -> hex string
+     * @param {Uint8Array} bytes
+     * @returns {string}
+     */
+    stringify: function (bytes) {
+        const hexBytes = [];
+
+        for (let i = 0; i < bytes.length; ++i) {
+            let byteString = bytes[i].toString(16);
+            if (byteString.length < 2) {
+                byteString = "0" + byteString;
+            }
+            hexBytes.push(byteString);
+        }
+        return hexBytes.join("");
+    },
+};
+
+/**
+ * Translates between utf8 strings and Uint8Array bytes.
+ */
+const UTF8Encoder = {
+    parse: function (str) {
+        return new TextEncoder().encode(str);
+    },
+
+    stringify: function (bytes) {
+        return new TextDecoder().decode(bytes);
+    },
+};
+
+/**
+ * Salt and encrypt a msg with a password.
+ */
+async function encrypt(msg, hashedPassword) {
+    // Must be 16 bytes, unpredictable, and preferably cryptographically random. However, it need not be secret.
+    // https://developer.mozilla.org/en-US/docs/Web/API/SubtleCrypto/encrypt#parameters
+    const iv = crypto.getRandomValues(new Uint8Array(IV_BITS / 8));
+
+    const key = await subtle.importKey("raw", HexEncoder.parse(hashedPassword), ENCRYPTION_ALGO, false, ["encrypt"]);
+
+    const encrypted = await subtle.encrypt(
+        {
+            name: ENCRYPTION_ALGO,
+            iv: iv,
+        },
+        key,
+        UTF8Encoder.parse(msg)
+    );
+
+    // iv will be 32 hex characters, we prepend it to the ciphertext for use in decryption
+    return HexEncoder.stringify(iv) + HexEncoder.stringify(new Uint8Array(encrypted));
+}
+exports.encrypt = encrypt;
+
+/**
+ * Decrypt a salted msg using a password.
+ *
+ * @param {string} encryptedMsg
+ * @param {string} hashedPassword
+ * @returns {Promise<string>}
+ */
+async function decrypt(encryptedMsg, hashedPassword) {
+    const ivLength = IV_BITS / HEX_BITS;
+    const iv = HexEncoder.parse(encryptedMsg.substring(0, ivLength));
+    const encrypted = encryptedMsg.substring(ivLength);
+
+    const key = await subtle.importKey("raw", HexEncoder.parse(hashedPassword), ENCRYPTION_ALGO, false, ["decrypt"]);
+
+    const outBuffer = await subtle.decrypt(
+        {
+            name: ENCRYPTION_ALGO,
+            iv: iv,
+        },
+        key,
+        HexEncoder.parse(encrypted)
+    );
+
+    return UTF8Encoder.stringify(new Uint8Array(outBuffer));
+}
+exports.decrypt = decrypt;
+
+/**
+ * Salt and hash the password so it can be stored in localStorage without opening a password reuse vulnerability.
+ *
+ * @param {string} password
+ * @param {string} salt
+ * @returns {Promise<string>}
+ */
+async function hashPassword(password, salt) {
+    // we hash the password in multiple steps, each adding more iterations. This is because we used to allow less
+    // iterations, so for backward compatibility reasons, we need to support going from that to more iterations.
+    let hashedPassword = await hashLegacyRound(password, salt);
+
+    hashedPassword = await hashSecondRound(hashedPassword, salt);
+
+    return hashThirdRound(hashedPassword, salt);
+}
+exports.hashPassword = hashPassword;
+
+/**
+ * This hashes the password with 1k iterations. This is a low number, we need this function to support backwards
+ * compatibility.
+ *
+ * @param {string} password
+ * @param {string} salt
+ * @returns {Promise<string>}
+ */
+function hashLegacyRound(password, salt) {
+    return pbkdf2(password, salt, 1000, "SHA-1");
+}
+exports.hashLegacyRound = hashLegacyRound;
+
+/**
+ * Add a second round of iterations. This is because we used to use 1k, so for backwards compatibility with
+ * remember-me/autodecrypt links, we need to support going from that to more iterations.
+ *
+ * @param hashedPassword
+ * @param salt
+ * @returns {Promise<string>}
+ */
+function hashSecondRound(hashedPassword, salt) {
+    return pbkdf2(hashedPassword, salt, 14000, "SHA-256");
+}
+exports.hashSecondRound = hashSecondRound;
+
+/**
+ * Add a third round of iterations to bring total number to 600k. This is because we used to use 1k, then 15k, so for
+ * backwards compatibility with remember-me/autodecrypt links, we need to support going from that to more iterations.
+ *
+ * @param hashedPassword
+ * @param salt
+ * @returns {Promise<string>}
+ */
+function hashThirdRound(hashedPassword, salt) {
+    return pbkdf2(hashedPassword, salt, 585000, "SHA-256");
+}
+exports.hashThirdRound = hashThirdRound;
+
+/**
+ * Salt and hash the password so it can be stored in localStorage without opening a password reuse vulnerability.
+ *
+ * @param {string} password
+ * @param {string} salt
+ * @param {int} iterations
+ * @param {string} hashAlgorithm
+ * @returns {Promise<string>}
+ */
+async function pbkdf2(password, salt, iterations, hashAlgorithm) {
+    const key = await subtle.importKey("raw", UTF8Encoder.parse(password), "PBKDF2", false, ["deriveBits"]);
+
+    const keyBytes = await subtle.deriveBits(
+        {
+            name: "PBKDF2",
+            hash: hashAlgorithm,
+            iterations,
+            salt: UTF8Encoder.parse(salt),
+        },
+        key,
+        256
+    );
+
+    return HexEncoder.stringify(new Uint8Array(keyBytes));
+}
+
+function generateRandomSalt() {
+    const bytes = crypto.getRandomValues(new Uint8Array(128 / 8));
+
+    return HexEncoder.stringify(new Uint8Array(bytes));
+}
+exports.generateRandomSalt = generateRandomSalt;
+
+async function signMessage(hashedPassword, message) {
+    const key = await subtle.importKey(
+        "raw",
+        HexEncoder.parse(hashedPassword),
+        {
+            name: "HMAC",
+            hash: "SHA-256",
+        },
+        false,
+        ["sign"]
+    );
+    const signature = await subtle.sign("HMAC", key, UTF8Encoder.parse(message));
+
+    return HexEncoder.stringify(new Uint8Array(signature));
+}
+exports.signMessage = signMessage;
+
+function getRandomAlphanum() {
+    const possibleCharacters = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
+
+    let byteArray;
+    let parsedInt;
+
+    // Keep generating new random bytes until we get a value that falls
+    // within a range that can be evenly divided by possibleCharacters.length
+    do {
+        byteArray = crypto.getRandomValues(new Uint8Array(1));
+        // extract the lowest byte to get an int from 0 to 255 (probably unnecessary, since we're only generating 1 byte)
+        parsedInt = byteArray[0] & 0xff;
+    } while (parsedInt >= 256 - (256 % possibleCharacters.length));
+
+    // Take the modulo of the parsed integer to get a random number between 0 and totalLength - 1
+    const randomIndex = parsedInt % possibleCharacters.length;
+
+    return possibleCharacters[randomIndex];
+}
+
+/**
+ * Generate a random string of a given length.
+ *
+ * @param {int} length
+ * @returns {string}
+ */
+function generateRandomString(length) {
+    let randomString = "";
+
+    for (let i = 0; i < length; i++) {
+        randomString += getRandomAlphanum();
+    }
+
+    return randomString;
+}
+exports.generateRandomString = generateRandomString;
+
+  return exports;
+})());
+const codec = ((function(){
+  const exports = {};
+  /**
+ * Initialize the codec with the provided cryptoEngine - this return functions to encode and decode messages.
+ *
+ * @param cryptoEngine - the engine to use for encryption / decryption
+ */
+function init(cryptoEngine) {
+    const exports = {};
+
+    /**
+     * Top-level function for encoding a message.
+     * Includes password hashing, encryption, and signing.
+     *
+     * @param {string} msg
+     * @param {string} password
+     * @param {string} salt
+     *
+     * @returns {string} The encoded text
+     */
+    async function encode(msg, password, salt) {
+        const hashedPassword = await cryptoEngine.hashPassword(password, salt);
+
+        const encrypted = await cryptoEngine.encrypt(msg, hashedPassword);
+
+        // we use the hashed password in the HMAC because this is effectively what will be used a password (so we can store
+        // it in localStorage safely, we don't use the clear text password)
+        const hmac = await cryptoEngine.signMessage(hashedPassword, encrypted);
+
+        return hmac + encrypted;
+    }
+    exports.encode = encode;
+
+    /**
+     * Encode using a password that has already been hashed. This is useful to encode multiple messages in a row, that way
+     * we don't need to hash the password multiple times.
+     *
+     * @param {string} msg
+     * @param {string} hashedPassword
+     *
+     * @returns {string} The encoded text
+     */
+    async function encodeWithHashedPassword(msg, hashedPassword) {
+        const encrypted = await cryptoEngine.encrypt(msg, hashedPassword);
+
+        // we use the hashed password in the HMAC because this is effectively what will be used a password (so we can store
+        // it in localStorage safely, we don't use the clear text password)
+        const hmac = await cryptoEngine.signMessage(hashedPassword, encrypted);
+
+        return hmac + encrypted;
+    }
+    exports.encodeWithHashedPassword = encodeWithHashedPassword;
+
+    /**
+     * Top-level function for decoding a message.
+     * Includes signature check and decryption.
+     *
+     * @param {string} signedMsg
+     * @param {string} hashedPassword
+     * @param {string} salt
+     * @param {int} backwardCompatibleAttempt
+     * @param {string} originalPassword
+     *
+     * @returns {Object} {success: true, decoded: string} | {success: false, message: string}
+     */
+    async function decode(signedMsg, hashedPassword, salt, backwardCompatibleAttempt = 0, originalPassword = "") {
+        const encryptedHMAC = signedMsg.substring(0, 64);
+        const encryptedMsg = signedMsg.substring(64);
+        const decryptedHMAC = await cryptoEngine.signMessage(hashedPassword, encryptedMsg);
+
+        if (decryptedHMAC !== encryptedHMAC) {
+            // we have been raising the number of iterations in the hashing algorithm multiple times, so to support the old
+            // remember-me/autodecrypt links we need to try bringing the old hashes up to speed.
+            originalPassword = originalPassword || hashedPassword;
+            if (backwardCompatibleAttempt === 0) {
+                const updatedHashedPassword = await cryptoEngine.hashThirdRound(originalPassword, salt);
+
+                return decode(signedMsg, updatedHashedPassword, salt, backwardCompatibleAttempt + 1, originalPassword);
+            }
+            if (backwardCompatibleAttempt === 1) {
+                let updatedHashedPassword = await cryptoEngine.hashSecondRound(originalPassword, salt);
+                updatedHashedPassword = await cryptoEngine.hashThirdRound(updatedHashedPassword, salt);
+
+                return decode(signedMsg, updatedHashedPassword, salt, backwardCompatibleAttempt + 1, originalPassword);
+            }
+
+            return { success: false, message: "Signature mismatch" };
+        }
+
+        return {
+            success: true,
+            decoded: await cryptoEngine.decrypt(encryptedMsg, hashedPassword),
+        };
+    }
+    exports.decode = decode;
+
+    return exports;
+}
+exports.init = init;
+
+  return exports;
+})());
+const decode = codec.init(cryptoEngine).decode;
+
+/**
+ * Initialize the staticrypt module, that exposes functions callbable by the password_template.
+ *
+ * @param {{
+ *  staticryptEncryptedMsgUniqueVariableName: string,
+ *  isRememberEnabled: boolean,
+ *  rememberDurationInDays: number,
+ *  staticryptSaltUniqueVariableName: string,
+ * }} staticryptConfig - object of data that is stored on the password_template at encryption time.
+ *
+ * @param {{
+ *  rememberExpirationKey: string,
+ *  rememberPassphraseKey: string,
+ *  replaceHtmlCallback: function,
+ *  clearLocalStorageCallback: function,
+ * }} templateConfig - object of data that can be configured by a custom password_template.
+ */
+function init(staticryptConfig, templateConfig) {
+    const exports = {};
+
+    /**
+     * Decrypt our encrypted page, replace the whole HTML.
+     *
+     * @param {string} hashedPassword
+     * @returns {Promise<boolean>}
+     */
+    async function decryptAndReplaceHtml(hashedPassword) {
+        const { staticryptEncryptedMsgUniqueVariableName, staticryptSaltUniqueVariableName } = staticryptConfig;
+        const { replaceHtmlCallback } = templateConfig;
+
+        const result = await decode(
+            staticryptEncryptedMsgUniqueVariableName,
+            hashedPassword,
+            staticryptSaltUniqueVariableName
+        );
+        if (!result.success) {
+            return false;
+        }
+        const plainHTML = result.decoded;
+
+        // if the user configured a callback call it, otherwise just replace the whole HTML
+        if (typeof replaceHtmlCallback === "function") {
+            replaceHtmlCallback(plainHTML);
+        } else {
+            document.write(plainHTML);
+            document.close();
+        }
+
+        return true;
+    }
+
+    /**
+     * Attempt to decrypt the page and replace the whole HTML.
+     *
+     * @param {string} password
+     * @param {boolean} isRememberChecked
+     *
+     * @returns {Promise<{isSuccessful: boolean, hashedPassword?: string}>} - we return an object, so that if we want to
+     *   expose more information in the future we can do it without breaking the password_template
+     */
+    async function handleDecryptionOfPage(password, isRememberChecked) {
+        const { staticryptSaltUniqueVariableName } = staticryptConfig;
+
+        // decrypt and replace the whole page
+        const hashedPassword = await cryptoEngine.hashPassword(password, staticryptSaltUniqueVariableName);
+        return handleDecryptionOfPageFromHash(hashedPassword, isRememberChecked);
+    }
+    exports.handleDecryptionOfPage = handleDecryptionOfPage;
+
+    async function handleDecryptionOfPageFromHash(hashedPassword, isRememberChecked) {
+        const { isRememberEnabled, rememberDurationInDays } = staticryptConfig;
+        const { rememberExpirationKey, rememberPassphraseKey } = templateConfig;
+
+        const isDecryptionSuccessful = await decryptAndReplaceHtml(hashedPassword);
+
+        if (!isDecryptionSuccessful) {
+            return {
+                isSuccessful: false,
+                hashedPassword,
+            };
+        }
+
+        // remember the hashedPassword and set its expiration if necessary
+        if (isRememberEnabled && isRememberChecked) {
+            window.localStorage.setItem(rememberPassphraseKey, hashedPassword);
+
+            // set the expiration if the duration isn't 0 (meaning no expiration)
+            if (rememberDurationInDays > 0) {
+                window.localStorage.setItem(
+                    rememberExpirationKey,
+                    (new Date().getTime() + rememberDurationInDays * 24 * 60 * 60 * 1000).toString()
+                );
+            }
+        }
+
+        return {
+            isSuccessful: true,
+            hashedPassword,
+        };
+    }
+    exports.handleDecryptionOfPageFromHash = handleDecryptionOfPageFromHash;
+
+    /**
+     * Clear localstorage from staticrypt related values
+     */
+    function clearLocalStorage() {
+        const { clearLocalStorageCallback, rememberExpirationKey, rememberPassphraseKey } = templateConfig;
+
+        if (typeof clearLocalStorageCallback === "function") {
+            clearLocalStorageCallback();
+        } else {
+            localStorage.removeItem(rememberPassphraseKey);
+            localStorage.removeItem(rememberExpirationKey);
+        }
+    }
+
+    async function handleDecryptOnLoad() {
+        let isSuccessful = await decryptOnLoadFromUrl();
+
+        if (!isSuccessful) {
+            isSuccessful = await decryptOnLoadFromRememberMe();
+        }
+
+        return { isSuccessful };
+    }
+    exports.handleDecryptOnLoad = handleDecryptOnLoad;
+
+    /**
+     * Clear storage if we are logging out
+     *
+     * @returns {boolean} - whether we logged out
+     */
+    function logoutIfNeeded() {
+        const logoutKey = "staticrypt_logout";
+
+        // handle logout through query param
+        const queryParams = new URLSearchParams(window.location.search);
+        if (queryParams.has(logoutKey)) {
+            clearLocalStorage();
+            return true;
+        }
+
+        // handle logout through URL fragment
+        const hash = window.location.hash.substring(1);
+        if (hash.includes(logoutKey)) {
+            clearLocalStorage();
+            return true;
+        }
+
+        return false;
+    }
+
+    /**
+     * To be called on load: check if we want to try to decrypt and replace the HTML with the decrypted content, and
+     * try to do it if needed.
+     *
+     * @returns {Promise<boolean>} true if we derypted and replaced the whole page, false otherwise
+     */
+    async function decryptOnLoadFromRememberMe() {
+        const { rememberDurationInDays } = staticryptConfig;
+        const { rememberExpirationKey, rememberPassphraseKey } = templateConfig;
+
+        // if we are login out, terminate
+        if (logoutIfNeeded()) {
+            return false;
+        }
+
+        // if there is expiration configured, check if we're not beyond the expiration
+        if (rememberDurationInDays && rememberDurationInDays > 0) {
+            const expiration = localStorage.getItem(rememberExpirationKey),
+                isExpired = expiration && new Date().getTime() > parseInt(expiration);
+
+            if (isExpired) {
+                clearLocalStorage();
+                return false;
+            }
+        }
+
+        const hashedPassword = localStorage.getItem(rememberPassphraseKey);
+
+        if (hashedPassword) {
+            // try to decrypt
+            const isDecryptionSuccessful = await decryptAndReplaceHtml(hashedPassword);
+
+            // if the decryption is unsuccessful the password might be wrong - silently clear the saved data and let
+            // the user fill the password form again
+            if (!isDecryptionSuccessful) {
+                clearLocalStorage();
+                return false;
+            }
+
+            return true;
+        }
+
+        return false;
+    }
+
+    async function decryptOnLoadFromUrl() {
+        const passwordKey = "staticrypt_pwd";
+        const rememberMeKey = "remember_me";
+
+        // try to get the password from the query param (for backward compatibility - we now want to avoid this method,
+        // since it sends the hashed password to the server which isn't needed)
+        const queryParams = new URLSearchParams(window.location.search);
+        const hashedPasswordQuery = queryParams.get(passwordKey);
+        const rememberMeQuery = queryParams.get(rememberMeKey);
+
+        const urlFragment = window.location.hash.substring(1);
+        // get the password from the url fragment
+        const hashedPasswordRegexMatch = urlFragment.match(new RegExp(passwordKey + "=([^&]*)"));
+        const hashedPasswordFragment = hashedPasswordRegexMatch ? hashedPasswordRegexMatch[1] : null;
+        const rememberMeFragment = urlFragment.includes(rememberMeKey);
+
+        const hashedPassword = hashedPasswordFragment || hashedPasswordQuery;
+        const rememberMe = rememberMeFragment || rememberMeQuery;
+
+        if (hashedPassword) {
+            return handleDecryptionOfPageFromHash(hashedPassword, rememberMe);
+        }
+
+        return false;
+    }
+
+    return exports;
+}
+exports.init = init;
+
+  return exports;
+})());
+        ;   function toast(m,y="info"){let t=document.getElementById("custom-toast")||Object.assign(document.createElement("div"),{id:"custom-toast"}),e=y==="error";document.body.appendChild(t);t.className=`custom-toast ${e?"error":"info"}`;t.innerHTML=`<span>${m}</span>`;t.classList.add("show");if(e){let f=document.querySelector(".staticrypt-form");if(f){f.classList.remove("shake");void f.offsetWidth;f.classList.add("shake");}}clearTimeout(window.toastTimer);window.toastTimer=setTimeout(()=>t.classList.remove("show"),2500);}window.alert=m=>toast(m,"error");
+            const templateError = "Password Error",
+                templateToggleAltShow = "template_toggle_show",
+                templateToggleAltHide = "template_toggle_hide",
+                isRememberEnabled = true,
+                staticryptConfig = {"staticryptEncryptedMsgUniqueVariableName":"045a952c8a1b3ba69a5c54ed266eb3081f22afc6cf6dab4efd58356930f9a2cea06e64cc721a687bce2d29d9fcd93722f2fdbc4f5477e63636ea82dec978148c284c93e0155e41d7453234879e83f84988900a738a3e54f8295d0ca956f0c37d1781c8706203e6121ff7b041ce5f2c76ef8e909729a58e78a2947ae75c41c1090c1ad3fbe830104c602c8214a1143958a77791c060595634b37fd23942fc4ad97494550f72356dfed6cbc5145cb1e39360b2e14e92431d56a16bcc9f2314fc4b3a623d4f0914a29c246312d36499865b18b8c4fba41d510f96b1e96cb64a6a8a8c3fa2fe7a8412f7e844462cd1d3dde31babc129d90572c5d3a378de2b85d04c3c47da4712e79ebf2b0f8e5e468623addef419bf2a790474ea75c8adf3f4df6281e6fb1dd2f2fe1122b944917253273f69b24eb8f6228e95a7d086a35d6ce38780bdb247adcf2042e6c023f23af127d57e6bc4ddf992329b9f4462000345c916ca021b0749664250a5479c131124cf644ddb14e0b7e2208a82bb1a276079902ec503f50c36fb406a42158fa69824e8085e0d3b447c97d7db33b8027566dd3a6f46da8844e0f5403b8b18142d9d60d70fb55aba26518a1c1223c8f34743f57a7f38b37f7cdbd446a2ea90f9f31acbbb23d956bec2213c1cdffd2fbd2e69bf48afffc64870f3ed5718f44a0302bdd5f5a4e5e5bc6f8cc740844354d74fdc54dcafe0c2f1b30cf44e038dec47c0c5229b6290a1a76b8812c5d52ed1460f234919b6c1a390f0cd0e41749c4329e0aea866444bac72e8c0994d2b919168d0fae74db63bf421e7b4f9453a481c63b8e7e77035201ae9353454561b5bc5f42035fa9e1238b8c45860192e8410839f944e3cf3bcea408e858427a1e918540637286664059b922731cc33b625e8c0fbae97a78041c6e228501a8bc187da85f49811246e8e203abb0fab2d5172381b71873530f9e8afb1b17a356c1719077a6987921dee74b0b76bea0e14a774dc3fce82437db6dbc213ef9e5e6941731f4081dcf2535f67c357485343bc9ae454c670b72915fac203067ef82f112bca20dfa2e0a86fd81b112be9dc48bb877a974cd79188197b8fba5982a91bba497af06ff0e5eae443e3a49f841039604f357c8299f4e680fd01bbbf973031fafbc3550ded57b10fe1675ae5dfc910cb04d3e9014da833620ce86e911dda457b63ed25be4727e893a4450e6c2dc07c50554f2b8472c15b933801fbb85fc3976910ea2ac35b99b8c4dfe601cacd91693b16efae9e09c1d4b7ec81e7edd31b8cded376e12c9395df48df79238e1c29469dc0d935545db6a732e53ad32ce8edfc51429cbfc1b086d67d07a44d3e419f8e774bf96fc9caa4262f0cebd65c0d5b2c52adb0b12123288fb001c6a6803f0747efd7252ff1dc059df0656c534f5158acd44984f18573b31769d4f88becd03bbf7ba58369779d6237d3003e7582084c7f574bf49beb6301c90bebc9af444dc31074e5860a68d60f3d93111adb6a6dd5d353d7d0e8a3d24bb6a422ee85d04650bd2669f6de069398862fc0a5edebfc579cd067146b377cfb7c917615a8e6181ae2e73c23c42a0b1daf7e441ed9e95b13a861e4baca685a2f9e9c5931b84c5d4e9c03b727f99a67ae7530c077aff717a49500f79a68e92eb3e894bdd026b4a985343d2080bad4b10b176bc6b48504cdc019ed6322a5e276f312a448820761648d899d4e53d741c774409529146f16d6dfbfc284a4ee365d055fe125c6bb298f7a7b71a032f06e78ec8b2c8bf4e32f4d3de9291118d66451703d8dbca196daaf7db9467673e81c2df439c02d0e00299eaab90f6536c2dd5fe6f32d8af7920c23931d7d4b7333e6c92adb5ad9f4e4e86edf6574ad82911b326b84c7454f1c576698dc2e1b7ffd993a36222fc11b2127107de761fa6e0e1aeed30b013efdac2748010dae5ea62d3d5c6ecc8db2370f06b297e668de8c9797ac324094501fd761073316874c20e54ffc1675f0f92774b525e5277c7e8837bd786c16172c1d0525c805aef394a44c33a33423ed4142a10cd88ec00ac72467f310fd56102d255f1b943cc0695cce0a4c9fb80b1e20289d5a1dcfdc1885c16e364d53f818ba83090a4ff9ed4a1df749ad44c0e1710b69d9826929d393614a7cbb90aedc4c1ae7571c938f84f53947c026f117d34e31709695abade34c7fcba5f1bef5d709c4d06bc044d4304e5f8a4ec51dc01b7d54996ecaaf7d192df1c373c93e4abec987930d7fb3b031e597b52631b0f4476fb60028de60f5a6e97aaaacead7c48c260f92ea3a7caa6ae5f43c8c764733ae26e337f53a1f4f015bdd461b2e3e9eaa0a78da161cdaf3500586fccef1a4a1e8c85e4b0c8c2cd74496ab98789c07221fd8c454cbf81c02c9e0bd5b62f9e26e73a54fdd0f7e9b522ecefc3e90ec57f17cd05a5c5f53f535ccfc1b5dc45ebdd5a740df64cd731671eeda8157c05262716e020d566465d742fb19611688fbc09870a34fadbe1f93b59e6fcc6bb22170fd2e780ec729713ab070d0029b72d545bba8b842d77d9cf4ac7e908aa7ea0540effce57cc2e1af6f2934e6606aaf8f9ab704dd1c7f1fde834b12f89a686ba97054c55bf9c8be98bb42402ad52ef2bb006acfa5e53eb7ea836c0bd4bead93da60a31fa591dc00a068006c6862d36c561fb177888610a0de51e9ccccfc4dee665155e60677372b9fbc824019eb1222f67dc36364de729fe71300f4f45f35ca828713a8114ab1a055e6b3dbc9d9b37e726beb05fd61934b56ce48fade0e3b2f3a5ed053cf4f48a56bbbe37c0ef03acc1c161bb8e0af426fb06a20a15282e907a4fe23f16a762fea6075f51acc45eae8df2cd65dee99a29b561e1670756413b3d81d7d36ec7e008b6dca3513bf9c1567fa249a3958c47dd17a625b5e8a453d4de753ecec588c26090b54f87fe157aca4ad6a7b70bc7ae27c5f40665137f7924b6f4efdae9298bdb896b5275729c35c953e7af9c26531bedb170cf98983d5df8317645a0a8d5253db12b730982169c4237373c8e2c8ead110acb4dfa0ab190e1f060df8743640a75b894187e7007576c794b97ab5d6743eca2176621ba9d60b92693ab29449a5e840ac764e820cd5038b91617f1ceb6a230aa408933d6456f8df5992e432eb910efb5cd8a34aee75912522ca79bd43c2a46816445696f6cf3f8514115c728aebcd43bb807ebd468bd3f636e45c98e5747d18c1ce6de8c8d0454652ddde1b64955a304a725920ad9de8bac62cc0f6c3287c1d50b0b0342f154e6f69434c099843d762d5aa78d99a3cadd39a5b83d6f88f1e4230837307fb1453c580b62c6101d58a030770acf259820647f7b7d381f26c8f4f4d0c3a9322ecee8eaef80a9dd22489d4ed5b53e3008bd70bce0341d49ef2697c9c3a3b8b8f752b82bec259f0a099b7296a674565414cb6d15e6a5b96adf21e3d3327776a08b71c144a23048c7fcb17d7f03bd5b8bde0a004b14eb4b93df59c1ce809439e62adf85173c856af2ad07712c2470320ca2e3c418620407cec7422264b71459b06e7e34de10e087754197dbeb5773d5dcfeeb90dda2e0f8bdaacf0bcd97614f07bdf2f3cd1d1a8fc4d3811d856932641d494eb66d1c211588b4a8f6fc4601d033d6382dd3e1681934987a40cec29197bdb1b88a40873ce26d9d1bdbe50d28184e41652395f7ba1199d02ddbd8674119ed6687cf87931e88651355b6d0e38385178f6ca61a958ad38ca660dabc31ae3b7a4bb0b6eacfff7ff28cb9724f8748254d515908830316b92aefc27968c2279db4319d1407600626324ff5b4cac5599d2d9faffc6f0ac4d1131ef6d858fa605ad20781a265a8bf6528c3e9af7f2594669c346eee550f77ea81b106187b43d1aa2160fd05f6f15f8f6ed96f0a3eec1fb3af0cfc4efa42096db43141064821518b3de123c137263f31ab6abb31a1846d0731d47786141815e20bcc0d62bc1482f91b2aa496305ca4053e5404b3b015f073dd115474d0930c348a0a8a4890bbaccec77f9662d297044c5cd4589fa941f0e62a7ecb4b446a4a3f90b9871ab3d3a11630746756fedcd599981ea0f86ce0135c29dceed9d2942d4dd7f2ff0f4be3c04be861c4a5a86ff6be5c9c51a3aced8393c2ae996526b3ef5bf6ecd250167f87b348b68bbbc0a4dbb2c789d850fbd28be5300dad09068fd99ea24468498405e910ccc980ed725ad02ee26a9305b45aaba9bec05c3b654f82a14dc73dfbcf005e596fc47a42a9f6ecfc69ba5195042d0978db0109566aed5d8c4f925923830bfc946655e01c811a86909b7fd43dccc931e7021b7fc269e3db8126b112ee981ed2f62ad72868312d929dfafbd937e2d20d3ba4af043d1a97d6fce440bfbd85f577f9a63658072f553d7479c9dd61008a642c0eecc0e91a4762a8d09ba134038c7d81a151bc406902d59ce1b89374f33f638552fbe34486fcc372d90b88af6f0353722d26d25e03f45f5906d25e728d4f7e1f543132b9fc424bd7c0d2cb2ac8f0c8663c4c29d89b9bdaa381f226dcc284512527e187b7e1863e5dfc41eaa05e6ecb766b309a12c3efc133703d59caf9e0ad128cfaee4009e9743a9b968298a1fb60b6a693fd628f47cb8e118b3805e116a61aa465c03161c61a11e675718c820419f8b38db4cf6748e9f8f26755613cee6a57cda355ab0ba3d6d482b2e1f96f0e8a757edf0654b45b5584ae7eb3ec834b83cd52644e6bac683d1d8b56a2f5a85e1fdb71dbafcc0b438c3828e85232ce6bcc7f656a7198008d10043315ffce12f2a2d2d28bd885d8294cd2efb365da516d7e6935978201148189b3f0f92f97e3603c805cdb243520871711cec623e3e50cd96d48a92aa0c5a7b0f20403bfdf85fd6ccb5c53eebbbee33a9548c56e183c8bd64c10f177797b5b41bd5eb5410c242d7d2553012c119b50126f58f56c6f858e61f55fd254ea619e170c02d437e175cbd4d03c6c671443e87e5dfe842370e03a5a9688fe49a5bac846035f5c01c39f4449aeb11cb8099390e4ba2e5a29ccdd82152558cbff4611b26a60535603d9940eaccb6d5c0c406720e912587afe766b3f9d893b6ba6fae39e6dd943e91672366ac8fdc9fd029b900cf2837636d04d9226c180a95d94424a444792567c273e1d6516874b26b30be9e7e9014b57826d64f0e056c9467a3cedbd3aaa03363d1407da2e42707bb17e5af2076ab4da1b1dfef41b3e64a1d01dea00e8b4081072c8d8da2b74ef0590ad8bcb19af7956ab90cc5862ba720afd6c52deadbc25d2a8ce468af804ea3bdd2a779584094f69958ade418b545afc1b1ff8bc71188a57a74902b9de5597ce8b0b94131662ef5995b9957eb2156f6870e4d03c83dff5d1a9349b0be9629704faa95c2742c6bf4a9c81dc4c0bc6dddb18ee8d672c5cb95982ab5fecbc98e234d7d41eaa57f6c4cb09820ba65dbc9003395c00dde84eec1bed094109f321259b79376ddd038e02a18d36d4c98659491cbdc32bf5da78fc86bc90e2c132bafe0979e94a208c9690e46cfa7c3299fd6060b462efe15bd15fd30038f1ce5bab0b111d53e712918c645d4457810f1cdcc5573d5731da6a6afee7725eb798e9afb9495f7b373598d01f4e82a928bf76c803acfc6fc3090330e85753cc826e38b74fff89ee828460fd5d38942eb02727fbb8b51b3ab1af4a0c2451e9046cf3c23218f39c4cbaf42956224abc8e7e50de04787521a93f5487caff8c4471c8730bb219848a8275238c0fb5e918f799ff11cd4bba3de8ccc8dc1a57544a6821ba3f59e482468f7c0429fdf1ef7c9d13b36be84a2965b032d145fc07437038082e9c2dde1cc2f86f9dacb93e246cada2a9c65e85618cb4ff00c312cf9cd1254e30c61319614a64293a2605095cc7a97e389d0465e1d2d0666716d106e4cfba6ab7f8ed243f49a6d09d1e15229dc3c7f657ea5a5a3e149dca029fac0d6e4d3ad1d62d67b5478e5aa6b76a834122773827087cd17b8509ca65a6fb9281bd7d560159f4f1151f8ac6b9581a32b705010b396dc6f870f1e3d1c9cb79baa4f9420e73ea087d7e147a7412b6028a03112dfda97665b8817f7e14f41b370694d49384a3448e7961f802e0904d774b89caeb58b052554de80d39abaa2beb642eb60deb7e12655759f76b573c8d99899047cd5d53404973655c97a02dd61209ba78d76cbfbf58551632eb0fc7cbd8a143300278e8c99c63741bd1cee306c9968b1e7237ffb40d2b3e2068edd27ca25fa1e8e30c5bf761ed2d4afb1aa3dfbdd8e5dc66df1ecc88e3b8f788e9715b45cf5c4bde3881008ed2b5698721709bf6a56bc0f7cec00c346b87b95cb087e906dcced97454c83423eacfa297b68bbf4e1c9edadd9abfff862ecb19b77f00a6d24cf50c4a78b4449f8906e7ec15f069d16232537cafd23d8f6519f1b5cf6c8c58c70fee01578a029fbd2b215a23fda7ad51c4f7c15c429d2f55e93fc54b9107e762750a747902635e31ddd6b985400577f86e0163dbe3efb959753a623a8bb1a75cb0726f04ae236ef834e46ff62a6a9ac0492daa9cc04e80674cd7084177aa0b66a04557a9bcabaa0d1b912c622cb98f5f20b52315c555a2f8a512ce66582024f8c9251da60c3ad61800344a1c326b292657f5378f7c478c8221184a589b4c7dd0b0aed5ad11ad6f9cfab7b32b4261a1494bed099a3cb602fd40a08afbbc3b39a13c3fbcfce184969f411817bc6907a8ae62e6134af3df3630153aad8c4a41b9fcbad47b5309b95689755bd0c4738d8d2b98cb58a50f554321ab2be7554bea8e441a632372b3aba43e73dc71b1c0efe2522140e6076053a3b4e9a5506821e6ae678ae7c71e5f1b6ef888c2c9b64c1ebdc7bc7ae26cc1d0656b594b43434ea4d014822a560dc64f7fdeca713099d46774ad68dd627e110578d5391fa98b2cfd3bc848801d098c9a08eb46d8e2a81ad1948ad8a94970e56557eca4215ea1082b71d21f208c236954abac899d87eb0b4928991509a8090fd401ea0d5c3664856fd006711484ec02b9b424a752ded210a66e2033955d379cbad7d38bdc46a4897b5a95fde8a650afe528a67b9ed23305225454dcfb74b67af5daa286bfcc5eaaa0e4d2ea999e526f451e842e807033cb31af5c900ce07c225d3b8512cd620c5aa0a7caca0c384eba12b342888028d719e3d44a8bba5dd962626c932f530f53b12a413b1fdd50c6bee5568c624f3a255f42fe541f31a133d00bcc3dc591947626e55d822a10e07916e57cf43f1bf70c4ef365c80f7fdca87b98a2a96a1d8a6c41039bb34a298dec71852d9bfaf3fc47f49ffe1ed84694d57463e67e813c4c565c0938e63fbf197e43a8499341593dac5ef73606168ededca3d16393455570c1443bf5a329fb4b0d4998f6d1131ee6157c96d6f1d037dada287fa9d4e02d7e93b41d33c5bec4fc1de8bbe84350bd11ab99d0ab24227083063faa98f873034c09ebae8cfdb5c7ced0feeac5c44d20fe16cc66c5968d79b5d4049791dc387e21e1564bdb2d61c860b2d9d394f13a1c0d2fd15736157a75629cf11dc2d96b1a444dd7f813d85dbd336b5249e090b5f75f354d358e5c3820f7c3afa68e39ef9f7a78c2eadfb88deb343c87d604bead00cbb3c0d87bc8f30e00049e9c3034bbc4fbd92aee525359b93e326498ecf41fd5c36edd7ad14c7f2c22c16b87defcd3e258d7d2947e29426e881f098eb06edb425826fc1b0101ab07313250b3b5ccb0cfbe62240e8bb1a248815c4fc84e1e0490ac15b3df0f15443448d1cc5ac34e7a71691cef916250a683f41520e2841435dede10d9fb91c05c7726a3b4e7293c41834c9c6306c118d5e4a00abd61fb361619d9ec2aa560989d6e31df2b2db32c9e635223f86d3d8753ae3bcc889b524555a759aad14a11ca9cb0752776888ffac6f68421747a06e49cf31d97aff64757a74d6f35d1c330ec2bca24bc8cb314ebeb4492275526dbd08ee21fd96b5c59c4f31e6c0ca3fc97e09d5959feb58de1ed45b4ec38ba4ddd96002c9bce47c01696722d85e3f16a4625a35f24222ab55b6d4ea1c9d96e520da8c51dbd66f862f975676fef557c735ac051fb21cdcbdd72c53aeefed793253eb99f161ecd73bd232af0fadb1e07fcd268c5a86997f397834fbcc53b2f9167fa2d34dabd247b5d8477a1c3fee394c94f06d52a029be8274e6827785f6b82f3dfe2dfb7a5b5bc5d87db519053a63a8696edb8e3eec146a9dfd7a3d4bc869694e337933896f02eca21b2175efd2563d8e8f20a40f8c2e929765cc817fb7431e6d05fe56932e7659241018a9a1f11a88a427af7b0b7651e02b803a509d00b612ad4df8f8b59cf9c493909aa21e7afdef2eabd68e6c847d64ac9887dc4dda63f3207827fbe459f82dc8ec6e6c1f4ae1770585460d7b13733448fecdf0f7b8c590ef723404552609806ccb5526db3002555b3b07f9698d3ad0cedf3bcf40d7e94a8c940d2afd66","isRememberEnabled":true,"rememberDurationInDays":0,"staticryptSaltUniqueVariableName":"e12fe7179a329961a3409acfb7d37aeb"};
+
+            // you can edit these values to customize some of the behavior of StatiCrypt
+            const templateConfig = {
+                rememberExpirationKey: "staticrypt_expiration",
+                rememberPassphraseKey: "staticrypt_passphrase",
+                replaceHtmlCallback: null,
+                clearLocalStorageCallback: null,
+            };
+
+            // init the staticrypt engine
+            const staticrypt = staticryptInitiator.init(staticryptConfig, templateConfig);
+
+            // try to automatically decrypt on load if there is a saved password
+            window.onload = async function () {
+                const { isSuccessful } = await staticrypt.handleDecryptOnLoad();
+
+                // if we didn't decrypt anything on load, show the password prompt. Otherwise the content has already been
+                // replaced, no need to do anything
+                if (!isSuccessful) {
+                    // hide loading screen
+                    document.getElementById("staticrypt_loading").classList.add("hidden");
+                    document.getElementById("staticrypt_content").classList.remove("hidden");
+                    document.getElementById("staticrypt-password").focus();
+
+                    // show the remember me checkbox
+                    if (isRememberEnabled) {
+                        document.getElementById("staticrypt-remember-label").classList.remove("hidden");
+                    }
+                }
+            };
+
+            // toggle password visibility
+            const toggleIcon = document.querySelector(".staticrypt-toggle-password-visibility");
+            // these two icons are coming from FontAwesome
+            const imgSrcEyeClosed =
+                "data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCA2NDAgNTEyIj48IS0tIUZvbnQgQXdlc29tZSBGcmVlIDYuNS4yIGJ5IEBmb250YXdlc29tZSAtIGh0dHBzOi8vZm9udGF3ZXNvbWUuY29tIExpY2Vuc2UgLSBodHRwczovL2ZvbnRhd2Vzb21lLmNvbS9saWNlbnNlL2ZyZWUgQ29weXJpZ2h0IDIwMjQgRm9udGljb25zLCBJbmMuLS0+PHBhdGggZD0iTTM4LjggNS4xQzI4LjQtMy4xIDEzLjMtMS4yIDUuMSA5LjJTLTEuMiAzNC43IDkuMiA0Mi45bDU5MiA0NjRjMTAuNCA4LjIgMjUuNSA2LjMgMzMuNy00LjFzNi4zLTI1LjUtNC4xLTMzLjdMNTI1LjYgMzg2LjdjMzkuNi00MC42IDY2LjQtODYuMSA3OS45LTExOC40YzMuMy03LjkgMy4zLTE2LjcgMC0yNC42Yy0xNC45LTM1LjctNDYuMi04Ny43LTkzLTEzMS4xQzQ2NS41IDY4LjggNDAwLjggMzIgMzIwIDMyYy02OC4yIDAtMTI1IDI2LjMtMTY5LjMgNjAuOEwzOC44IDUuMXpNMjIzLjEgMTQ5LjVDMjQ4LjYgMTI2LjIgMjgyLjcgMTEyIDMyMCAxMTJjNzkuNSAwIDE0NCA2NC41IDE0NCAxNDRjMCAyNC45LTYuMyA0OC4zLTE3LjQgNjguN0w0MDggMjk0LjVjOC40LTE5LjMgMTAuNi00MS40IDQuOC02My4zYy0xMS4xLTQxLjUtNDcuOC02OS40LTg4LjYtNzEuMWMtNS44LS4yLTkuMiA2LjEtNy40IDExLjdjMi4xIDYuNCAzLjMgMTMuMiAzLjMgMjAuM2MwIDEwLjItMi40IDE5LjgtNi42IDI4LjNsLTkwLjMtNzAuOHpNMzczIDM4OS45Yy0xNi40IDYuNS0zNC4zIDEwLjEtNTMgMTAuMWMtNzkuNSAwLTE0NC02NC41LTE0NC0xNDRjMC02LjkgLjUtMTMuNiAxLjQtMjAuMkw4My4xIDE2MS41QzYwLjMgMTkxLjIgNDQgMjIwLjggMzQuNSAyNDMuN2MtMy4zIDcuOS0zLjMgMTYuNyAwIDI0LjZjMTQuOSAzNS43IDQ2LjIgODcuNyA5MyAxMzEuMUMxNzQuNSA0NDMuMiAyMzkuMiA0ODAgMzIwIDQ4MGM0Ny44IDAgODkuOS0xMi45IDEyNi4yLTMyLjVMMzczIDM4OS45eiIvPjwvc3ZnPg==";
+            const imgSrcEyeOpened =
+                "data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCA1NzYgNTEyIj48IS0tIUZvbnQgQXdlc29tZSBGcmVlIDYuNS4yIGJ5IEBmb250YXdlc29tZSAtIGh0dHBzOi8vZm9udGF3ZXNvbWUuY29tIExpY2Vuc2UgLSBodHRwczovL2ZvbnRhd2Vzb21lLmNvbS9saWNlbnNlL2ZyZWUgQ29weXJpZ2h0IDIwMjQgRm9udGljb25zLCBJbmMuLS0+PHBhdGggZD0iTTI4OCAzMmMtODAuOCAwLTE0NS41IDM2LjgtMTkyLjYgODAuNkM0OC42IDE1NiAxNy4zIDIwOCAyLjUgMjQzLjdjLTMuMyA3LjktMy4zIDE2LjcgMCAyNC42QzE3LjMgMzA0IDQ4LjYgMzU2IDk1LjQgMzk5LjRDMTQyLjUgNDQzLjIgMjA3LjIgNDgwIDI4OCA0ODBzMTQ1LjUtMzYuOCAxOTIuNi04MC42YzQ2LjgtNDMuNSA3OC4xLTk1LjQgOTMtMTMxLjFjMy4zLTcuOSAzLjMtMTYuNyAwLTI0LjZjLTE0LjktMzUuNy00Ni4yLTg3LjctOTMtMTMxLjFDNDMzLjUgNjguOCAzNjguOCAzMiAyODggMzJ6TTE0NCAyNTZhMTQ0IDE0NCAwIDEgMSAyODggMCAxNDQgMTQ0IDAgMSAxIC0yODggMHptMTQ0LTY0YzAgMzUuMy0yOC43IDY0LTY0IDY0Yy03LjEgMC0xMy45LTEuMi0yMC4zLTMuM2MtNS41LTEuOC0xMS45IDEuNi0xMS43IDcuNGMuMyA2LjkgMS4zIDEzLjggMy4yIDIwLjdjMTMuNyA1MS4yIDY2LjQgODEuNiAxMTcuNiA2Ny45czgxLjYtNjYuNCA2Ny45LTExNy42Yy0xMS4xLTQxLjUtNDcuOC02OS40LTg4LjYtNzEuMWMtNS44LS4yLTkuMiA2LjEtNy40IDExLjdjMi4xIDYuNCAzLjMgMTMuMiAzLjMgMjAuM3oiLz48L3N2Zz4=";
+            toggleIcon.addEventListener("click", function () {
+                const passwordInput = document.getElementById("staticrypt-password");
+                if (passwordInput.type === "password") {
+                    passwordInput.type = "text";
+                    toggleIcon.src = imgSrcEyeOpened;
+                    toggleIcon.alt = templateToggleAltHide;
+                    toggleIcon.title = templateToggleAltHide;
+                } else {
+                    passwordInput.type = "password";
+                    toggleIcon.src = imgSrcEyeClosed;
+                    toggleIcon.alt = templateToggleAltShow;
+                    toggleIcon.title = templateToggleAltShow;
+                }
+            });
+
+            // handle password form submission
+            document.getElementById("staticrypt-form").addEventListener("submit", async function (e) {
+                e.preventDefault();
+
+                const password = document.getElementById("staticrypt-password").value,
+                    isRememberChecked = document.getElementById("staticrypt-remember").checked;
+
+                const { isSuccessful } = await staticrypt.handleDecryptionOfPage(password, isRememberChecked);
+
+                if (!isSuccessful) {
+                    alert(templateError);
+                }
+            });
+        </script>
+        <script>
+            toast("Hello, Please enter your password first.")
+        </script>
+        <script>
+            (function () {
+                "use strict";
+
+                var P_TABLE = new Uint8Array(1024);
+                var GRAD4 = [
+                    [0,1,1,1],[0,1,1,-1],[0,1,-1,1],[0,1,-1,-1],
+                    [0,-1,1,1],[0,-1,1,-1],[0,-1,-1,1],[0,-1,-1,-1],
+                    [1,0,1,1],[1,0,1,-1],[1,0,-1,1],[1,0,-1,-1],
+                    [-1,0,1,1],[-1,0,1,-1],[-1,0,-1,1],[-1,0,-1,-1],
+                    [1,1,0,1],[1,1,0,-1],[1,-1,0,1],[1,-1,0,-1],
+                    [-1,1,0,1],[-1,1,0,-1],[-1,-1,0,1],[-1,-1,0,-1],
+                    [1,1,1,0],[1,1,-1,0],[1,-1,1,0],[1,-1,-1,0],
+                    [-1,1,1,0],[-1,1,-1,0],[-1,-1,1,0],[-1,-1,-1,0]
+                ];
+
+                function murmurHash3(key, seed) {
+                    var k = key | 0;
+                    var h = (seed ^ k) | 0;
+                    h = Math.imul(h ^ (h >>> 16), 0x85ebca6b);
+                    h = Math.imul(h ^ (h >>> 13), 0xc2b2ae35);
+                    return (h ^ (h >>> 16)) >>> 0;
+                }
+
+                function initPermutationMatrix(seed) {
+                    var base = new Uint8Array(256);
+                    var i = 0;
+                    for (i = 0; i < 256; i++) {
+                        base[i] = i;
+                    }
+                    for (i = 255; i > 0; i--) {
+                        var j = murmurHash3(i, seed) % (i + 1);
+                        var temp = base[i];
+                        base[i] = base[j];
+                        base[j] = temp;
+                    }
+                    for (i = 0; i < 1024; i++) {
+                        P_TABLE[i] = base[i & 255];
+                    }
+                }
+                initPermutationMatrix(0x7f4a7c15);
+
+
+                function quinticHermite(t) {
+                    return t * t * t * (t * (t * 6.0 - 15.0) + 10.0);
+                }
+
+                function linearMix(a, b, t) {
+                    return a + t * (b - a);
+                }
+
+                function dotGrad3(hash, x, y, z) {
+                    var h = hash & 15;
+                    var u = h < 8 ? x : y;
+                    var v = h < 4 ? y : (h === 12 || h === 14 ? x : z);
+                    return ((h & 1) === 0 ? u : -u) + ((h & 2) === 0 ? v : -v);
+                }
+
+                function analyticalNoise3D(x, y, z) {
+                    var X = Math.floor(x) & 255;
+                    var Y = Math.floor(y) & 255;
+                    var Z = Math.floor(z) & 255;
+
+                    var dx = x - Math.floor(x);
+                    var dy = y - Math.floor(y);
+                    var dz = z - Math.floor(z);
+
+                    var u = quinticHermite(dx);
+                    var v = quinticHermite(dy);
+                    var w = quinticHermite(dz);
+
+                    var A  = P_TABLE[X] + Y;
+                    var AA = P_TABLE[A] + Z;
+                    var AB = P_TABLE[A + 1] + Z;
+                    var B  = P_TABLE[X + 1] + Y;
+                    var BA = P_TABLE[B] + Z;
+                    var BB = P_TABLE[B + 1] + Z;
+
+                    var g000 = dotGrad3(P_TABLE[AA], dx, dy, dz);
+                    var g100 = dotGrad3(P_TABLE[BA], dx - 1.0, dy, dz);
+                    var g010 = dotGrad3(P_TABLE[AB], dx, dy - 1.0, dz);
+                    var g110 = dotGrad3(P_TABLE[BB], dx - 1.0, dy - 1.0, dz);
+
+                    var g001 = dotGrad3(P_TABLE[AA + 1], dx, dy, dz - 1.0);
+                    var g101 = dotGrad3(P_TABLE[BA + 1], dx - 1.0, dy, dz - 1.0);
+                    var g011 = dotGrad3(P_TABLE[AB + 1], dx, dy - 1.0, dz - 1.0);
+                    var g111 = dotGrad3(P_TABLE[BB + 1], dx - 1.0, dy - 1.0, dz - 1.0);
+
+                    return linearMix(
+                        linearMix(linearMix(g000, g100, u), linearMix(g010, g110, u), v),
+                        linearMix(linearMix(g001, g101, u), linearMix(g011, g111, u), v),
+                        w
+                    );
+                }
+
+                // Complex multi-frequency fractional Brownian motion synthesis
+                function synthesizeFBM(x, y, z, octaves, pers, lacun) {
+                    var acc = 0.0;
+                    var amp = 1.0;
+                    var freq = 1.0;
+                    var maxAmp = 0.0;
+                    for (var o = 0; o < octaves; o++) {
+                        acc += analyticalNoise3D(x * freq, y * freq, z * freq) * amp;
+                        maxAmp += amp;
+                        amp *= pers;
+                        freq *= lacun;
+                    }
+                    return acc / maxAmp;
+                }
+
+
+                var rkState = { x: 0.1, y: 0.0, z: 0.0, w: 0.0 };
+                var rkParams = { a: 10.0, b: 28.0, c: 8.0 / 3.0, d: 1.2 };
+
+                function lorenzDerivatives(st) {
+                    return {
+                        dx: rkParams.a * (st.y - st.x) + rkParams.d * Math.sin(st.w),
+                        dy: st.x * (rkParams.b - st.z) - st.y,
+                        dz: st.x * st.y - rkParams.c * st.z,
+                        dw: 0.015
+                    };
+                }
+
+                function stepRK4Integrator(dt) {
+                    var k1 = lorenzDerivatives(rkState);
+
+                    var s2 = {
+                        x: rkState.x + k1.dx * dt * 0.5,
+                        y: rkState.y + k1.dy * dt * 0.5,
+                        z: rkState.z + k1.dz * dt * 0.5,
+                        w: rkState.w + k1.dw * dt * 0.5
+                    };
+                    var k2 = lorenzDerivatives(s2);
+
+                    var s3 = {
+                        x: rkState.x + k2.dx * dt * 0.5,
+                        y: rkState.y + k2.dy * dt * 0.5,
+                        z: rkState.z + k2.dz * dt * 0.5,
+                        w: rkState.w + k2.dw * dt * 0.5
+                    };
+                    var k3 = lorenzDerivatives(s3);
+
+                    var s4 = {
+                        x: rkState.x + k3.dx * dt,
+                        y: rkState.y + k3.dy * dt,
+                        z: rkState.z + k3.dz * dt,
+                        w: rkState.w + k3.dw * dt
+                    };
+                    var k4 = lorenzDerivatives(s4);
+
+                    rkState.x += (dt / 6.0) * (k1.dx + 2.0 * k2.dx + 2.0 * k3.dx + k4.dx);
+                    rkState.y += (dt / 6.0) * (k1.dy + 2.0 * k2.dy + 2.0 * k3.dy + k4.dy);
+                    rkState.z += (dt / 6.0) * (k1.dz + 2.0 * k2.dz + 2.0 * k3.dz + k4.dz);
+                    rkState.w += (dt / 6.0) * (k1.dw + 2.0 * k2.dw + 2.0 * k3.dw + k4.dw);
+                }
+
+
+                var canvas = document.getElementById("cpu-matrix-canvas");
+                if (!canvas) {
+                    canvas = document.createElement("canvas");
+                    canvas.id = "cpu-matrix-canvas";
+                    canvas.style.position = "fixed";
+                    canvas.style.top = "0";
+                    canvas.style.left = "0";
+                    canvas.style.width = "100vw";
+                    canvas.style.height = "100vh";
+                    canvas.style.zIndex = "0";
+                    canvas.style.pointerEvents = "none";
+                    document.body.insertBefore(canvas, document.body.firstChild);
+                }
+
+                var ctx = canvas.getContext("2d", { willReadFrequently: true });
+                var scaleRatio = 0.22;
+                var viewW = 0;
+                var viewH = 0;
+
+                var tracker = {
+                    currentX: -999999.0,
+                    currentY: -999999.0,
+                    targetX: -999999.0,
+                    targetY: -999999.0,
+                    interactionRadius: 75.0,
+                    hoverWeight: 1.0,
+                    targetHoverWeight: 1.0
+                };
+
+                function refreshViewportResolution() {
+                    viewW = Math.floor(window.innerWidth * scaleRatio);
+                    viewH = Math.floor(window.innerHeight * scaleRatio);
+                    if (viewW < 48) { viewW = 48; }
+                    if (viewH < 48) { viewH = 48; }
+                    canvas.width = viewW;
+                    canvas.height = viewH;
+                }
+                window.addEventListener("resize", refreshViewportResolution, { passive: true });
+                refreshViewportResolution();
+
+                // Smooth dampening transition when touching the login container
+                var formContainer = document.querySelector(".staticrypt-form");
+                if (formContainer) {
+                    formContainer.addEventListener("mouseenter", function () {
+                        tracker.targetHoverWeight = 0.0;
+                    }, { passive: true });
+
+                    formContainer.addEventListener("mouseleave", function () {
+                        tracker.targetHoverWeight = 1.0;
+                    }, { passive: true });
+                }
+
+                window.addEventListener("mousemove", function (e) {
+                    var rect = canvas.getBoundingClientRect();
+                    tracker.targetX = (e.clientX - rect.left) * (viewW / rect.width);
+                    tracker.targetY = (e.clientY - rect.top) * (viewH / rect.height);
+                }, { passive: true });
+
+
+                var MAX_CAPACITY = 1920 * 1080;
+                var deformationBufferX = new Float64Array(MAX_CAPACITY);
+                var deformationBufferY = new Float64Array(MAX_CAPACITY);
+                var dynamicTensorGrid  = new Float64Array(MAX_CAPACITY);
+
+                var globalEvolutionTick = 0.0;
+                var spatialPhaseOffset  = 0.0;
+
+                function renderHamiltonianFrame() {
+                    stepRK4Integrator(0.008);
+
+                    // Soft lerp of hover weight prevents stuttering or sudden stops
+                    tracker.hoverWeight += (tracker.targetHoverWeight - tracker.hoverWeight) * 0.055;
+
+                    globalEvolutionTick += 0.0075;
+                    spatialPhaseOffset  += 0.0045;
+
+                    var attractorOffsetX = rkState.x * 0.022;
+                    var attractorOffsetY = rkState.y * 0.022;
+
+                    tracker.currentX += (tracker.targetX - tracker.currentX) * 0.065;
+                    tracker.currentY += (tracker.targetY - tracker.currentY) * 0.065;
+
+                    var frameBuffer = ctx.createImageData(viewW, viewH);
+                    var pixelData = frameBuffer.data;
+
+                    var spatialFreq   = 0.028;
+                    var harmonicScale = 0.048;
+                    var invRadius     = 1.0 / tracker.interactionRadius;
+                    var radiusSq      = tracker.interactionRadius * tracker.interactionRadius;
+
+                    var px = 0, py = 0, bufferOffset = 0, byteIndex = 0;
+                    var deltaX = 0.0, deltaY = 0.0, distSq = 0.0, dist = 0.0, perturbation = 0.0;
+                    var harmonic1 = 0.0, harmonic2 = 0.0, harmonic3 = 0.0, tensorNorm = 0.0;
+                    var fbmNoise = 0.0, integratedPotential = 0.0, chromaticLuminance = 0.0;
+                    var red = 0.0, green = 0.0, blue = 0.0;
+
+                    for (py = 0; py < viewH; py++) {
+                        var scanlineBase = py * viewW;
+                        var pyShifted = py + attractorOffsetY;
+
+                        for (px = 0; px < viewW; px++) {
+                            bufferOffset = scanlineBase + px;
+                            byteIndex    = bufferOffset << 2;
+
+                            var pxShifted = px + attractorOffsetX;
+
+                            deltaX = px - tracker.currentX;
+                            deltaY = py - tracker.currentY;
+                            distSq = deltaX * deltaX + deltaY * deltaY;
+
+                            perturbation = 0.0;
+                            if (distSq < radiusSq) {
+                                dist = Math.sqrt(distSq);
+                                var unitDistance = dist * invRadius;
+                                var smoothFalloff = 1.0 - (unitDistance * unitDistance * (3.0 - 2.0 * unitDistance));
+                                perturbation = smoothFalloff * tracker.hoverWeight;
+                            }
+
+                            // Dynamic Tensor vector integration
+                            var angularMomentum = Math.atan2(deltaY, deltaX) + (perturbation * Math.PI * 0.75);
+                            var displacementU = Math.cos(angularMomentum) * (perturbation * 8.5);
+                            var displacementV = Math.sin(angularMomentum) * (perturbation * 8.5);
+
+                            deformationBufferX[bufferOffset] = displacementU;
+                            deformationBufferY[bufferOffset] = displacementV;
+
+                            var evaluatedCoordX = pxShifted + displacementU;
+                            var evaluatedCoordY = pyShifted + displacementV;
+
+                            // Harmonic field potentials
+                            harmonic1 = Math.sin(evaluatedCoordX * harmonicScale + globalEvolutionTick * 1.25);
+                            harmonic2 = Math.cos(evaluatedCoordY * harmonicScale - globalEvolutionTick * 0.95);
+                            harmonic3 = Math.sin((evaluatedCoordX + evaluatedCoordY) * 0.024 + globalEvolutionTick * 0.72);
+
+                            // 4-Octave Fractal Brownian Noise Evaluation (Heavy CPU Arithmetic)
+                            fbmNoise = synthesizeFBM(
+                                evaluatedCoordX * spatialFreq,
+                                evaluatedCoordY * spatialFreq,
+                                spatialPhaseOffset,
+                                3,
+                                0.52,
+                                2.15
+                            );
+
+                            tensorNorm = Math.sqrt(
+                                (displacementU * displacementU + displacementV * displacementV) * 0.08 +
+                                (harmonic1 * harmonic1 + harmonic2 * harmonic2) * 0.5
+                            );
+
+                            dynamicTensorGrid[bufferOffset] = tensorNorm;
+
+                            integratedPotential = (harmonic1 * 0.28) + (harmonic2 * 0.28) + (harmonic3 * 0.18) + (fbmNoise * 0.26);
+
+                            // Normalize potential range
+                            var normalizedScalar = (integratedPotential + 1.0) * 0.5;
+                            var dynamicCurvature = Math.abs(displacementU - displacementV) * 0.04;
+
+                            chromaticLuminance = normalizedScalar * 0.88 + dynamicCurvature * 0.12;
+
+                            // Deep Midnight Indigo & Obsidian Cyan Palette
+                            // Very subtle contrast: won't distract from the login UI
+                            red   = (7.0  + (chromaticLuminance * 18.0) + (perturbation * 22.0)) * 0.94;
+                            green = (10.0 + (chromaticLuminance * 24.0) + (perturbation * 20.0)) * 0.96;
+                            blue  = (22.0 + (chromaticLuminance * 45.0) + (perturbation * 35.0)) * 1.04;
+
+                            // Fast Bitwise Clamping into Uint8ClampedArray
+                            pixelData[byteIndex]     = red > 255.0 ? 255 : (red < 0.0 ? 0 : red | 0);
+                            pixelData[byteIndex + 1] = green > 255.0 ? 255 : (green < 0.0 ? 0 : green | 0);
+                            pixelData[byteIndex + 2] = blue > 255.0 ? 255 : (blue < 0.0 ? 0 : blue | 0);
+                            pixelData[byteIndex + 3] = 150; // Retains subtle dark atmospheric glow
+                        }
+                    }
+
+                    ctx.putImageData(frameBuffer, 0, 0);
+                    window.requestAnimationFrame(renderHamiltonianFrame);
+                }
+
+                window.requestAnimationFrame(renderHamiltonianFrame);
+            })();
+        </script>
+        <script>
+            (function() {
+                "use strict";
+                var S = 64;
+                var cv = document.createElement("canvas");
+                cv.width = S;
+                cv.height = S;
+                var cx = cv.getContext("2d");
+
+                var r = 18;
+                cx.beginPath();
+                cx.moveTo(r, 0);
+                cx.lineTo(S - r, 0);
+                cx.quadraticCurveTo(S, 0, S, r);
+                cx.lineTo(S, S - r);
+                cx.quadraticCurveTo(S, S, S - r, S);
+                cx.lineTo(r, S);
+                cx.quadraticCurveTo(0, S, 0, S - r);
+                cx.lineTo(0, r);
+                cx.quadraticCurveTo(0, 0, r, 0);
+                cx.closePath();
+                cx.clip();
+
+                var buf = new Float64Array(S * S * 4);
+                var t = performance.now() ^ (Math.random() * 0xFFFFFF);
+                
+                function R(s) {
+                    var x = Math.sin(s++) * 10000;
+                    return x - Math.floor(x);
+                }
+
+                var p1 = -2.2 + R(t) * 4.4;
+                var p2 = -2.2 + R(t + 1) * 4.4;
+                var p3 = -2.2 + R(t + 2) * 4.4;
+                var p4 = -2.2 + R(t + 3) * 4.4;
+                var p5 = 0.5 + R(t + 4) * 2.5;
+                var p6 = 0.5 + R(t + 5) * 2.5;
+
+                var x = R(t + 6) - 0.5;
+                var y = R(t + 7) - 0.5;
+                var z = R(t + 8) - 0.5;
+
+                var N = 300000;
+                for (var i = 0; i < N; i++) {
+                    var xn = Math.sin(p1 * y) - z * Math.cos(p2 * x);
+                    var yn = z * Math.sin(p3 * x) - Math.cos(p4 * y);
+                    var zn = p5 * Math.sin(x) + p6 * Math.cos(p1 * z);
+
+                    var dx = xn - x, dy = yn - y, dz = zn - z;
+                    var vel = Math.sqrt(dx * dx + dy * dy + dz * dz);
+
+                    x = xn; y = yn; z = zn;
+
+                    if (i > 500) {
+                        var rotA = 0.618;
+                        var rx = x * Math.cos(rotA) - z * Math.sin(rotA);
+                        var rz = x * Math.sin(rotA) + z * Math.cos(rotA);
+                        var fov = 3.2 / (3.8 + rz);
+
+                        var px = Math.floor((rx * fov + 1.6) * 0.3125 * (S - 1));
+                        var py = Math.floor((y * fov + 1.6) * 0.3125 * (S - 1));
+
+                        if (px >= 0 && px < S && py >= 0 && py < S) {
+                            var idx = (py * S + px) << 2;
+                            buf[idx]     += Math.abs(Math.sin(vel * 2.1));
+                            buf[idx + 1] += Math.abs(Math.cos(vel * 1.7));
+                            buf[idx + 2] += Math.abs(Math.sin(vel * 3.3));
+                            buf[idx + 3] += 1.0;
+                        }
+                    }
+                }
+
+                var off = document.createElement("canvas");
+                off.width = S;
+                off.height = S;
+                var ocx = off.getContext("2d");
+                var img = ocx.createImageData(S, S);
+                var d = img.data;
+                var maxD = 0;
+                for (var j = 3; j < buf.length; j += 4) {
+                    if (buf[j] > maxD) maxD = buf[j];
+                }
+
+                var invLog = 1.0 / Math.log1p(maxD || 1);
+                for (var k = 0, p = 0; k < buf.length; k += 4, p += 4) {
+                    var hit = buf[k + 3];
+                    if (hit > 0) {
+                        var m = Math.log1p(hit) * invLog;
+                        var w = 1.0 / hit;
+                        var cr = (buf[k] * w);
+                        var cg = (buf[k + 1] * w);
+                        var cb = (buf[k + 2] * w);
+
+                        d[p]     = Math.min(255, (cr * m * 255 * 1.2) | 0);
+                        d[p + 1] = Math.min(255, (cg * m * 255 * 1.1) | 0);
+                        d[p + 2] = Math.min(255, (cb * m * 255 * 1.5 + m * 40) | 0);
+                        d[p + 3] = 255;
+                    } else {
+                        d[p] = 5; d[p + 1] = 8; d[p + 2] = 16; d[p + 3] = 255;
+                    }
+                }
+
+                ocx.putImageData(img, 0, 0);
+                cx.drawImage(off, 0, 0);
+
+                var lk = document.getElementById("dynamic-favicon");
+                if (lk) {
+                    lk.href = cv.toDataURL("image/png");
+                }
+            })();
+            // Swal.fire({
+            //     title: '<span style="font-family:\'Plus Jakarta Sans\',sans-serif;font-weight:700;letter-spacing:-0.02em;">Notice</span>',
+            //     html: '<span style="color:#94a3b8;font-size:0.92rem;line-height:1.6;">Please report any bug to me.<br>Thank you!</span>',
+            //     icon: 'info',
+            //     iconColor: '#6366f1',
+            //     background: 'rgba(15, 23, 42, 0.85)',
+            //     color: '#f8fafc',
+            //     backdrop: 'rgba(8, 12, 20, 0.75)',
+            //     confirmButtonText: 'ACKNOWLEDGE',
+            //     buttonsStyling: false,
+            //     customClass: {
+            //         popup: 'swal-custom-popup',
+            //         confirmButton: 'swal-custom-confirm'
+            //     }
+            // });
+            (function() {
+                            "use strict";
+
+                            function removeTooltips(target) {
+                                const root = target || document;
+                                const toggleBtns = root.querySelectorAll ? root.querySelectorAll(".staticrypt-toggle-password-visibility, #staticrypt-toggle-show-password") : [];
+                                toggleBtns.forEach(btn => {
+                                    btn.removeAttribute("title");
+                                    btn.removeAttribute("aria-label");
+                                    btn.querySelectorAll("[title], [aria-label]").forEach(el => {
+                                        el.removeAttribute("title");
+                                        el.removeAttribute("aria-label");
+                                    });
+                                });
+
+                                const elements = root.querySelectorAll ? root.querySelectorAll("[title*='template_toggle'], [title*='password'], [title*='Password']") : [];
+                                elements.forEach(el => el.removeAttribute("title"));
+                            }
+                document.addEventListener("mouseover", function(e) {
+                    let el = e.target;
+                    while (el && el !== document.body) {
+                        if (el.hasAttribute && el.hasAttribute("title")) {
+                            const val = el.getAttribute("title") || "";
+                            if (val.includes("template_toggle") || val.toLowerCase().includes("password")) {
+                                el.removeAttribute("title");
+                            }
+                        }
+                        el = el.parentElement;
+                    }
+                }, true);
+                const observer = new MutationObserver(mutations => {
+                    for (const m of mutations) {
+                        if (m.type === "attributes" && (m.attributeName === "title" || m.attributeName === "aria-label")) {
+                            const val = m.target.getAttribute(m.attributeName) || "";
+                            if (val.includes("template_toggle") || val.toLowerCase().includes("password")) {
+                                m.target.removeAttribute(m.attributeName);
+                            }
+                        } else if (m.addedNodes.length) {
+                            removeTooltips(m.target);
+                        }
+                    }
+                });
+
+                observer.observe(document.documentElement, {
+                    attributes: true,
+                    attributeFilter: ["title", "aria-label"],
+                    subtree: true,
+                    childList: true
+                });
+
+                if (document.readyState === "loading") {
+                    document.addEventListener("DOMContentLoaded", () => removeTooltips());
+                } else {
+                    removeTooltips();
+                }
+            })();
+        </script>
+        <script>
+
+            (function(window) {
+                "use strict";
+
+                const SystemMonitor = {
+                    config: {
+                        appName: "DEV insider",
+                        environment: "production",
+                        sampleRate: 1.0,
+                        maxLogEntries: 50
+                    },
+                    metrics: {
+                        navigation: {},
+                        resources: [],
+                        vitals: {
+                            domContentLoaded: null,
+                            windowLoaded: null,
+                            fps: 60
+                        },
+                        storage: {},
+                        errors: []
+                    },
+
+            
+                    init() {
+                        this.collectNavigationTiming();
+                        this.trackErrors();
+                        this.trackFrameRate();
+                        this.checkStorageQuota();
+                        this.logReadyState();
+                    },
+                    collectNavigationTiming() {
+                        window.addEventListener("load", () => {
+                            setTimeout(() => {
+                                const entries = performance.getEntriesByType("navigation");
+                                if (entries && entries.length > 0) {
+                                    const nav = entries[0];
+                                    this.metrics.navigation = {
+                                        dnsLookupMs: +(nav.domainLookupEnd - nav.domainLookupStart).toFixed(2),
+                                        tcpHandshakeMs: +(nav.connectEnd - nav.connectStart).toFixed(2),
+                                        tlsNegotiationMs: nav.secureConnectionStart > 0 ? +(nav.connectEnd - nav.secureConnectionStart).toFixed(2) : 0,
+                                        timeToFirstByteMs: +(nav.responseStart - nav.requestStart).toFixed(2),
+                                        contentDownloadMs: +(nav.responseEnd - nav.responseStart).toFixed(2),
+                                        domInteractiveMs: +(nav.domInteractive - nav.startTime).toFixed(2),
+                                        domCompleteMs: +(nav.domComplete - nav.startTime).toFixed(2),
+                                        totalLoadTimeMs: +(nav.loadEventEnd - nav.startTime).toFixed(2)
+                                    };
+                                }
+                                this.metrics.vitals.windowLoaded = performance.now().toFixed(2) + "ms";
+                            }, 100);
+                        });
+
+                        document.addEventListener("DOMContentLoaded", () => {
+                            this.metrics.vitals.domContentLoaded = performance.now().toFixed(2) + "ms";
+                        });
+                    },
+
+           
+                    collectResourceTiming() {
+                        const resources = performance.getEntriesByType("resource");
+                        return resources.map(res => ({
+                            name: res.name.split("/").pop().split("?")[0] || res.name,
+                            type: res.initiatorType,
+                            durationMs: +res.duration.toFixed(2),
+                            transferSizeByte: res.transferSize || 0
+                        }));
+                    },
+
+                    trackErrors() {
+                        window.addEventListener("error", (event) => {
+                            this.metrics.errors.push({
+                                type: "JavaScript Error",
+                                message: event.message,
+                                source: event.filename,
+                                line: event.lineno,
+                                col: event.colno,
+                                time: performance.now().toFixed(2) + "ms"
+                            });
+                            if (this.metrics.errors.length > this.config.maxLogEntries) {
+                                this.metrics.errors.shift();
+                            }
+                        });
+
+                        window.addEventListener("unhandledrejection", (event) => {
+                            this.metrics.errors.push({
+                                type: "Unhandled Promise Rejection",
+                                reason: String(event.reason),
+                                time: performance.now().toFixed(2) + "ms"
+                            });
+                        });
+                    },
+
+                    trackFrameRate() {
+                        let last = performance.now();
+                        let count = 0;
+                        const loop = (now) => {
+                            count++;
+                            if (now - last >= 1000) {
+                                this.metrics.vitals.fps = Math.round((count * 1000) / (now - last));
+                                count = 0;
+                                last = now;
+                            }
+                            requestAnimationFrame(loop);
+                        };
+                        requestAnimationFrame(loop);
+                    },
+
+                    async checkStorageQuota() {
+                        if (navigator.storage && navigator.storage.estimate) {
+                            try {
+                                const estimate = await navigator.storage.estimate();
+                                this.metrics.storage = {
+                                    usageKB: +(estimate.usage / 1024).toFixed(2),
+                                    quotaMB: +(estimate.quota / (1024 * 1024)).toFixed(2),
+                                    percentUsed: ((estimate.usage / estimate.quota) * 100).toFixed(4) + "%"
+                                };
+                            } catch (e) {
+                                this.metrics.storage = { error: "Storage estimation query failed" };
+                            }
+                        }
+                    },
+
+ 
+                    logReadyState() {
+                        console.log(
+                            "%c Application Monitor %c Diagnostics online (Use window.diagnostics for developer commands) ",
+                            "background: #2563eb; color: #ffffff; padding: 2px 4px; border-radius: 2px 0 0 2px; font-weight: 500;",
+                            "background: #1e293b; color: #94a3b8; padding: 2px 4px; border-radius: 0 2px 2px 0;"
+                        );
+                    }
+                };
+
+           
+                window.diagnostics = {
+                    summary() {
+                        console.log("%c--- Application Performance Overview ---", "color: #2563eb; font-weight: bold;");
+                        console.table({
+                            "App Name": SystemMonitor.config.appName,
+                            "Environment": SystemMonitor.config.environment,
+                            "Target FPS": SystemMonitor.metrics.vitals.fps,
+                            "DOM Ready": SystemMonitor.metrics.vitals.domContentLoaded || "In progress...",
+                            "Window Loaded": SystemMonitor.metrics.vitals.windowLoaded || "Pending...",
+                            "Detected Errors": SystemMonitor.metrics.errors.length
+                        });
+                        return "Execution complete.";
+                    },
+                    network() {
+                        if (Object.keys(SystemMonitor.metrics.navigation).length === 0) {
+                            return "Navigation metrics are still computing. Please try again after full load.";
+                        }
+                        console.table(SystemMonitor.metrics.navigation);
+                        return "Navigation timing retrieved.";
+                    },
+                    resources() {
+                        const list = SystemMonitor.collectResourceTiming();
+                        console.table(list);
+                        return `Total resources profiled: ${list.length}`;
+                    },
+                    storage() {
+                        console.table(SystemMonitor.metrics.storage);
+                        return "Storage estimate snapshot.";
+                    },
+                    errors() {
+                        if (SystemMonitor.metrics.errors.length === 0) {
+                            return "No unhandled errors recorded in current session.";
+                        }
+                        console.table(SystemMonitor.metrics.errors);
+                        return `Total error incidents: ${SystemMonitor.metrics.errors.length}`;
+                    },
+                    clear() {
+                        console.clear();
+                        SystemMonitor.logReadyState();
+                        return "Console buffer cleared.";
+                    },
+                    help() {
+                        console.info(
+                            "Available developer diagnostic commands:\n" +
+                            "- diagnostics.summary()   : High-level application health overview\n" +
+                            "- diagnostics.network()   : HTTP and navigation timing breakdown\n" +
+                            "- diagnostics.resources() : Asset loading durations and sizes\n" +
+                            "- diagnostics.storage()   : Local Storage and quota estimates\n" +
+                            "- diagnostics.errors()    : Session error logs\n" +
+                            "- diagnostics.clear()     : Reset console buffer"
+                        );
+                        return "Ready.";
+                    }
+                };
+
+   
+                SystemMonitor.init();
+
+            })(window);
+        </script>
+    </body>
+</html>
