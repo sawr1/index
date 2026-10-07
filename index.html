@@ -41,9 +41,7 @@
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/5.1.0/theme/black.min.css"> 
         <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
         <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-
     <style>
-        
         :root {
             --bg: #ffffff;
             --surface: #ffffff;
@@ -51,7 +49,10 @@
             --text-primary: #202124;
             --text-secondary: #5f6368;
             --accent: #1a73e8;
+            --accent-active: #1557b0;
+            --chip-bg: #f1f3f4;
             --tap-highlight: rgba(0, 0, 0, 0.05);
+            --error: #d93025;
         }
 
         @media (prefers-color-scheme: dark) {
@@ -62,8 +63,24 @@
                 --text-primary: #e8eaed;
                 --text-secondary: #9aa0a6;
                 --accent: #8ab4f8;
+                --accent-active: #aecbfa;
+                --chip-bg: #3c4043;
                 --tap-highlight: rgba(255, 255, 255, 0.08);
+                --error: #f28b82;
             }
+        }
+
+        [data-theme="dark"] {
+            --bg: #202124;
+            --surface: #2d2e30;
+            --border: #5f6368;
+            --text-primary: #e8eaed;
+            --text-secondary: #9aa0a6;
+            --accent: #8ab4f8;
+            --accent-active: #aecbfa;
+            --chip-bg: #3c4043;
+            --tap-highlight: rgba(255, 255, 255, 0.08);
+            --error: #f28b82;
         }
 
         * {
@@ -76,11 +93,11 @@
         html, body, .staticrypt-html, .staticrypt-body {
             width: 100% !important;
             height: 100% !important;
-            background-color: var(--bg) !important;
-            background-image: none !important;
+            background: var(--bg) !important;
             color: var(--text-primary) !important;
-            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif !important;
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif !important;
             overflow-x: hidden !important;
+            user-select: none;
         }
 
         #cpu-matrix-canvas, .staticrypt-body::before {
@@ -92,19 +109,19 @@
             display: flex;
             align-items: center;
             justify-content: center;
-            padding: 20px 16px;
+            padding: 16px;
         }
 
         .staticrypt-page {
             width: 100%;
-            max-width: 420px;
+            max-width: 400px;
         }
 
         .staticrypt-form {
-            background-color: var(--surface) !important;
+            background: var(--surface) !important;
             border: 1px solid var(--border) !important;
-            border-radius: 4px !important;
-            padding: 32px 24px 24px !important;
+            border-radius: 8px !important;
+            padding: 32px 24px !important;
             box-shadow: none !important;
             backdrop-filter: none !important;
             -webkit-backdrop-filter: none !important;
@@ -116,7 +133,7 @@
         }
 
         .staticrypt-title {
-            font-size: 1.35rem !important;
+            font-size: 1.25rem !important;
             font-weight: 500 !important;
             color: var(--text-primary) !important;
             line-height: 1.3 !important;
@@ -132,11 +149,10 @@
         .staticrypt-password-container {
             position: relative !important;
             width: 100% !important;
-            margin-bottom: 14px !important;
+            margin-bottom: 12px !important;
             border: 1px solid var(--border) !important;
             border-radius: 4px !important;
-            background-color: var(--surface) !important;
-            box-shadow: none !important;
+            background: var(--surface) !important;
         }
 
         .staticrypt-password-container:focus-within {
@@ -145,13 +161,14 @@
 
         .staticrypt-form input:is([type="password"], [type="text"]) {
             width: 100% !important;
-            padding: 12px 40px 12px 14px !important;
-            font-size: 16px !important;
+            padding: 12px 40px 12px 12px !important;
+            font-size: 1rem !important;
             color: var(--text-primary) !important;
             background: transparent !important;
             border: none !important;
             outline: none !important;
             border-radius: 4px !important;
+            user-select: text;
         }
 
         .staticrypt-form input::placeholder {
@@ -163,10 +180,10 @@
             right: 12px !important;
             top: 50% !important;
             transform: translateY(-50%) !important;
-            width: 18px !important;
-            height: 18px !important;
+            width: 20px !important;
+            height: 20px !important;
             cursor: pointer !important;
-            opacity: 0.65 !important;
+            opacity: 0.6 !important;
             transition: transform 0.1s ease !important;
         }
 
@@ -182,39 +199,31 @@
             color: var(--text-secondary) !important;
             margin-bottom: 24px !important;
             cursor: pointer !important;
-            user-select: none !important;
         }
 
         .staticrypt-remember input[type="checkbox"] {
             accent-color: var(--accent) !important;
             width: 16px !important;
             height: 16px !important;
-            cursor: pointer !important;
         }
 
         .staticrypt-form .staticrypt-decrypt-button {
             width: 100% !important;
             height: 42px !important;
-            background-color: var(--accent) !important;
+            background: var(--accent) !important;
             color: #ffffff !important;
             border: none !important;
             border-radius: 4px !important;
             font-size: 0.9rem !important;
             font-weight: 500 !important;
-            letter-spacing: 0.25px !important;
+            letter-spacing: 0.5px !important;
             cursor: pointer !important;
-            box-shadow: none !important;
             transition: transform 0.1s ease !important;
-        }
-
-        @media (prefers-color-scheme: dark) {
-            .staticrypt-form .staticrypt-decrypt-button {
-                color: #202124 !important;
-            }
         }
 
         .staticrypt-form .staticrypt-decrypt-button:active {
             transform: scale(0.97) !important;
+            background: var(--accent-active) !important;
         }
 
         .tmp {
@@ -224,11 +233,10 @@
             display: flex !important;
             align-items: center !important;
             justify-content: space-between !important;
-            flex-direction: row !important;
         }
 
         .tmp p#think {
-            font-size: 0.75rem !important;
+            font-size: 0.78rem !important;
             color: var(--text-secondary) !important;
             margin: 0 !important;
         }
@@ -239,13 +247,15 @@
             color: var(--accent) !important;
             font-size: 0.82rem !important;
             font-weight: 500 !important;
-            padding: 4px 6px !important;
+            padding: 4px 8px !important;
             cursor: pointer !important;
+            border-radius: 4px !important;
             transition: transform 0.1s ease !important;
         }
 
         .tmp button#Moisson:active, .tmp button#Myaccount:active {
-            transform: scale(0.95) !important;
+            transform: scale(0.94) !important;
+            background: var(--tap-highlight) !important;
         }
 
         .staticrypt-spinner-container {
@@ -256,8 +266,8 @@
         }
 
         .staticrypt-spinner {
-            width: 28px !important;
-            height: 28px !important;
+            width: 32px !important;
+            height: 32px !important;
             border: 3px solid var(--border) !important;
             border-top-color: var(--accent) !important;
             border-radius: 50% !important;
@@ -268,77 +278,34 @@
             to { transform: rotate(360deg); }
         }
 
-        div:where(.swal2-container) div:where(.swal2-popup) {
-            background-color: var(--surface) !important;
-            border: 1px solid var(--border) !important;
-            border-radius: 8px !important;
-            padding: 24px !important;
+        .custom-toast {
+            position: fixed !important;
+            bottom: 24px !important;
+            top: auto !important;
+            left: 50% !important;
+            transform: translate(-50%, 0) !important;
+            background: var(--surface) !important;
             color: var(--text-primary) !important;
-            box-shadow: none !important;
-            font-family: inherit !important;
-        }
-
-        .swal2-title {
-            color: var(--text-primary) !important;
-            font-size: 1.1rem !important;
-            font-weight: 500 !important;
-        }
-
-        .swal2-input {
-            background: transparent !important;
             border: 1px solid var(--border) !important;
             border-radius: 4px !important;
-            color: var(--text-primary) !important;
-            font-size: 0.9rem !important;
-            box-shadow: none !important;
+            padding: 10px 18px !important;
+            font-size: 0.85rem !important;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1) !important;
+            opacity: 0 !important;
+            transition: opacity 0.2s ease !important;
+            z-index: 9999 !important;
         }
 
-        .swal2-input:focus {
-            border-color: var(--accent) !important;
-            box-shadow: none !important;
+        .custom-toast.show {
+            opacity: 1 !important;
         }
 
-        .swal2-confirm {
-            background-color: var(--accent) !important;
-            color: #ffffff !important;
-            border-radius: 4px !important;
-            font-weight: 500 !important;
-            font-size: 0.88rem !important;
-            box-shadow: none !important;
-            transition: transform 0.1s ease !important;
-        }
-
-        @media (prefers-color-scheme: dark) {
-            .swal2-confirm {
-                color: #202124 !important;
-            }
-        }
-
-        .swal2-confirm:active {
-            transform: scale(0.96) !important;
-        }
-
-        .swal2-cancel {
-            background-color: transparent !important;
-            color: var(--text-secondary) !important;
-            border: 1px solid var(--border) !important;
-            border-radius: 4px !important;
-            font-size: 0.88rem !important;
-            transition: transform 0.1s ease !important;
-        }
-
-        .swal2-cancel:active {
-            transform: scale(0.96) !important;
+        .custom-toast.error {
+            color: var(--error) !important;
         }
 
         .shake {
-            animation: tap-shake 0.25s ease-in-out !important;
-        }
-
-        @keyframes tap-shake {
-            0%, 100% { transform: translateX(0); }
-            25% { transform: translateX(-4px); }
-            75% { transform: translateX(4px); }
+            animation: none !important;
         }
 
         .hidden {
