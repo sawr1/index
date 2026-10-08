@@ -1,2 +1,1 @@
-# index
-This is my website! 😆
+https://index.sawr1.workers.dev/
